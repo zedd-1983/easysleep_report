@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.3.10)  14 MAR 2020 15:36
+=======
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.3.10)  14 MAR 2020 15:30
+>>>>>>> 709036ffaca29b8f6f1f2efbbb617a7fd2c18da7
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -246,7 +250,11 @@ xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/public/amsfonts/cm/cmti12.pfb>
+<<<<<<< HEAD
 Output written on Easysleep_project_report.pdf (13 pages, 88937 bytes).
+=======
+Output written on Easysleep_project_report.pdf (13 pages, 88949 bytes).
+>>>>>>> 709036ffaca29b8f6f1f2efbbb617a7fd2c18da7
 PDF statistics:
  66 PDF objects out of 1000 (max. 8388607)
  44 compressed objects within 1 object stream
