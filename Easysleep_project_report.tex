@@ -1,10 +1,86 @@
-\documentclass[12pt,a4paper]{book}
+\documentclass[12pt,a4paper]{article}
 \usepackage[latin1]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
-\author{Zdenek Krousky}
+\author{Zdenek Krousky
+	Galway - Mayo Institute of Technology}
 \title{Easysleep}
+
+\renewcommand*\contentsname{Table of Content}
+
 \begin{document}
+	\begin{titlepage}
+		\centering
+		\includegraphics[width=0.5\textwidth]{gmit_full1.png}\par\vspace{0cm}
+		{\scshape\LARGE Galway - Mayo Institute of Technology \par}
+		\vspace{1cm}
+		{\scshape\Large Final year project\par}
+		\vspace{1.5cm}
+		{\huge\bfseries Easysleep\par}
+		\vspace{2cm}
+		{\Large\itshape Zdenek Krousky\par}
+		\vfill
+		supervised by\par
+		Paul \textsc{Lennon}
+		
+		\vfill
+		
+		% Bottom of the page
+		{\large \today\par}
+	\end{titlepage}
+	
+	\newpage
+	\pagenumbering{gobble}
+	\pagenumbering{arabic}
+	\newpage
+	
+	\section*{Declaration}
+	This project is presented in partial fulfilment of the requirements for the Degree of Bachelor of Engineering (Hons.) in Software and Electronic Engineering at Galway-Mayo Institute of Technology. This project is my own work, except where otherwise accredited. Where the work of others has been used or incorporated during this project, this is acknowledged and referenced.
+	\newpage
+	
+	\section*{Acknowledgement}
+	I would like to extend my thanks to my supervisor Paul Lennon who made sure I stay on track with my project as well as to Niall O'Keeffe for his support in embedded part of the project. I would also like to thank my wife Caroline for her ongoing support through my studies.
+	\newpage
+	\tableofcontents
+	\newpage
+	
+	\section{Project background and motivation}
+	project background and motivation behind the project (WHY?)
+	\newpage
+	
+	\section{Overview}
+	project intro (what is Easysleep, research, architecture diagram)
+	\newpage
+	
+	\section{Hardware}
+	hardware
+	\newpage
+	
+	\section{Software}
+	software used, languages, IDEs, tools
+	
+		\subsection{MCUXpresso}
+		development of code for K64F
+		\newpage
+	
+		\subsection{Android Studio}
+		mobile application development
+		\newpage
+		
+		\subsection{Other}
+		SystemView, FreeRTOS, Pulseview, Git/Github, project management software, BT configuration
+		\newpage
+	
+	\section{Conclusion}
+	what was the development of the project like
+	\newpage
+	
+	\section{References}
+	\newpage
+	
+	\section{Bibliography}
+	\newpage
+	
 \end{document}
