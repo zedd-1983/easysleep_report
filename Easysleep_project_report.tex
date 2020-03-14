@@ -4,6 +4,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{wrapfig}
 \author{Zdenek Krousky}
 \title{Easysleep}
 
@@ -57,19 +58,72 @@
 	\section{Overview}
 	{\bfseries What is Easysleep?, Research, Architecture diagram}\\
 	
-	The project consists of two devices 
-	that are able to communicate via Bluetooth and a mobile phone application. The idea behind
-	the project is a master device capable of detecting moisture and recording the time and the 
-	data of this event. The master device can then notify the secondary one (bracelet) responsible for waking up the sleeping person on the following night prior to the event-time and also receive acknowledgement status. The master device can also communicate with a mobile phone application.  
-	The user can silence an ongoing alarm, request current date and time of the system or change it  
-	and also request data of last ten events that would then be saved into an SQLite database on  
-	the phone. \\
-
+	The project consists of two devices that are able to communicate via Bluetooth and a mobile phone application. The idea behindthe project is a master device capable of detecting moisture and recording the time and the data of this event. The master device can then notify the secondary one (bracelet) responsible for waking up the sleeping person on the following night prior to the event-time and also receive acknowledgement status. The master device can also communicate with a mobile phone application.  The user can silence an ongoing alarm, request current date and time of the system or change it and also request data of last ten events that would then be saved into an SQLite database on the phone for anytime access or for statistics/progress.
 	\newpage
 	
 	\section{Hardware}
 	{\bfseries Hardware used, Connections, Specifications}\\
-	\newpage
+		\subsection{FRDM-K64F}
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.7\textwidth]{k64F_placeholder.png}\par\vspace{0cm}
+		\end{figure}
+		FRDM-K64F is a very capable development board manufactured by NXP Semiconductors with a 
+		headquarters in Eindhoven, Netherlands and Austin, Texas. I have chosen this board because  
+		of my familiarity with it and of its abilities. This board and its cousin KL25Z were used  
+		throughout the course as part of the embedded systems modules.\\  	
+		\\
+		{\bfseries Board specifications:}  	
+		\begin{itemize}
+			\item 120MHz ARM Cortex-M4 microcontroller
+			\item 1MB Flash memory
+			\item 256kB RAM
+			\item Ethernet
+			\item SDHC
+			\item low-power
+			\item FXOS8700CQ accelerometer and magnetometer 
+			\item Add-on Bluetooth module: JY-MCU BT board V1.05
+			\item RGB LED
+			\item 2x user push buttons
+			\item form-factor compatible with Arduino Uno Rev.3 pin layout
+		\end{itemize}
+		\newpage
+		
+		\subsection{Parallax 28821 Vibration motor}
+		
+		\begin{wrapfigure}{r}{0.25\textwidth}
+			\centering
+			\includegraphics[width=0.2\textwidth]{parallax_vib_motor.png}
+		\end{wrapfigure}
+		
+		Vibration motor specifications and connection diagram
+		l;kjsd sl;kdj sasfdl;kjsad sl;akkfjj sdflkjsadf s;lafj lkjkjsd ;lsajjf sad;lfkj
+		;jas ;slkfjlskdk sakfjjsa f;lkksjff ;sakfsd f;lkksjafkjsdl;kjsdflkkjsdlksjdflksjfl
+		lsjflkskjfjls lkksjflksjflsdfj
+		lsdjflsjflsjflsfjslkkfjslkkfjslfj
+		lsdjflsjf;laj;alkjd a;kljdf ;alkskdfjj slkfjsf slfkjsf slkfdkjlsdkfjslfkjj kajsd aj 
+		;lajd lsj fljslfdj sfojoiruwoeiuw slfdkjsf ouw roiwuwe lsjkfs dofiuwrp lkjs foiuwer 
+		ljsfoiuwr oiuwr pwurqpuwqpourwkj sfoiuwe  foiuwe wjfpquopiwuer 
+		piqur w woroiw roiwiurowuowuowu woiuwoeiuweor qpiwr ouqpriwqorwor poqproiuwu ro
+		
+		\begin{wrapfigure}{l}{0.25\textwidth}
+			\centering
+			\includegraphics[width=0.2\textwidth]{conn_diag.png}
+		\end{wrapfigure}
+		 ak aoiwoeiu woiuwr pioqpioqpioe poqiueiqpouiqe oiuqporeiu epoiuqwr oiowruwqpipiru
+		 lkjaslk;a ;laskjd sa;lkkjs sofiuwoeriuw roiwuer wroiuwre owiu woiue woreiuwr owiriuw r
+		 oiuwroiuwr woruowruwoir woriuwroiiuqpriurqpoiu piqpo woiriuwoiruworuwor poiiqur wqoiu
+		 oqiurpoiuwr oruwqopirwoiruwpoiruworiuw rwpoiruwoirworu woiurueow roiuqropwukljslkfjfoiuwr\\ 
+		 
+		
+		\subsection{Buzzer}
+		Buzzer specifications and connections
+		
+		\subsection{HC-05 Bluetooth module}
+		HC-05 specifications and connections
+		\newpage
+	
+	
 	
 	\section{Software}
 	{\bfseries Software used, Programming languages, IDEs, Software tools}\\
