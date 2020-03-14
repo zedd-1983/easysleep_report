@@ -4,8 +4,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
-\author{Zdenek Krousky
-	Galway - Mayo Institute of Technology}
+\author{Zdenek Krousky}
 \title{Easysleep}
 
 \renewcommand*\contentsname{Table of Content}
@@ -47,22 +46,36 @@
 	\newpage
 	
 	\section{Project background and motivation}
-	project background and motivation behind the project (WHY?)
+	{\bfseries Aim of the project, Why?}\\
+	
+	The goal of this project is to create a device that would help resolve nocturnal enurism (bedwetting) so common in children above the age of 5. 
+	
+	During my research on the topic of bedwetting I have come to some interesting numbers. 15% of  
+	children above the age of 5 still wet the bed at night, while 5% above the age 10 still do so.
 	\newpage
 	
 	\section{Overview}
-	project intro (what is Easysleep, research, architecture diagram)
+	{\bfseries What is Easysleep?, Research, Architecture diagram}\\
+	
+	The project consists of two devices 
+	that are able to communicate via Bluetooth and a mobile phone application. The idea behind
+	the project is a master device capable of detecting moisture and recording the time and the 
+	data of this event. The master device can then notify the secondary one (bracelet) responsible for waking up the sleeping person on the following night prior to the event-time and also receive acknowledgement status. The master device can also communicate with a mobile phone application.  
+	The user can silence an ongoing alarm, request current date and time of the system or change it  
+	and also request data of last ten events that would then be saved into an SQLite database on  
+	the phone. \\
+
 	\newpage
 	
 	\section{Hardware}
-	hardware
+	{\bfseries Hardware used, Connections, Specifications}\\
 	\newpage
 	
 	\section{Software}
-	software used, languages, IDEs, tools
+	{\bfseries Software used, Programming languages, IDEs, Software tools}\\
 	
 		\subsection{MCUXpresso}
-		development of code for K64F
+		development of code for K64Fs
 		\newpage
 	
 		\subsection{Android Studio}
