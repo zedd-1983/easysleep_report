@@ -4,9 +4,11 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\graphicspath{ {./images/} }
 \usepackage{wrapfig}
 \author{Zdenek Krousky}
 \title{Easysleep}
+\hyphenation{con-sti-tu-tion-al}
 
 \renewcommand*\contentsname{Table of Content}
 
@@ -47,7 +49,7 @@
 	\newpage
 	
 	\section{Project background and motivation}
-	{\bfseries Aim of the project, Why?}\\
+	{\bfseries Aim of the project, Why?}
 	
 	The goal of this project is to create a device that would help resolve nocturnal enurism (bedwetting) so common in children above the age of 5. 
 	
@@ -56,7 +58,7 @@
 	\newpage
 	
 	\section{Overview}
-	{\bfseries What is Easysleep?, Research, Architecture diagram}\\
+	{\bfseries What is Easysleep?, Research, Architecture diagram}
 	
 	The project consists of two devices that are able to communicate via Bluetooth and a mobile phone application. The idea behindthe project is a master device capable of detecting moisture and recording the time and the data of this event. The master device can then notify the secondary one (bracelet) responsible for waking up the sleeping person on the following night prior to the event-time and also receive acknowledgement status. The master device can also communicate with a mobile phone application.  The user can silence an ongoing alarm, request current date and time of the system or change it and also request data of last ten events that would then be saved into an SQLite database on the phone for anytime access or for statistics/progress.
 	\newpage
@@ -66,7 +68,7 @@
 		\subsection{FRDM-K64F}
 		\begin{figure}[h]
 			\centering
-			\includegraphics[width=0.7\textwidth]{k64F_placeholder.png}\par\vspace{0cm}
+			\includegraphics[width=0.7\textwidth]{k64f1.jpg}\par\vspace{0cm}
 		\end{figure}
 		FRDM-K64F is a very capable development board manufactured by NXP Semiconductors with a 
 		headquarters in Eindhoven, Netherlands and Austin, Texas. I have chosen this board because  
@@ -87,35 +89,30 @@
 			\item 2x user push buttons
 			\item form-factor compatible with Arduino Uno Rev.3 pin layout
 		\end{itemize}
-		\newpage
 		
 		\subsection{Parallax 28821 Vibration motor}
 		
 		\begin{wrapfigure}{r}{0.25\textwidth}
 			\centering
-			\includegraphics[width=0.2\textwidth]{parallax_vib_motor.png}
+			\includegraphics[width=0.2\textwidth]{parallax_vib_mot1.jpg}
 		\end{wrapfigure}
 		
-		Vibration motor specifications and connection diagram
-		l;kjsd sl;kdj sasfdl;kjsad sl;akkfjj sdflkjsadf s;lafj lkjkjsd ;lsajjf sad;lfkj
-		;jas ;slkfjlskdk sakfjjsa f;lkksjff ;sakfsd f;lkksjafkjsdl;kjsdflkkjsdlksjdflksjfl
-		lsjflkskjfjls lkksjflksjflsdfj
-		lsdjflsjflsjflsfjslkkfjslkkfjslfj
-		lsdjflsjf;laj;alkjd a;kljdf ;alkskdfjj slkfjsf slfkjsf slkfdkjlsdkfjslfkjj kajsd aj 
-		;lajd lsj fljslfdj sfojoiruwoeiuw slfdkjsf ouw roiwuwe lsjkfs dofiuwrp lkjs foiuwer 
-		ljsfoiuwr oiuwr pwurqpuwqpourwkj sfoiuwe  foiuwe wjfpquopiwuer 
-		piqur w woroiw roiwiurowuowuowu woiuwoeiuweor qpiwr ouqpriwqorwor poqproiuwu ro
+		The vibration motor is used to gently and quietly wake the sleeping person up in the first stage of the overall wake-up process. Parallax vibration motor seemed appropriate device for this task as it requires only 3V of power. However, the current it requires is quite high and cannot be supplied by the K64F thus an external supply has to be used.\\
 		
-		\begin{wrapfigure}{l}{0.25\textwidth}
+		\begin{figure}[h]
 			\centering
-			\includegraphics[width=0.2\textwidth]{conn_diag.png}
-		\end{wrapfigure}
-		 ak aoiwoeiu woiuwr pioqpioqpioe poqiueiqpouiqe oiuqporeiu epoiuqwr oiowruwqpipiru
-		 lkjaslk;a ;laskjd sa;lkkjs sofiuwoeriuw roiwuer wroiuwre owiu woiue woreiuwr owiriuw r
-		 oiuwroiuwr woruowruwoir woriuwroiiuqpriurqpoiu piqpo woiriuwoiruworuwor poiiqur wqoiu
-		 oqiurpoiuwr oruwqopirwoiruwpoiruworiuw rwpoiruwoirworu woiurueow roiuqropwukljslkfjfoiuwr\\ 
-		 
-		
+			\includegraphics[scale=0.3]{motor_diag1.png}
+		\end{figure}
+
+		{\bfseries Motor specifications:}
+		\begin{itemize}
+			\item Rate voltage: 3.0V
+			\item Rate current: 150mA
+			\item Rate speed: 9,000r/min Min
+			\item Starting voltage: 2.3V
+		\end{itemize}
+
+		\newpage
 		\subsection{Buzzer}
 		Buzzer specifications and connections
 		

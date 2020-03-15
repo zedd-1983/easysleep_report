@@ -2,7 +2,7 @@
 \contentsline {section}{\numberline {2}Overview}{5}
 \contentsline {section}{\numberline {3}Hardware}{6}
 \contentsline {subsection}{\numberline {3.1}FRDM-K64F}{6}
-\contentsline {subsection}{\numberline {3.2}Parallax 28821 Vibration motor}{8}
+\contentsline {subsection}{\numberline {3.2}Parallax 28821 Vibration motor}{7}
 \contentsline {subsection}{\numberline {3.3}Buzzer}{8}
 \contentsline {subsection}{\numberline {3.4}HC-05 Bluetooth module}{8}
 \contentsline {section}{\numberline {4}Software}{9}
