@@ -16,11 +16,11 @@
 	\begin{titlepage}
 		\centering
 		\includegraphics[width=0.5\textwidth]{gmit_full1.png}\par\vspace{0cm}
-		{\scshape\LARGE Galway - Mayo Institute of Technology \par}
+		{\scshape\LARGE Galway - Mayo \par Institute of Technology \par}
 		\vspace{1cm}
 		{\scshape\Large Final year project\par}
 		\vspace{1.5cm}
-		{\huge\bfseries Easysleep\par}
+		{\Huge\bfseries Easysleep\par}
 		\vspace{2cm}
 		{\Large\itshape Zdenek Krousky\par}
 		\vfill
@@ -96,8 +96,7 @@
 			\item form-factor compatible with Arduino Uno Rev.3 pin layout
 		\end{itemize}
 		
-		\subsection{Parallax 28821 Vibration motor}
-		
+		\subsection{Parallax 28821 Vibration motor}	
 		\begin{wrapfigure}{r}{0.25\textwidth}
 			\centering
 			\includegraphics[width=0.2\textwidth]{parallax_vib_mot1.jpg}
@@ -150,14 +149,19 @@
 
 		\end{itemize}
 		\newpage
-	
-	
-	
+		
 	\section{Software}
 	{\bfseries Software used, Programming languages, IDEs, Software tools}\\
+	Througout my project I have used various software tools to develop C and Java code, as well as
+	software to monitor the behaviour of the system.
 	
 		\subsection{MCUXpresso}
-		development of code for K64Fs
+		I have used MCUXpresso 11.1 to develop code for K64F. This is an Eclipse based IDE tailored  
+		to suit NXP devices. There are lots of alternatives for other manufacturers such as Atollic Studio for STM32. I have became familiar with this IDE through my time in the college as it 
+		was used for code development in embedded systems classes. I have also used this IDE during my work placement in Jaguar LandRover.\\
+		
+		The project uses Amazon FreeRTOS to efficiently manage various tasks of the system. This is an open source real-time operating system and it's usage greatly reduces the complexity of  
+		the C code used for the functionality of the system.    
 		\newpage
 	
 		\subsection{Android Studio}
