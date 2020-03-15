@@ -65,10 +65,16 @@
 	
 	\section{Hardware}
 	{\bfseries Hardware used, Connections, Specifications}\\
+	
+	My project doesn't consist of to many parts. Aside from the actual microcontroller it only 
+	requires a vibration motor, relay and buzzer all of which are used to wake the sleeping person  
+	up. HC-05 bluetooth modules are used to facilitate communication between the master device and  
+	the bracelet a mobile phone.
 		\subsection{FRDM-K64F}
 		\begin{figure}[h]
 			\centering
 			\includegraphics[width=0.7\textwidth]{k64f1.jpg}\par\vspace{0cm}
+			\caption{FRDM-K64F development board}
 		\end{figure}
 		FRDM-K64F is a very capable development board manufactured by NXP Semiconductors with a 
 		headquarters in Eindhoven, Netherlands and Austin, Texas. I have chosen this board because  
@@ -95,6 +101,7 @@
 		\begin{wrapfigure}{r}{0.25\textwidth}
 			\centering
 			\includegraphics[width=0.2\textwidth]{parallax_vib_mot1.jpg}
+			\caption{Parallax vibration motor}
 		\end{wrapfigure}
 		
 		The vibration motor is used to gently and quietly wake the sleeping person up in the first stage of the overall wake-up process. Parallax vibration motor seemed appropriate device for this task as it requires only 3V of power. However, the current it requires is quite high and cannot be supplied by the K64F thus an external supply has to be used.\\
@@ -102,6 +109,7 @@
 		\begin{figure}[h]
 			\centering
 			\includegraphics[scale=0.3]{motor_diag1.png}
+			\caption{Vibration motor connection diagram}
 		\end{figure}
 
 		{\bfseries Motor specifications:}
@@ -112,12 +120,35 @@
 			\item Starting voltage: 2.3V
 		\end{itemize}
 
-		\newpage
 		\subsection{Buzzer}
-		Buzzer specifications and connections
+		The buzzer is used for third stage of wake-up process if the vibration motor or relay fail 
+		to wake the sleeping person. This is a passive device and for the sound to be produced  
+		the Flex Timer Module of K64F is used to generate PWM signal on the connected GPIO pin.
 		
 		\subsection{HC-05 Bluetooth module}
-		HC-05 specifications and connections
+		
+		\begin{wrapfigure}{l}{0.25\textwidth}
+			\centering
+			\includegraphics[scale=0.06]{hc-05_1.jpg}
+			\caption[HC-05 Bluetooth module]{HC-05}
+		\end{wrapfigure}
+
+		HC-05 is commonly used Bluetooth module often used with Arduino projects. The K64F supports  
+		this module also. I have installed small section of header pins to house this module. For my  
+		project I am using two of these. One to communicate with the secondary device (bracelet) and  
+		second one to communicate with the mobile phone.\\
+		
+		This module can operate as a master or as a slave. Unfortunately it only supports one-to-one  
+		communication and that was the reason for adding the second module.\\\\\\
+		
+		{\bfseries Configuration:}
+		\begin{itemize}
+			\item Baudrate: 38400
+			\item 8 bit length
+			\item 1 stop bit
+			\item no parity
+
+		\end{itemize}
 		\newpage
 	
 	
@@ -146,5 +177,7 @@
 	
 	\section{Bibliography}
 	\newpage
+	
+	\listoffigures
 	
 \end{document}
