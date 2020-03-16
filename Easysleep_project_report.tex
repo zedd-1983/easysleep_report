@@ -49,16 +49,27 @@
 	\newpage
 	
 	\section{Project background and motivation}
-	{\bfseries Aim of the project, Why?}
+	{\bfseries Aim of the project, Why?}\\
 	
-	The goal of this project is to create a device that would help resolve nocturnal enurism (bedwetting) so common in children above the age of 5. 
+	The goal of this project was to create a device that would help resolve nocturnal enurism (bedwetting) common in children above the age of 5. I am myself a parent of a child with  
+	such difficulty and can relay to the stress this causes. Me and my wife have tried various  
+	methods of resolving this such as encouriging my daughter going to the toilet prior to  
+	going to the bed, waking her up during the night and medication.\\
 	
-	During my research on the topic of bedwetting I have come to some interesting numbers. 15% of  
-	children above the age of 5 still wet the bed at night, while 5% above the age 10 still do so.
+	According to my research there is a number of different causes for this bedwetting to 
+	happen. Medical reasons only account for close to 3%. 15% of children above the age of 
+	5 still wet the bed at night and up to 5% above the age of 10 continue to do so. The selection 
+	of night-time pants in grocery stores show sizes for children up to the age of 14.\\
+	
+	I have come to the conclusion, that the main cause of my child being wet every night is the 
+	deep sleep. Her urge to go to the toilet simply isn't strong enough to wake her up at night.\\
+	
+	This is where my project comes in. It aims to resolve the nocturnal enurism of children 
+	where the deep sleep is the root cause.
 	\newpage
 	
 	\section{Overview}
-	{\bfseries What is Easysleep?, Research, Architecture diagram}
+	{\bfseries What is Easysleep?, Research, Architecture diagram}\\
 	
 	The project consists of two devices that are able to communicate via Bluetooth and a mobile phone application. The idea behindthe project is a master device capable of detecting moisture and recording the time and the data of this event. The master device can then notify the secondary one (bracelet) responsible for waking up the sleeping person on the following night prior to the event-time and also receive acknowledgement status. The master device can also communicate with a mobile phone application.  The user can silence an ongoing alarm, request current date and time of the system or change it and also request data of last ten events that would then be saved into an SQLite database on the phone for anytime access or for statistics/progress.
 	\newpage
@@ -156,12 +167,24 @@
 	software to monitor the behaviour of the system.
 	
 		\subsection{MCUXpresso}
-		I have used MCUXpresso 11.1 to develop code for K64F. This is an Eclipse based IDE tailored  
-		to suit NXP devices. There are lots of alternatives for other manufacturers such as Atollic Studio for STM32. I have became familiar with this IDE through my time in the college as it 
+		I have used MCUXpresso 11.1 to develop code for K64F. This is an Eclipse based IDE tailored to suit NXP devices. There are lots of alternatives for other manufacturers such as Atollic Studio for STM32. I have became familiar with this IDE through my time in the college as it 
 		was used for code development in embedded systems classes. I have also used this IDE during my work placement in Jaguar LandRover.\\
 		
-		The project uses Amazon FreeRTOS to efficiently manage various tasks of the system. This is an open source real-time operating system and it's usage greatly reduces the complexity of  
-		the C code used for the functionality of the system.    
+		The project uses Amazon FreeRTOS to efficiently manage various tasks of the system. This is an open-source real-time operating system and it's usage greatly reduces the complexity of  C code used for functionality of the system. A programmer can divide the code into smaller, easier to manage blocks known as tasks. A communication between those is facilitated by usage of semaphores, notifications and queues.\\
+		
+		Prior to commencement of work on the project I had to obtain appropriate Software
+		Development Kit. I did so, through SDK Builder present on NXP website. This site allowed 
+		me to select specific processor and middleware and generated an SDK package that I then 
+		imported into the MCUXpresso. This package included all necessary drivers for various 
+		peripherals present on the development board such as GPIO or FlexTimer driver.\\
+		
+		I also had to create a repository on Github to have a proven record of my work required 
+		by my supervisor and other lecturers and also to have a safety net in case things go 
+		wrong. This is an amazing tool to know and use. I was grateful to have the ability of 
+		reverting to previous revisions of my code throughout the development as few times the  
+		path I have chosen to steer the development proved unsuitable and it would have been  
+		impossible to revert changes from memory.\\
+		    
 		\newpage
 	
 		\subsection{Android Studio}
@@ -169,7 +192,8 @@
 		\newpage
 		
 		\subsection{Other}
-		SystemView, FreeRTOS, Pulseview, Git/Github, project management software, BT configuration
+		SystemView, FreeRTOS, Pulseview, Git/Github, project management software, BT configuration,
+		Doxygen
 		\newpage
 	
 	\section{Conclusion}
