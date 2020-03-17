@@ -65,13 +65,27 @@
 	deep sleep. Her urge to go to the toilet simply isn't strong enough to wake her up at night.\\
 	
 	This is where my project comes in. It aims to resolve the nocturnal enurism of children 
-	where the deep sleep is the root cause.
+	where the deep sleep is the root cause in somewhat gentler and smarter way than a bed-wetting
+	alarm.
 	\newpage
 	
 	\section{Overview}
 	{\bfseries What is Easysleep?, Research, Architecture diagram}\\
 	
-	The project consists of two devices that are able to communicate via Bluetooth and a mobile phone application. The idea behindthe project is a master device capable of detecting moisture and recording the time and the data of this event. The master device can then notify the secondary one (bracelet) responsible for waking up the sleeping person on the following night prior to the event-time and also receive acknowledgement status. The master device can also communicate with a mobile phone application.  The user can silence an ongoing alarm, request current date and time of the system or change it and also request data of last ten events that would then be saved into an SQLite database on the phone for anytime access or for statistics/progress.
+	The project consists of two devices that are able to communicate via Bluetooth and a mobile phone application. These are 2 FRDM-K64F microcontrollers. One assumes the role of a master and 
+	monitors the moisture detection sensor, records the time and date of the event, sends 
+	notification to the secondary device to wake the sleeping person up and if requested, 
+	transfers time and date of last 10 events to the mobile phone application. It also notifies a 
+	parents or a guardians phone if an event happens and activates the buzzer on the sleeping 
+	persons bracelet.\\
+	
+	The secondary device (slave) uses a vibration motor to wake the sleeping person up. If this is 
+	not acknowledged by the person (indicating that he/she is awake) a second stage is entered and 
+	a buzzer is sounded.\\
+	
+	The mobile phone application allows the user to silence an ongoing alarm remotely, request 
+	event data from the master device and save those into an SQLite database and check/change the 
+	system time and date.\\
 	\newpage
 	
 	\section{Hardware}
