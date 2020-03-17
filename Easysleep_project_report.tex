@@ -6,6 +6,7 @@
 \usepackage{graphicx}
 \graphicspath{ {./images/} }
 \usepackage{wrapfig}
+\usepackage{enumitem}
 \author{Zdenek Krousky}
 \title{Easysleep}
 \hyphenation{con-sti-tu-tion-al}
@@ -49,7 +50,7 @@
 	\newpage
 	
 	\section{Project background and motivation}
-	{\bfseries Aim of the project, Why?}\\
+	{\bfseries Aim of the project, Why?}
 	
 	The goal of this project was to create a device that would help resolve nocturnal enurism (bedwetting) common in children above the age of 5. I am myself a parent of a child with  
 	such difficulty and can relay to the stress this causes. Me and my wife have tried various  
@@ -79,9 +80,8 @@
 	parents or a guardians phone if an event happens and activates the buzzer on the sleeping 
 	persons bracelet.\\
 	
-	The secondary device (slave) uses a vibration motor to wake the sleeping person up. If this is 
-	not acknowledged by the person (indicating that he/she is awake) a second stage is entered and 
-	a buzzer is sounded.\\
+	The secondary device (slave) uses a Parallax vibration motor to wake the sleeping person up. 
+	If this is not acknowledged by pushing a button (indicating that he/she is awake) a second stage is entered and a buzzer is sounded.\\
 	
 	The mobile phone application allows the user to silence an ongoing alarm remotely, request 
 	event data from the master device and save those into an SQLite database and check/change the 
@@ -91,7 +91,7 @@
 	\section{Hardware}
 	{\bfseries Hardware used, Connections, Specifications}\\
 	
-	My project doesn't consist of to many parts. Aside from the actual microcontroller it only 
+	My project doesn't consist of too many parts. Aside from the actual microcontroller it only 
 	requires a vibration motor, relay and buzzer all of which are used to wake the sleeping person  
 	up. HC-05 bluetooth modules are used to facilitate communication between the master device and  
 	the bracelet a mobile phone.
@@ -107,7 +107,7 @@
 		throughout the course as part of the embedded systems modules.\\  	
 		\\
 		{\bfseries Board specifications:}  	
-		\begin{itemize}
+		\begin{itemize}[topsep=4pt,itemsep=1pt]
 			\item 120MHz ARM Cortex-M4 microcontroller
 			\item 1MB Flash memory
 			\item 256kB RAM
@@ -145,9 +145,8 @@
 		\end{itemize}
 
 		\subsection{Buzzer}
-		The buzzer is used for third stage of wake-up process if the vibration motor or relay fail 
-		to wake the sleeping person. This is a passive device and for the sound to be produced  
-		the Flex Timer Module of K64F is used to generate PWM signal on the connected GPIO pin.
+		The buzzer is used for the second stage of wake-up process if the vibration motor or 
+		relay fail to wake the sleeping person. This is a passive device and for the sound to be produced the Flex Timer Module of K64F is used to generate PWM signal on the connected GPIO pin.
 		
 		\subsection{HC-05 Bluetooth module}
 		
@@ -197,8 +196,7 @@
 		wrong. This is an amazing tool to know and use. I was grateful to have the ability of 
 		reverting to previous revisions of my code throughout the development as few times the  
 		path I have chosen to steer the development proved unsuitable and it would have been  
-		impossible to revert changes from memory.\\
-		    
+		impossible to revert changes from memory.
 		\newpage
 	
 		\subsection{Android Studio}
@@ -206,8 +204,56 @@
 		\newpage
 		
 		\subsection{Other}
-		SystemView, FreeRTOS, Pulseview, Git/Github, project management software, BT configuration,
-		Doxygen
+		{\bfseries Additional software tools used}
+		
+		\subsubsection{SystemView}
+		SystemView is a great tool developed by SEGGER for monitoring the behaviour of Real-time
+		operating systems as well as interrupts. It is free to use. It requires J-Link to be either installed as a bootloader on the development board or a harware J-Link probe needs to be used. In my case I had an access to the hardware version. In order for it to work fully, I had to cut two traces on the development board otherwise it would clash with the OpenSDA debugger and the code would not get uploaded to the memory.
+				
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.7\textwidth]{systemview1}
+			\caption{SystemView}
+		\end{figure}
+	
+		\subsubsection{FreeRTOS}
+		FreeRTOS is one of many real-time operating systems available. Other options include QNX, 
+		ThreadX, embOS or Zephyr. Using a real-time operating system allows the programmer to 
+		divide the functionality of the project into individual blocks that are easier to manage, 
+		can communicate amongst themselves and maintain responsiveness. Real-time operating
+		systems are often used in places where functionality of a system is somewhat complex and 
+		certain level of responsiveness is required (time-deterministic).
+		
+		\subsubsection{Pulseview}
+		Pulseview is a Qt based logic analyzer. It is licensed under GNU GPLv.3. This software  
+		allows the user to monitor the output of GPIO pins as well as decoding of various protocols,
+		such as SPI or UART. This package is in the repositories of my Linux distribution so 
+		installing it was as simple as typing a {\bfseries sudo apt install pulseview} into the command line and let the system to do the rest. This tool has proven invaluable when 
+		I was working with buzzer and FlexTimer Module as it allowed me to monitor the output
+		square wave.
+		
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.7\textwidth]{pulseview}
+			\caption{Pulseview}
+		\end{figure}
+	
+		\subsubsection{Git/GitHub, gitk}
+		Throughout the development of the C code for the embedded platform as well as of the 
+		Android application and this report I have used a Version Control System known as Git and 
+		it's online counterpart GitHub. This allowed me to safely store my code, revert to 
+		previous code revisions and work from different computers at school or at home.
+		
+		\subsubsection{Doxygen}
+		Doxygen is a documentation generator widely used in software development companies. It
+		allows user to generate documents describing functionality of the code just by adhering 
+		to certain code commenting standards.\\
+		
+		Doxygen is available for various programming languages. It comes with a large configuration 
+		file that the user can adjust to suit the need of the project.
+		
+		\subsubsection{Project management software}
+		project management software, BT configuration,
 		\newpage
 	
 	\section{Conclusion}
