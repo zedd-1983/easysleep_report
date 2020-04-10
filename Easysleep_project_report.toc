@@ -8,6 +8,9 @@
 \contentsline {section}{\numberline {4}Software}{9}
 \contentsline {subsection}{\numberline {4.1}MCUXpresso}{9}
 \contentsline {subsection}{\numberline {4.2}Android Studio}{10}
+\contentsline {subsubsection}{\numberline {4.2.1}User Interface Development}{10}
+\contentsline {subsubsection}{\numberline {4.2.2}Bluetooth Communication}{10}
+\contentsline {subsubsection}{\numberline {4.2.3}Database Development}{10}
 \contentsline {subsection}{\numberline {4.3}Other}{11}
 \contentsline {subsubsection}{\numberline {4.3.1}SystemView}{11}
 \contentsline {subsubsection}{\numberline {4.3.2}FreeRTOS}{11}
