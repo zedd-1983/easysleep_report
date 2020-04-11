@@ -5,6 +5,7 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \graphicspath{ {./images/} }
+\usepackage{mwe}
 \usepackage{wrapfig}
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
@@ -46,35 +47,33 @@
 	\newpage
 	
 	\section*{Acknowledgement}
-	I would like to extend my thanks to my supervisor Paul Lennon who made sure I stay on track with my project as well as to Niall O'Keeffe for his support in embedded part of the project. I would also like to thank my wife Caroline for her ongoing support through my studies.
+	I would like to extend my thanks to my supervisor Paul Lennon who made sure I stayed on track with my project, Niall O'Keeffe for his support in embedded part of the project, Michael Murray for his advice on the Android application development and to Michael Keaveney for going the extra mile to support me on the hardware side of things during the pandemic crisis. I would also like to thank my wife Caroline for her ongoing support through my studies.
 	\newpage
 	\tableofcontents
 	\newpage
 	
 	\section{Project background and motivation}
-	{\bfseries Aim of the project, Why?}
+	{\bfseries Aim of the project, Why?}\\
+	The aim of this project was to create a device that would help to resolve nocturnal enurism, also known as bedwetting, which is common in children above the age of 5. I am the parent of a child with this issue and can relate to the stress this can cause to the child and the parents/guardians. My wife and I have tried various methods of resolving this - such as encouriging our daughter to go the toilet prior to going to the bed, restricting fluid intake before bed-time and waking her up during the night, yet none of these worked for us.\\
 	
-	The goal of this project was to create a device that would help in resolving nocturnal enurism (bedwetting) common in children above the age of 5. I am myself a parent of a child with such difficulty and can relay to the stress this causes. Me and my wife have tried various methods of resolving this such as encouriging my daughter going to the toilet prior to going to the bed, waking her up during the night and medication.\\
+	According to my research there are a number of different causes for bedwetting and medical reasons account only for 3\% of these. 15\% of children above the age of 5 still wet the bed at night and up to 5\% above the age of 10 continue to do so. The selection of ``night-time training pants'' available in supermarkets go up to the age of 14, indicating that this issue can persist into the early teenage years in some cases.\\
 	
-	According to my research there is a number of different causes for this bedwetting to happen. Medical reasons only account for close to 3\%. 15\% of children above the age of 5 still wet the bed at night and up to 5\% above the age of 10 continue to do so. The selection of night-time pants in grocery stores show sizes for children up to the age of 14.\\
+	Having observed my daughter for several years, I have come to the conclusion that the main cause of her betwetting is deep sleep, i.e. her urge to go to the toilet simply isn't strong enough to wake her up at night. In addition, she is also very sensitive to loud noises and therefore my wife and I felt that introducing a bed-wetting alarm sheet might cause her unneccessary anxiety.\\
 	
-	I have come to the conclusion, that the main cause of my child being wet every night is the 
-	deep sleep. Her urge to go to the toilet simply isn't strong enough to wake her up at night.\\
-	
-	This is where my project comes in. It aims to resolve the nocturnal enurism of children 
-	where the deep sleep is the root cause in somewhat gentler and smarter way than a bed-wetting
-	alarm.
+	This is where my project comes in - it aims to resolve nocturnal enurism in children 
+	where deep sleep is the root cause in a somewhat gentler and smarter way than a bed-wetting
+	alarm. 
 	\newpage
 	
 	\section{Overview}
 	{\bfseries What is Easysleep?, Research, Architecture diagram}\\
 	
 	The project consists of two devices that are able to communicate via Bluetooth and a mobile phone application. These are 2 FRDM-K64F microcontrollers. One assumes the role of a master and 
-	monitors the moisture detection sensor, records the time and date of the event, sends 
+	monitors the moisture detection sensor, records the time and date of the event, sends a
 	notification to the secondary device to wake the sleeping person up and if requested, 
-	transfers time and date of last 10 events to the mobile phone application. It also notifies a 
-	parents or a guardians phone if an event happens and activates the buzzer on the sleeping 
-	persons bracelet.\\
+	transfers time and date of last 10 events to the mobile phone application. It also notifies the 
+	parent/guardian's phone if an event happens and activates the buzzer on the sleeping 
+	person's bracelet.\\
 	
 	The secondary device (slave) uses a Parallax vibration motor to wake the sleeping person up. 
 	If this is not acknowledged by pushing a button (indicating that he/she is awake) a second stage is entered and a buzzer is sounded.\\
@@ -87,21 +86,24 @@
 	\section{Hardware}
 	{\bfseries Hardware used, Connections, Specifications}\\
 	
-	My project doesn't consist of too many parts. Aside from the actual microcontroller it only 
-	requires a vibration motor, relay and buzzer all of which are used to wake the sleeping person  
-	up. HC-05 bluetooth modules are used to facilitate communication between the master device and  
-	the bracelet a mobile phone.
+	My project consists of the following hardware:
+	
+	\begin{itemize}
+	 \item 2x FRDM-K64F development board used as the brains of the Easysleep master device and Easysleep bracelet device
+	 \item 3x HC-05 Bluetooth module used for communication between master and slave devices as well as between the master and the mobile phone
+	 \item Parallax vibration motor with interfacing circuit used in first stage to wake the sleeping person up by vibrations
+	 \item Buzzer used in third stage as the final, most disruptive method of waking the sleeping  person up
+	 \item Relay used in second stage, to bring a light up in the room of the sleeping person
+	\end{itemize}
+
 		\subsection{FRDM-K64F}
 		\begin{figure}[h]
 			\centering
 			\includegraphics[width=0.7\textwidth]{k64f1.jpg}\par\vspace{0cm}
 			\caption{FRDM-K64F development board}
 		\end{figure}
-		FRDM-K64F is a very capable development board manufactured by NXP Semiconductors with a 
-		headquarters in Eindhoven, Netherlands and Austin, Texas. I have chosen this board because  
-		of my familiarity with it and of its abilities. This board and its cousin KL25Z were used  
-		throughout the course as part of the embedded systems modules.\\  	
-		\\
+		FRDM-K64F is a very capable development board manufactured by NXP Semiconductors with
+		headquarters in Europe in Eindhoven, Netherlands and in North America in Austin, Texas. I chose this board due of my familiarity with it and of its abilities. This board and its cousin KL25Z were used throughout the course as part of the embedded systems modules.\\\\
 		{\bfseries Board specifications:}  	
 		\begin{itemize}[topsep=4pt,itemsep=1pt]
 			\item 120MHz ARM Cortex-M4 microcontroller
@@ -124,7 +126,7 @@
 			\caption{Parallax vibration motor}
 		\end{wrapfigure}
 		
-		The vibration motor is used to gently and quietly wake the sleeping person up in the first stage of the overall wake-up process. Parallax vibration motor seemed appropriate device for this task as it requires only 3V of power. However, the current it requires is quite high and cannot be supplied by the K64F thus an external supply has to be used.\\
+		The vibration motor is used as a peripheral of the secondary device (bracelet) to gently and quietly wake the sleeping person up in the first stage of the overall wake-up process. The Parallax vibration motor seemed appropriate device for this task as it requires only 3V of power. However, the current it requires is quite high and cannot be supplied by the K64F thus an external supply has to be used.\\
 		
 		\begin{figure}[h]
 			\centering
@@ -139,10 +141,14 @@
 			\item Rate speed: 9,000r/min Min
 			\item Starting voltage: 2.3V
 		\end{itemize}
+		
+		\subsection{Relay}
+		The relay is used in the second stage of the wake-up process. It is connected to a desklamp and is triggered when the first stage fails and more disruptive method is needed.
 
 		\subsection{Buzzer}
-		The buzzer is used for the second stage of wake-up process if the vibration motor or 
-		relay fail to wake the sleeping person. This is a passive device and for the sound to be produced the Flex Timer Module of K64F is used to generate PWM signal on the connected GPIO pin.
+		The buzzer is used for the third stage of the wake-up process if the vibration motor or 
+		relay fail to wake the sleeping person. This is a passive device and for the sound to be produced the Flex Timer Module of K64F is used to generate a PWM signal on the connected GPIO pin.
+        \newpage
 		
 		\subsection{HC-05 Bluetooth module}
 		
@@ -152,18 +158,18 @@
 			\caption[HC-05 Bluetooth module]{HC-05}
 		\end{wrapfigure}
 
-		HC-05 is commonly used Bluetooth module often used with Arduino projects. The K64F development board supports  
-		this module also. I have installed small section of header pins to house this module. For my  
-		project I am using two of these. One to communicate with the secondary device (bracelet) and  
+		HC-05 is a commonly used Bluetooth module often used with Arduino projects. The K64F development board supports  
+		this module also. I have installed a small section of header pins to house this module. For my  
+		project I am using two of these. One to communicate with the secondary device (bracelet) and the
 		second one to communicate with the mobile phone.\\
 		
-		This module can operate as a master or as a slave. Unfortunately it only supports one-to-one  
-		communication and that was the reason for adding the second module.\\\\\\
+		This module can operate as a master or as a slave. A second module needed to be added as it only supports one-to-one  
+		communication.\\\\\\
 		
 		\subsubsection{Bluetooth module configuration}
-		In order for the Bluetooth modules to communicate both, the master and the slave have to be configured in the same way. Additionally they also have to share the same password and have to be made aware of each other by whitelisting each others address through AT commands.\\ 
+		In order for the Bluetooth modules to communicate, both the master and the slave have to be configured in the same way. Additionally they also have to share the same password and have to be made aware of each other by whitelisting each others address through AT commands.\\ 
 		
-		To setup this configuration I had to use an FTDI cable and start the individual modules in AT mode. This is done by applying power to KEY pin prior to the VCC pin. To communicate with the Bluetooth modules and configure it in the way I needed, I have used {\bfseries Minicom}  - a Linux command line utility. I have started this by issuing the following command upon starting the bluetooth module in AT mode.
+		To setup this configuration I used an FTDI cable and start the individual modules in AT mode. This is done by applying power to KEY pin prior to the VCC pin. To communicate with the Bluetooth modules and configure it in the way I needed, I have used {\bfseries Minicom}  - a Linux command line utility. I started this by issuing the following command upon starting the bluetooth module in AT mode.
 		\begin{center}
 		 minicom -b 38400 /dev/ttyUSB0
 		\end{center}
@@ -174,58 +180,66 @@
 		 \item AT+INQM=1,1,48
 		 \item AT+PSWD=7777
 		\end{itemize}
-		Similar setup was used for the second device with the exception of the ROLE, where it needs to act as a slave device therefore the ROLE had to be defined as 0.
+		Similar setup was used for the second device with the exception of the ROLE, where it needs to act as a slave device therefore the ROLE was defined as 0.
 		\newpage
 		
 	\section{Software}
-	{\bfseries Software used, Programming languages, IDEs, Software tools}\\
-	Througout my project I have used various software tools to develop C and Java code, as well as
-	software to monitor the behaviour of the system.
+	{\bfseries Software used, Programming languages, IDEs, Software tools}\\\\
+	Througout my project I used various software tools to develop C and Java code, as well as
+	software to monitor the behaviour of the system. All the code for the embedded devices was developed on a Linux system, Android Studio was however too resource heavy for my laptop so I borrowed a lab computer with the permission of Michael Keaveney, the GMIT technician.
 	
 		\subsection{MCUXpresso}
+		I used MCUXpresso 11.1 to develop code for K64F. This is an Eclipse based IDE tailored to suit NXP devices. There are lots of alternatives from other manufacturers such as Atollic Studio for STM32. I became familiar with this IDE during my time in GMIT as it 
+		was used for code development in embedded systems classes. I also used this IDE during my work placement in Jaguar LandRover in 2019.\\
 		
+		The project uses Amazon FreeRTOS to efficiently manage various tasks of the system. This is an open-source real-time operating system and its usage greatly reduces the complexity of C code used for functionality of the system. A programmer can divide the code into smaller, easier to manage blocks known as tasks. A communication between those is facilitated through the usage of semaphores, notifications and queues.\\
 		
-		I have used MCUXpresso 11.1 to develop code for K64F. This is an Eclipse based IDE tailored to suit NXP devices. There are lots of alternatives for other manufacturers such as Atollic Studio for STM32. I have became familiar with this IDE through my time in the college as it 
-		was used for code development in embedded systems classes. I have also used this IDE during my work placement in Jaguar LandRover.\\
-		
-		The project uses Amazon FreeRTOS to efficiently manage various tasks of the system. This is an open-source real-time operating system and it's usage greatly reduces the complexity of  C code used for functionality of the system. A programmer can divide the code into smaller, easier to manage blocks known as tasks. A communication between those is facilitated by usage of semaphores, notifications and queues.\\
-		
-		Prior to commencement of work on the project I had to obtain appropriate Software
-		Development Kit. I did so, through SDK Builder present on NXP website. This site allowed 
+		Prior to the commencement of work on the project I had to obtain the appropriate Software
+		Development Kit. I did so, through the SDK Builder present on NXP website. This site allowed 
 		me to select specific processor and middleware and generated an SDK package that I then 
 		imported into the MCUXpresso. This package included all necessary drivers for various 
 		peripherals present on the development board such as GPIO or FlexTimer driver.\\
 		
-		I also had to create a repository on Github to have a proven record of my work required 
-		by my supervisor and other lecturers and also to have a safety net in case things go 
-		wrong. This is an amazing tool to know and use. I was grateful to have the ability of 
-		reverting to previous revisions of my code throughout the development as few times the  
-		path I have chosen to steer the development proved unsuitable and it would have been  
-		impossible to revert changes from memory.
+		I also created a repository on Github to have a proven record of my work as required 
+		by my supervisor and other lecturers (and also to have a safety net in case things went 
+		wrong). This is an extremely useful tool to know and use. I was grateful to have the ability to 
+		revert to previous revisions of my code throughout the development as on a small number of occassions, the  
+		path I chose to steer the development proved unsuitable, and it would have been  
+		impossible to revert the changes from memory.
 		\newpage
 	
 		\subsection{Android Studio} 
+		This integrated development environment was the best choice for the development of my mobile application. There are other options out there such as Eclipse IDE but the Android Studio is the most supported one and was actually used during my last semester in Mobile application development module - so I was already familiar with it.\\ 
 		
-		
-		This integrated development environment came as the most reasonable choice for development of my mobile application. There are other options out there such as Eclipse IDE but the Android Studio is the most supported one and was actually used during my last semester in Mobile application development module so I was already familiar with it.\\ 
-		
-		This IDE has been developed by BrainJet, studio behind well known IntelliJ and one can really see the similarities of both environments. This is an advanced IDE with plenty of features fully supported by Google Inc.\\ 
+		This IDE is developed by BrainJet, the studio behind the well known IntelliJ and one can really see the similarities of both environments. This is an advanced IDE with plenty of features fully supported by Google Inc.\\ 
 		
 		The idea behind this application was to allow the user to wirelessly control the Easysleep module. This communication allows the user to check Easysleep's time and date or configure those as well as request data of recent incidents and silence an ongoing alarm.\\
 		
-		During my project development I have used a third party application that allowed me to send characters via Bluetooth to Easysleep and receive data back. I wanted to recreate this application in a way that would better suit the project.\\ 
+		During my project development I used a third party application that allowed me to send characters via Bluetooth to Easysleep and receive data back. I wanted to recreate this application in a way that would better suit the project.\\ 
 		\newpage
 		
 		\section{Code Development}
 		{\bfseries Languages used, code development and examples}\\
 		
-		The programming languages that were used for the development for the code were the C programming language and Java. C was used to program the two K64F embedded devices while Java was used for the Android application development.
+		The programming languages that were used for the development for the code were C programming language and Java. C was used to program the two K64F embedded devices while Java was used for the Android application development.
 		
 		\subsection{K64F Master code development}
 		\href{https://github.com/zedd-1983/project_journal/tree/bt2}{K64F Master Device code repository}\\
+		I started developing the code for this device in early October 2019 and in parallell ordered few items via the technician in GMIT, i was able to proceed without having the ordered items to hand.  It was my intention to use FreeRTOS from the very beginning. This component was on the curriculum in the first semester of the final year at GMIT, however, I had already completed an online course in FreeRTOS the previous summer, so I was already familiar with it's concepts and inner workings. The Real-time Operating Systems module covered at GMIT in the final year, helped me to strengthen my understanding of the subject further.\\
+		
+		Through my online course, I became aware of the SystemView tool which allows the developer to monitor the behaviour of FreeRTOS tasks as well as of the interrupts. To use the software to it's full potential I had to order a J-Link debugging probe so I could use the software's continuous recording capabilities. Later on, I discovered that similar functionality can be achieved by upgrading the on-board debugger to J-Link version (in this case, the original on-board debugger of K64F is OpenSDA). This exposed me to yet another tool that is commonly used in embedded software development and I hope to benefit from it in the future.\\
+		
+		In order to successfully use the J-Link Edu debugging probe, adjustments to the project had to be made.
+		
+		\includegraphics[width=\textwidth, height=5cm]{example-image-a}
+		
+		With the SystemView properly setup, I could begin to develop the functional code for my application. I started by creating a 
 		
 		\subsection{K64F Slave code development}
 		\href{https://github.com/zedd-1983/project_dev2/tree/Bluetooth}{K64F Slave (Bracelet) Device code repository}\\
+		The secondary device, the bracelet, also uses FreeRTOS for task management. Setting this one up was not as difficult as the first one as it has less responsibilities and I already had some experience setting up the first bluetooth module. However, it made sense to take advantage of the FlexTimer peripheral of the K64F to generate a square wave needed for the buzzer and thus eleviate this responsibility from the processor.\\
+		
+		To setup this peripheral I have used the MCUXpresso Configuration tool again. This allowed me to specify the output frequency of the square wave thus changing the pitch of the produced sound. This is also possible to do programmatically but if there is 
 		
 		\subsection{Android application code development}
 		\href{https://github.com/zedd-1983/Easysleep_app/tree/bt_connection_3}{Android code repository}\\
@@ -237,7 +251,7 @@
 		\subsubsection{Database Development}
 		???\\
 		
-		The development of this application has been challenging and I had to follow a number of tutorials online in order to establish the Bluetooth communication. I have decided that for the purpose of this document I will divide the development process described into three subsections:  
+		The development of this application was challenging and I had to follow a number of tutorials online in order to establish the Bluetooth communication. I have decided that for the purpose of this document I will divide the development process described into three subsections:  
 		
 		\begin{itemize}
 			\item User Interface Development
@@ -251,7 +265,7 @@
 		
 		\subsubsection{SystemView}
 		SystemView is a great tool developed by SEGGER for monitoring the behaviour of Real-time
-		operating systems as well as interrupts. It is free to use. It requires J-Link to be either installed as a bootloader on the development board or a harware J-Link probe needs to be used. In my case I had an access to the hardware version. In order for it to work fully, I had to cut two traces on the development board otherwise it would clash with the OpenSDA debugger and the code would not get uploaded to the memory.
+		operating systems as well as interrupts. It is free to use. It requires J-Link to be either installed as a bootloader on the development board or a harware J-Link probe needs to be used. In my case I had access to the hardware version. In order for it to work fully, I had to cut two traces on the development board otherwise it would clash with the OpenSDA debugger and the code would not get uploaded to the memory.
 				
 		\begin{figure}[h]
 			\centering
@@ -264,15 +278,15 @@
 		ThreadX, embOS or Zephyr. Using a real-time operating system allows the programmer to 
 		divide the functionality of the project into individual blocks that are easier to manage, 
 		can communicate amongst themselves and maintain responsiveness. Real-time operating
-		systems are often used in places where functionality of a system is somewhat complex and 
+		systems are often used in places where the functionality of a system is somewhat complex and a
 		certain level of responsiveness is required (time-deterministic).
 		
 		\subsubsection{Pulseview}
 		Pulseview is a Qt based logic analyzer. It is licensed under GNU GPLv.3. This software  
 		allows the user to monitor the output of GPIO pins as well as decoding of various protocols,
 		such as SPI or UART. This package is in the repositories of my Linux distribution so 
-		installing it was as simple as typing a {\bfseries sudo apt install pulseview} into the command line and let the system to do the rest. This tool has proven invaluable when 
-		I was working with buzzer and FlexTimer Module as it allowed me to monitor the output
+		installing it was as simple as typing a {\bfseries sudo apt install pulseview} into the command line and let the system to do the rest. This tool proved to be invaluable when 
+		I was working with the buzzer and FlexTimer Module as it allowed me to monitor the output
 		square wave.
 		
 		\begin{figure}[h]
@@ -282,14 +296,14 @@
 		\end{figure}
 	
 		\subsubsection{Git/GitHub, gitk}
-		Throughout the development of the C code for the embedded platform as well as of the 
-		Android application and this report I have used a Version Control System known as Git and 
+		Throughout the development of the C code for the embedded platform, as well as of the 
+		Android application and this report, I used a Version Control System known as Git and 
 		it's online counterpart GitHub. This allowed me to safely store my code, revert to 
 		previous code revisions and work from different computers at school or at home.
 		
 		\subsubsection{Doxygen}
 		Doxygen is a documentation generator widely used in software development companies. It
-		allows user to generate documents describing functionality of the code just by adhering 
+		allows user to generate documents describing code functionality by adhering 
 		to certain code commenting standards.\\
 		
 		Doxygen is available for various programming languages. It comes with a large configuration 
