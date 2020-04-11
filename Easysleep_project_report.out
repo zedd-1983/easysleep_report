@@ -1,0 +1,28 @@
+\BOOKMARK [1][-]{section.1}{Project background and motivation}{}% 1
+\BOOKMARK [1][-]{section.2}{Overview}{}% 2
+\BOOKMARK [1][-]{section.3}{Hardware}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{FRDM-K64F}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Parallax 28821 Vibration motor}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Buzzer}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.4}{HC-05 Bluetooth module}{section.3}% 7
+\BOOKMARK [3][-]{subsubsection.3.4.1}{Bluetooth module configuration}{subsection.3.4}% 8
+\BOOKMARK [1][-]{section.4}{Software}{}% 9
+\BOOKMARK [2][-]{subsection.4.1}{MCUXpresso}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.2}{Android Studio}{section.4}% 11
+\BOOKMARK [1][-]{section.5}{Code Development}{}% 12
+\BOOKMARK [2][-]{subsection.5.1}{K64F Master code development}{section.5}% 13
+\BOOKMARK [2][-]{subsection.5.2}{K64F Slave code development}{section.5}% 14
+\BOOKMARK [2][-]{subsection.5.3}{Android application code development}{section.5}% 15
+\BOOKMARK [3][-]{subsubsection.5.3.1}{User Interface Development}{subsection.5.3}% 16
+\BOOKMARK [3][-]{subsubsection.5.3.2}{Bluetooth Communication}{subsection.5.3}% 17
+\BOOKMARK [3][-]{subsubsection.5.3.3}{Database Development}{subsection.5.3}% 18
+\BOOKMARK [2][-]{subsection.5.4}{Other}{section.5}% 19
+\BOOKMARK [3][-]{subsubsection.5.4.1}{SystemView}{subsection.5.4}% 20
+\BOOKMARK [3][-]{subsubsection.5.4.2}{FreeRTOS}{subsection.5.4}% 21
+\BOOKMARK [3][-]{subsubsection.5.4.3}{Pulseview}{subsection.5.4}% 22
+\BOOKMARK [3][-]{subsubsection.5.4.4}{Git/GitHub, gitk}{subsection.5.4}% 23
+\BOOKMARK [3][-]{subsubsection.5.4.5}{Doxygen}{subsection.5.4}% 24
+\BOOKMARK [3][-]{subsubsection.5.4.6}{Project management software}{subsection.5.4}% 25
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 26
+\BOOKMARK [1][-]{section.7}{References}{}% 27
+\BOOKMARK [1][-]{section.8}{Bibliography}{}% 28

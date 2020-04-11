@@ -7,6 +7,8 @@
 \graphicspath{ {./images/} }
 \usepackage{wrapfig}
 \usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{urlcolor=blue, colorlinks=true, linkcolor=black}
 \author{Zdenek Krousky}
 \title{Easysleep}
 \hyphenation{con-sti-tu-tion-al}
@@ -52,15 +54,9 @@
 	\section{Project background and motivation}
 	{\bfseries Aim of the project, Why?}
 	
-	The goal of this project was to create a device that would help resolve nocturnal enurism (bedwetting) common in children above the age of 5. I am myself a parent of a child with  
-	such difficulty and can relay to the stress this causes. Me and my wife have tried various  
-	methods of resolving this such as encouriging my daughter going to the toilet prior to  
-	going to the bed, waking her up during the night and medication.\\
+	The goal of this project was to create a device that would help in resolving nocturnal enurism (bedwetting) common in children above the age of 5. I am myself a parent of a child with such difficulty and can relay to the stress this causes. Me and my wife have tried various methods of resolving this such as encouriging my daughter going to the toilet prior to going to the bed, waking her up during the night and medication.\\
 	
-	According to my research there is a number of different causes for this bedwetting to 
-	happen. Medical reasons only account for close to 3%. 15% of children above the age of 
-	5 still wet the bed at night and up to 5% above the age of 10 continue to do so. The selection 
-	of night-time pants in grocery stores show sizes for children up to the age of 14.\\
+	According to my research there is a number of different causes for this bedwetting to happen. Medical reasons only account for close to 3\%. 15\% of children above the age of 5 still wet the bed at night and up to 5\% above the age of 10 continue to do so. The selection of night-time pants in grocery stores show sizes for children up to the age of 14.\\
 	
 	I have come to the conclusion, that the main cause of my child being wet every night is the 
 	deep sleep. Her urge to go to the toilet simply isn't strong enough to wake her up at night.\\
@@ -156,7 +152,7 @@
 			\caption[HC-05 Bluetooth module]{HC-05}
 		\end{wrapfigure}
 
-		HC-05 is commonly used Bluetooth module often used with Arduino projects. The K64F supports  
+		HC-05 is commonly used Bluetooth module often used with Arduino projects. The K64F development board supports  
 		this module also. I have installed small section of header pins to house this module. For my  
 		project I am using two of these. One to communicate with the secondary device (bracelet) and  
 		second one to communicate with the mobile phone.\\
@@ -164,14 +160,21 @@
 		This module can operate as a master or as a slave. Unfortunately it only supports one-to-one  
 		communication and that was the reason for adding the second module.\\\\\\
 		
-		{\bfseries Configuration:}
+		\subsubsection{Bluetooth module configuration}
+		In order for the Bluetooth modules to communicate both, the master and the slave have to be configured in the same way. Additionally they also have to share the same password and have to be made aware of each other by whitelisting each others address through AT commands.\\ 
+		
+		To setup this configuration I had to use an FTDI cable and start the individual modules in AT mode. This is done by applying power to KEY pin prior to the VCC pin. To communicate with the Bluetooth modules and configure it in the way I needed, I have used {\bfseries Minicom}  - a Linux command line utility. I have started this by issuing the following command upon starting the bluetooth module in AT mode.
+		\begin{center}
+		 minicom -b 38400 /dev/ttyUSB0
+		\end{center}
+		The following commands were used to setup the master device:
 		\begin{itemize}
-			\item Baudrate: 38400
-			\item 8 bit length
-			\item 1 stop bit
-			\item no parity
-
+		 \item AT+UART=38400,0,0 (Baudrate, 1 stop-bit, no parity, default 8-bit mode)
+		 \item AT+ROLE=1 (master)
+		 \item AT+INQM=1,1,48
+		 \item AT+PSWD=7777
 		\end{itemize}
+		Similar setup was used for the second device with the exception of the ROLE, where it needs to act as a slave device therefore the ROLE had to be defined as 0.
 		\newpage
 		
 	\section{Software}
@@ -180,6 +183,8 @@
 	software to monitor the behaviour of the system.
 	
 		\subsection{MCUXpresso}
+		
+		
 		I have used MCUXpresso 11.1 to develop code for K64F. This is an Eclipse based IDE tailored to suit NXP devices. There are lots of alternatives for other manufacturers such as Atollic Studio for STM32. I have became familiar with this IDE through my time in the college as it 
 		was used for code development in embedded systems classes. I have also used this IDE during my work placement in Jaguar LandRover.\\
 		
@@ -201,6 +206,7 @@
 	
 		\subsection{Android Studio} 
 		
+		
 		This integrated development environment came as the most reasonable choice for development of my mobile application. There are other options out there such as Eclipse IDE but the Android Studio is the most supported one and was actually used during my last semester in Mobile application development module so I was already familiar with it.\\ 
 		
 		This IDE has been developed by BrainJet, studio behind well known IntelliJ and one can really see the similarities of both environments. This is an advanced IDE with plenty of features fully supported by Google Inc.\\ 
@@ -208,6 +214,28 @@
 		The idea behind this application was to allow the user to wirelessly control the Easysleep module. This communication allows the user to check Easysleep's time and date or configure those as well as request data of recent incidents and silence an ongoing alarm.\\
 		
 		During my project development I have used a third party application that allowed me to send characters via Bluetooth to Easysleep and receive data back. I wanted to recreate this application in a way that would better suit the project.\\ 
+		\newpage
+		
+		\section{Code Development}
+		{\bfseries Languages used, code development and examples}\\
+		
+		The programming languages that were used for the development for the code were the C programming language and Java. C was used to program the two K64F embedded devices while Java was used for the Android application development.
+		
+		\subsection{K64F Master code development}
+		\href{https://github.com/zedd-1983/project_journal/tree/bt2}{K64F Master Device code repository}\\
+		
+		\subsection{K64F Slave code development}
+		\href{https://github.com/zedd-1983/project_dev2/tree/Bluetooth}{K64F Slave (Bracelet) Device code repository}\\
+		
+		\subsection{Android application code development}
+		\href{https://github.com/zedd-1983/Easysleep_app/tree/bt_connection_3}{Android code repository}\\
+		
+		\subsubsection{User Interface Development}
+		GUI\\
+		\subsubsection{Bluetooth Communication}
+		BT\\
+		\subsubsection{Database Development}
+		???\\
 		
 		The development of this application has been challenging and I had to follow a number of tutorials online in order to establish the Bluetooth communication. I have decided that for the purpose of this document I will divide the development process described into three subsections:  
 		
@@ -216,13 +244,6 @@
 			\item Bluetooth Communication
 			\item Database Development
 		\end{itemize}
-		
-		
-		\subsubsection{User Interface Development}
-		
-		\subsubsection{Bluetooth Communication}
-		\subsubsection{Database Development}
-		
 		\newpage
 		
 		\subsection{Other}
