@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.3.10)  11 APR 2020 20:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.3.10)  12 APR 2020 11:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -286,37 +286,79 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 12.
 
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count130
+\lst@gtempboxa=\box30
+\lst@token=\toks24
+\lst@length=\count131
+\lst@currlwidth=\dimen121
+\lst@column=\count132
+\lst@pos=\count133
+\lst@lostspace=\dimen122
+\lst@width=\dimen123
+\lst@newlines=\count134
+\lst@lineno=\count135
+\lst@maxwidth=\dimen124
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+\c@lstnumber=\count136
+\lst@skipnumbers=\count137
+\lst@framebox=\box31
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2015/06/04 1.6 listings configuration
+))
+Package: listings 2015/06/04 1.6 (Carsten Heinz)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 147.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+)
 (./Easysleep_project_report.aux)
 \openout1 = `Easysleep_project_report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count130
-\scratchdimen=\dimen121
-\scratchbox=\box30
-\nofMPsegments=\count131
-\nofMParguments=\count132
-\everyMPshowfont=\toks24
-\MPscratchCnt=\count133
-\MPscratchDim=\dimen122
-\MPnumerator=\count134
-\makeMPintoPDFobject=\count135
-\everyMPtoPDFconversion=\toks25
+\scratchcounter=\count138
+\scratchdimen=\dimen125
+\scratchbox=\box32
+\nofMPsegments=\count139
+\nofMParguments=\count140
+\everyMPshowfont=\toks25
+\MPscratchCnt=\count141
+\MPscratchDim=\dimen126
+\MPnumerator=\count142
+\makeMPintoPDFobject=\count143
+\everyMPtoPDFconversion=\toks26
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -334,17 +376,8 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box31
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
-Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
-
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
-File: color.cfg 2016/01/02 v1.6 sample color configuration
-)
-Package color Info: Driver file: pdftex.def on input line 147.
-)
-Package hyperref Info: Link coloring ON on input line 19.
+\AtBeginShipoutBox=\box33
+Package hyperref Info: Link coloring ON on input line 44.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -352,20 +385,21 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count136
+\c@section@level=\count144
 )
-LaTeX Info: Redefining \ref on input line 19.
-LaTeX Info: Redefining \pageref on input line 19.
-LaTeX Info: Redefining \nameref on input line 19.
+LaTeX Info: Redefining \ref on input line 44.
+LaTeX Info: Redefining \pageref on input line 44.
+LaTeX Info: Redefining \nameref on input line 44.
 
 (./Easysleep_project_report.out) (./Easysleep_project_report.out)
 \@outlinefile=\write3
 \openout3 = `Easysleep_project_report.out'.
 
-<./images/gmit_full1.png, id=116, 1003.75pt x 1003.75pt>
+\c@lstlisting=\count145
+<./images/gmit_full1.png, id=120, 1003.75pt x 1003.75pt>
 File: ./images/gmit_full1.png Graphic file (type png)
 <use ./images/gmit_full1.png>
-Package pdftex.def Info: ./images/gmit_full1.png  used on input line 22.
+Package pdftex.def Info: ./images/gmit_full1.png  used on input line 47.
 (pdftex.def)             Requested size: 195.0pt x 194.98764pt.
  [1
 
@@ -374,7 +408,7 @@ dfTeX warning (ext4): destination with the same identifier (name{page.1}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.47 	\newpage
+l.72 	\newpage
                [1] [2] (./Easysleep_project_report.toc
 LaTeX Font Info:    Try loading font information for U+msa on input line 4.
 
@@ -390,119 +424,110 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \openout4 = `Easysleep_project_report.toc'.
 
  [3]
-Underfull \hbox (badness 10000) in paragraph at lines 56--58
+Underfull \hbox (badness 10000) in paragraph at lines 81--83
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 59--60
+Underfull \hbox (badness 10000) in paragraph at lines 84--85
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 86--87
 
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 69--70
+Underfull \hbox (badness 10000) in paragraph at lines 94--95
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--77
+Underfull \hbox (badness 10000) in paragraph at lines 96--102
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 78--80
+Underfull \hbox (badness 10000) in paragraph at lines 103--105
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 81--84
+Underfull \hbox (badness 10000) in paragraph at lines 106--109
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 87--88
+Underfull \hbox (badness 10000) in paragraph at lines 112--113
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 92.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 117.
+
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 92.
-<./images/k64f1.jpg, id=179, 3230.0675pt x 2124.93875pt>
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 117.
+<./images/k64f1.jpg, id=184, 3230.0675pt x 2124.93875pt>
 File: ./images/k64f1.jpg Graphic file (type jpg)
 <use ./images/k64f1.jpg>
-Package pdftex.def Info: ./images/k64f1.jpg  used on input line 102.
+Package pdftex.def Info: ./images/k64f1.jpg  used on input line 127.
 (pdftex.def)             Requested size: 272.99881pt x 179.59605pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 105--108
+Underfull \hbox (badness 10000) in paragraph at lines 130--133
 
  []
 
 [6 <./images/k64f1.jpg>]
-<./images/parallax_vib_mot1.jpg, id=187, 1672.2475pt x 1059.96pt>
+<./images/parallax_vib_mot1.jpg, id=192, 1672.2475pt x 1059.96pt>
 File: ./images/parallax_vib_mot1.jpg Graphic file (type jpg)
 <use ./images/parallax_vib_mot1.jpg>
-Package pdftex.def Info: ./images/parallax_vib_mot1.jpg  used on input line 125
+Package pdftex.def Info: ./images/parallax_vib_mot1.jpg  used on input line 150
 .
 (pdftex.def)             Requested size: 77.99881pt x 49.42671pt.
 
-Underfull \hbox (badness 1852) in paragraph at lines 129--130
+Underfull \hbox (badness 1852) in paragraph at lines 154--155
 \OT1/cmr/m/n/12 sec-ondary de-vice (bracelet) to gen-tly and qui-etly
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 129--130
+Underfull \hbox (badness 10000) in paragraph at lines 154--155
 
  []
 
-<./images/motor_diag1.png, id=188, 903.375pt x 782.925pt>
+<./images/motor_diag1.png, id=193, 903.375pt x 782.925pt>
 File: ./images/motor_diag1.png Graphic file (type png)
 <use ./images/motor_diag1.png>
-Package pdftex.def Info: ./images/motor_diag1.png  used on input line 133.
+Package pdftex.def Info: ./images/motor_diag1.png  used on input line 158.
 (pdftex.def)             Requested size: 271.01459pt x 234.8793pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[7 <./images/parallax_vib_mot1.jpg>]
-<./images/hc-05_1.jpg, id=194, 954.56625pt x 2130.96124pt>
+[7 <./images/parallax_vib_mot1.jpg>] [8 <./images/motor_diag1.png>]
+<./images/hc-05_1.jpg, id=205, 954.56625pt x 2130.96124pt>
 File: ./images/hc-05_1.jpg Graphic file (type jpg)
 <use ./images/hc-05_1.jpg>
-Package pdftex.def Info: ./images/hc-05_1.jpg  used on input line 155.
+Package pdftex.def Info: ./images/hc-05_1.jpg  used on input line 182.
 (pdftex.def)             Requested size: 57.2715pt x 127.85216pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 159--163
-
- []
-
-[8 <./images/motor_diag1.png> <./images/hc-05_1.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 164--166
+Underfull \hbox (badness 10000) in paragraph at lines 186--190
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 164--166
+Underfull \hbox (badness 10000) in paragraph at lines 191--193
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 164--166
+Underfull \hbox (badness 10000) in paragraph at lines 191--193
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 168--169
-
- []
-
-[9]
-Underfull \hbox (badness 10000) in paragraph at lines 192--194
+Underfull \hbox (badness 10000) in paragraph at lines 191--193
 
  []
 
@@ -511,23 +536,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 195--196
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 197--202
-
- []
-
-[10]
-Underfull \hbox (badness 10000) in paragraph at lines 214--215
+[9 <./images/hc-05_1.jpg>] [10]
+Underfull \hbox (badness 10000) in paragraph at lines 212--215
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 216--217
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 218--219
+Underfull \hbox (badness 10000) in paragraph at lines 217--219
 
  []
 
@@ -536,118 +551,141 @@ Underfull \hbox (badness 10000) in paragraph at lines 220--221
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 222--227
+
+ []
+
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 224--225
+Underfull \hbox (badness 10000) in paragraph at lines 237--238
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--231
+Underfull \hbox (badness 10000) in paragraph at lines 239--240
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 232--233
-
- []
-
-<example-image-a.pdf, id=217, 321.2pt x 240.9pt>
-File: example-image-a.pdf Graphic file (type pdf)
-<use example-image-a.pdf>
-Package pdftex.def Info: example-image-a.pdf  used on input line 236.
-(pdftex.def)             Requested size: 390.01082pt x 142.26576pt.
-
-Overfull \hbox (17.63564pt too wide) in paragraph at lines 236--237
-[][] 
- []
-
-[12]
 Underfull \hbox (badness 10000) in paragraph at lines 241--242
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 244--245
+Underfull \hbox (badness 10000) in paragraph at lines 243--244
 
  []
 
-
+[12]
 Underfull \hbox (badness 10000) in paragraph at lines 247--248
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 249--250
+Underfull \hbox (badness 10000) in paragraph at lines 252--254
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 251--252
+Underfull \hbox (badness 10000) in paragraph at lines 255--256
 
  []
 
-[13 </usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-a.pdf>] [14]
-<./images/systemview1.png, id=239, 1027.58907pt x 577.40718pt>
+[13]
+<./images/SEGGER_directory_structure.png, id=229, 254.45062pt x 254.45062pt>
+File: ./images/SEGGER_directory_structure.png Graphic file (type png)
+<use ./images/SEGGER_directory_structure.png>
+Package pdftex.def Info: ./images/SEGGER_directory_structure.png  used on input
+ line 262.
+(pdftex.def)             Requested size: 254.45pt x 254.45pt.
+ [14 <./images/SEGGER_directory_structure.png (PNG copy)>]
+Overfull \hbox (10.81863pt too wide) in paragraph at lines 293--294
+\OT1/cmr/m/n/12 in \OT1/cmr/bx/n/12 SEG-GER[]SYSVIEW[]Config[]FreeRTOS.c \OT1/c
+mr/m/n/12 as well as Sys-temView RAM
+ []
+
+
+Overfull \hbox (3.31952pt too wide) in paragraph at lines 302--303
+\OT1/cmr/m/n/12 by en-abling the Cur-rent PC Sam-pler Cy-cle Count Reg-is-ter \
+OT1/cmr/bx/n/12 DWT[]CYCCNT
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 307--309
+
+ []
+
+[15]
+Underfull \hbox (badness 10000) in paragraph at lines 313--314
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 316--317
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 318--319
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 320--321
+
+ []
+
+[16]
+<./images/systemview1.png, id=267, 1027.58907pt x 577.40718pt>
 File: ./images/systemview1.png Graphic file (type png)
 <use ./images/systemview1.png>
-Package pdftex.def Info: ./images/systemview1.png  used on input line 271.
+Package pdftex.def Info: ./images/systemview1.png  used on input line 340.
 (pdftex.def)             Requested size: 272.99881pt x 153.39983pt.
-
-[15 <./images/systemview1.png (PNG copy)>]
-<./images/pulseview.png, id=245, 1028.34187pt x 578.16pt>
+ [17 <./images/systemview1.png (PNG copy)>]
+<./images/pulseview.png, id=273, 1028.34187pt x 578.16pt>
 File: ./images/pulseview.png Graphic file (type png)
 <use ./images/pulseview.png>
-Package pdftex.def Info: ./images/pulseview.png  used on input line 293.
+Package pdftex.def Info: ./images/pulseview.png  used on input line 362.
 (pdftex.def)             Requested size: 272.99881pt x 153.48515pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 304--307
+Underfull \hbox (badness 10000) in paragraph at lines 373--376
 
  []
 
-[16 <./images/pulseview.png (PNG copy)>] [17] [18] [19]
+[18 <./images/pulseview.png (PNG copy)>] [19] [20] [21]
 (./Easysleep_project_report.lof)
 \tf@lof=\write5
 \openout5 = `Easysleep_project_report.lof'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 327.
- [20]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 327.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 396.
+ [22]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 396.
  (./Easysleep_project_report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 327.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 327.
-
-
-Package rerunfilecheck Warning: File `Easysleep_project_report.out' has changed
-.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Easysleep_project_report.out':
-(rerunfilecheck)             Before: 8A8C822BF79BE109A9EF71F1EF2759B5;1847
-(rerunfilecheck)             After:  F187B5938A5F7D4D31CE7565CBA1600B;1902.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 327.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 396.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 396.
+Package rerunfilecheck Info: File `Easysleep_project_report.out' has not change
+d.
+(rerunfilecheck)             Checksum: F187B5938A5F7D4D31CE7565CBA1600B;1902.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 396.
  ) 
 Here is how much of TeX's memory you used:
- 6845 strings out of 494923
- 99631 string characters out of 6180742
- 280291 words of memory out of 5000000
- 10001 multiletter control sequences out of 15000+600000
- 11659 words of font info for 43 fonts, out of 8000000 for 9000
+ 8658 strings out of 494923
+ 123914 string characters out of 6180742
+ 337576 words of memory out of 5000000
+ 11770 multiletter control sequences out of 15000+600000
+ 12127 words of font info for 45 fonts, out of 8000000 for 9000
  15 hyphenation exceptions out of 8191
- 28i,7n,30p,668b,425s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{subsubsection.3.4.1} has been referenced but does
- not exist, replaced by a fixed one
-
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf/fonts/type1/
-public/lm/lmss17.pfb>
-Output written on Easysleep_project_report.pdf (21 pages, 3364645 bytes).
+ 33i,7n,58p,990b,1202s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on Easysleep_project_report.pdf (23 pages, 3398364 bytes).
 PDF statistics:
- 311 PDF objects out of 1000 (max. 8388607)
- 269 compressed objects within 3 object streams
- 61 named destinations out of 1000 (max. 500000)
- 265 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 347 PDF objects out of 1000 (max. 8388607)
+ 302 compressed objects within 4 object streams
+ 84 named destinations out of 1000 (max. 500000)
+ 273 words of extra memory for PDF output out of 10000 (max. 10000000)
 
