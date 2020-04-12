@@ -243,6 +243,59 @@
 		During my project development I used a third party application that allowed me to send characters via Bluetooth to Easysleep and receive data back. I wanted to recreate this application in a way that would better suit the project.\\ 
 		\newpage
 		
+		\subsection{Other}
+		{\bfseries Additional software tools used}
+		
+            \subsubsection{SystemView}
+            SystemView is a great tool developed by SEGGER for monitoring the behaviour of Real-time
+            operating systems as well as interrupts. It is free to use. It requires J-Link to be either installed as a bootloader on the development board or a harware J-Link probe needs to be used. In my case I had access to the hardware version. In order for it to work fully, I had to cut two traces on the development board otherwise it would clash with the OpenSDA debugger and the code would not get uploaded to the memory.
+                    
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.7\textwidth]{systemview1}
+                \caption{SystemView}
+            \end{figure}
+        
+            \subsubsection{FreeRTOS}
+            FreeRTOS is one of many real-time operating systems available. Other options include QNX, 
+            ThreadX, embOS or Zephyr. Using a real-time operating system allows the programmer to 
+            divide the functionality of the project into individual blocks that are easier to manage, 
+            can communicate amongst themselves and maintain responsiveness. Real-time operating
+            systems are often used in places where the functionality of a system is somewhat complex and a
+            certain level of responsiveness is required (time-deterministic).
+            
+            \subsubsection{Pulseview}
+            Pulseview is a Qt based logic analyzer. It is licensed under GNU GPLv.3. This software  
+            allows the user to monitor the output of GPIO pins as well as decoding of various protocols,
+            such as SPI or UART. This package is in the repositories of my Linux distribution so 
+            installing it was as simple as typing a {\bfseries sudo apt install pulseview} into the command line and let the system to do the rest. This tool proved to be invaluable when 
+            I was working with the buzzer and FlexTimer Module as it allowed me to monitor the output
+            square wave.
+            
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.7\textwidth]{pulseview}
+                \caption{Pulseview}
+            \end{figure}
+        
+            \subsubsection{Git/GitHub, gitk}
+            Throughout the development of the C code for the embedded platform, as well as of the 
+            Android application and this report, I used a Version Control System known as Git and 
+            it's online counterpart GitHub. This allowed me to safely store my code, revert to 
+            previous code revisions and work from different computers at school or at home.
+            
+            \subsubsection{Doxygen}
+            Doxygen is a documentation generator widely used in software development companies. It
+            allows user to generate documents describing code functionality by adhering 
+            to certain code commenting standards.\\
+            
+            Doxygen is available for various programming languages. It comes with a large configuration 
+            file that the user can adjust to suit the need of the project.
+            
+            \subsubsection{Project management software}
+            project management software, BT configuration,
+            \newpage
+		
 		\section{Code Development}
 		{\bfseries Languages used, code development and examples}\\
 		
@@ -328,58 +381,6 @@
 		\end{itemize}
 		\newpage
 		
-		\subsection{Other}
-		{\bfseries Additional software tools used}
-		
-		\subsubsection{SystemView}
-		SystemView is a great tool developed by SEGGER for monitoring the behaviour of Real-time
-		operating systems as well as interrupts. It is free to use. It requires J-Link to be either installed as a bootloader on the development board or a harware J-Link probe needs to be used. In my case I had access to the hardware version. In order for it to work fully, I had to cut two traces on the development board otherwise it would clash with the OpenSDA debugger and the code would not get uploaded to the memory.
-				
-		\begin{figure}[h]
-			\centering
-			\includegraphics[width=0.7\textwidth]{systemview1}
-			\caption{SystemView}
-		\end{figure}
-	
-		\subsubsection{FreeRTOS}
-		FreeRTOS is one of many real-time operating systems available. Other options include QNX, 
-		ThreadX, embOS or Zephyr. Using a real-time operating system allows the programmer to 
-		divide the functionality of the project into individual blocks that are easier to manage, 
-		can communicate amongst themselves and maintain responsiveness. Real-time operating
-		systems are often used in places where the functionality of a system is somewhat complex and a
-		certain level of responsiveness is required (time-deterministic).
-		
-		\subsubsection{Pulseview}
-		Pulseview is a Qt based logic analyzer. It is licensed under GNU GPLv.3. This software  
-		allows the user to monitor the output of GPIO pins as well as decoding of various protocols,
-		such as SPI or UART. This package is in the repositories of my Linux distribution so 
-		installing it was as simple as typing a {\bfseries sudo apt install pulseview} into the command line and let the system to do the rest. This tool proved to be invaluable when 
-		I was working with the buzzer and FlexTimer Module as it allowed me to monitor the output
-		square wave.
-		
-		\begin{figure}[h]
-			\centering
-			\includegraphics[width=0.7\textwidth]{pulseview}
-			\caption{Pulseview}
-		\end{figure}
-	
-		\subsubsection{Git/GitHub, gitk}
-		Throughout the development of the C code for the embedded platform, as well as of the 
-		Android application and this report, I used a Version Control System known as Git and 
-		it's online counterpart GitHub. This allowed me to safely store my code, revert to 
-		previous code revisions and work from different computers at school or at home.
-		
-		\subsubsection{Doxygen}
-		Doxygen is a documentation generator widely used in software development companies. It
-		allows user to generate documents describing code functionality by adhering 
-		to certain code commenting standards.\\
-		
-		Doxygen is available for various programming languages. It comes with a large configuration 
-		file that the user can adjust to suit the need of the project.
-		
-		\subsubsection{Project management software}
-		project management software, BT configuration,
-		\newpage
 	
 	\section{Conclusion}
 	what was the development of the project like
