@@ -129,7 +129,7 @@
 		\end{figure}
 		FRDM-K64F is a very capable development board manufactured by NXP Semiconductors with
 		headquarters in Europe in Eindhoven, Netherlands and in North America in Austin, Texas. I chose this board due of my familiarity with it and of its abilities. This board and its cousin KL25Z were used throughout the course as part of the embedded systems modules.\\\\
-		{\bfseries Board specifications:}  	
+		{\bfseries K64F development board specifications:}  	
 		\begin{itemize}[topsep=4pt,itemsep=1pt]
 			\item 120MHz ARM Cortex-M4 microcontroller
 			\item 1MB Flash memory
@@ -153,12 +153,21 @@
 		
 		The vibration motor is used as a peripheral of the secondary device (bracelet) to gently and quietly wake the sleeping person up in the first stage of the overall wake-up process. The Parallax vibration motor seemed appropriate device for this task as it requires only 3V of power. However, the current it requires is quite high and cannot be supplied by the K64F thus an external supply has to be used.\\
 		
+		
+        \begin{wrapfigure}{l}{0.4\textwidth}
+         \centering
+         \includegraphics[width=0.35\textwidth]{circuit_proto.jpg}
+         \caption{Prototyping}
+        \end{wrapfigure}
+        
+        In order to being able to control this vibration motor, I had to assemble a simple circuit using BC108 transistor as a switch. I had to prototype this circuit first to ensure everything works as should and to prevent any damage to the microcontroller and then solder the circuit to a piece of protoboard.\\
+        
 		\begin{figure}[h]
 			\centering
 			\includegraphics[scale=0.3]{motor_diag1.png}
 			\caption{Vibration motor connection diagram}
 		\end{figure}
-
+        
 		{\bfseries Motor specifications:}
 		\begin{itemize}
 			\item Rate voltage: 3.0V
@@ -166,6 +175,12 @@
 			\item Rate speed: 9,000r/min Min
 			\item Starting voltage: 2.3V
 		\end{itemize}
+		
+        \begin{figure}[h]
+         \centering
+         \includegraphics[width=0.5\textwidth]{circuit1.jpg}
+         \caption{Final Circuit}
+        \end{figure}
 		
 		\subsection{Relay}
 		The relay is used in the second stage of the wake-up process. It is connected to a desklamp and is triggered when the first stage fails and more disruptive method is needed.
@@ -309,53 +324,53 @@
 		
 		In order to successfully use the J-Link Edu debugging probe, adjustments to the project had to be made first.
 		First I had to download and extract SEGGER SystemView target sources and place them into the project folder. I had to setup the include paths in MCUXpresso so the header files and source files would be visible for the compiler. This is done via Projec -> Properties -> C/C++ build. Below is the directory structure of the SEGGER include files.
-		
 		\begin{figure}[h]
             \centering
             \includegraphics[scale=1]{SEGGER_directory_structure}
             \caption{SEGGER directory structure}
 		\end{figure}
-		
 		All these files had to be included for the SystemView to work correctly, but additional adjustments had to be made to the code. First, a patch provided by SEGGER had to be applied to the FreeRTOS files in order to link the FreeRTOS with SEGGER target sources. The patching capability can be found in right-click menu under Team option. This will provide a list of files that would be patched and view of the actual changes for the developer to review.
 		To continue with the integration of the SystemView I had to make changes to a number of files manually. First changes were added to {\bfseries FreeRTOSConfig.h} file.
-
 		\begin{lstlisting}
-        // FreeRTOSConfig.h
-        #define INCLUDE_xTaskGetIdleTaskHandle 1
-        #define INCLUDE_pxTaskGetStackStart 1
-            .
-            .
-            .
-        #include SEGGER_SYSVIEW_FreeRTOS.h
+            // FreeRTOSConfig.h
+            #define INCLUDE_xTaskGetIdleTaskHandle 1
+            #define INCLUDE_pxTaskGetStackStart 1
+                .
+                .
+                .
+            #include SEGGER_SYSVIEW_FreeRTOS.h
 		\end{lstlisting}
-
 		The {\bfseries SEGGER\_SYSVIEW\_FreeRTOS.h} has to be included at the end of the FreeRTOSConfig.h or above every include of FreeRTOS.h as it defines the trace macros to create SystemView events.\\
 		The processor used has to be specified in {\bfseries SEGGER\_SYSVIEW\_Conf.h}. There are four macros to choose from defined in this file and as I used the ARM Cortex-M4 I had to redefine the SEGGER\_SYSVIEW\_CORE macro to SEGGER\_SYSVIEW\_CORE\_CM3.\\ 	
         I also had to define the size of the SystemView buffer in this file. By default this is set o 1024 Bytes but because the size of the RAM on K64F is 256kB I could afford to assign more to it so I have allocated 8kB of RAM. This would actually affect the amount of time that the data can be recorded by SystemView in Single-Shot mode (that is without the use of J-Link).
-		
 		\begin{lstlisting}
-        // SEGGER_SYSVIEW_Conf.h
-        #define SEGGER_SYSVIEW_CORE_OTHER   0 
-        #define SEGGER_SYSVIEW_CORE_CM0     1 // Cortex-M0/M0+/M1
-        #define SEGGER_SYSVIEW_CORE_CM3     2 // Cortex-M3/M4/M7
-        #define SEGGER_SYSVIEW_CORE_RX      4 // Renesas RX
+            // SEGGER_SYSVIEW_Conf.h
+            #define SEGGER_SYSVIEW_CORE_OTHER   0 
+            #define SEGGER_SYSVIEW_CORE_CM0     1 // Cortex-M0/M0+/M1
+            #define SEGGER_SYSVIEW_CORE_CM3     2 // Cortex-M3/M4/M7
+            #define SEGGER_SYSVIEW_CORE_RX      4 // Renesas RX
         
-        #define SEGGER_SYSVIEW_RTT_BUFFER_SIZE (1024 * 8)
+            #define SEGGER_SYSVIEW_RTT_BUFFER_SIZE (1024 * 8)
 		\end{lstlisting}
-		
-		I also defined SystemView application name and SystemView device name in {\bfseries SEGGER\_SYSVIEW\_Config\_FreeRTOS.c} as well as SystemView RAM base address which on this microcontroller is at 0x20000000.
-		
+		I also defined SystemView application name and SystemView device name in {\bfseries SEGGER\_SYSVIEW\_Config\_FreeRTOS.c} as well as SystemView RAM base address which on this microcontroller is at address 0x20000000.
 		\begin{lstlisting}
-		 // SEGGER_SYSVIEW_Config_FreeRTOS.c
-		 #define SYSVIEW_APP_NAME         "Easysleep - Dev1_moisture_detection"
-		 #define SYSVIEW_DEVICE_NAME      "MK64FN1M0XXX12"
-		 #define SYSVIEW_RAM_BASE         (0x20000000)
+            // SEGGER_SYSVIEW_Config_FreeRTOS.c
+            #define SYSVIEW_APP_NAME         "Easysleep - Dev1_moisture_detection"
+            #define SYSVIEW_DEVICE_NAME      "MK64FN1M0XXX12"
+            #define SYSVIEW_RAM_BASE         (0x20000000)
 		\end{lstlisting}
+        Next step was to enable the ARM Cortex Mx Cycle Counter which is done by enabling the Current PC Sampler Cycle Count Register of Data Watchpoint and Trace unit {\bfseries DWT\_CYCCNT} as it is disabled by default. This register holds the number of core cycles and this can be used to measure elapsed execution time. In SystemView, it provides the timestamp of application events since the start of the program.
+        To enable this register the following code has to be written to the top of the main.c function. It sets the zeroth bit to 1, in DWT\_CTRL register enabling the DWT\_CYCCNT register.
+        \begin{lstlisting}
+            DWT->CTRL |= (1 << 0);
+        \end{lstlisting}
+        Final step to enable recording of the application events is to include two SEGGER functions in the main.c file before the creation of any tasks or of the FreeRTOS scheduler. If either of these two functions isn't included, the recording won't start.
+        \begin{lstlisting}
+            SEGGER_SYSVIEW_Conf();
+            SEGGER_SYSVIEW_Start();
+        \end{lstlisting}
+        This would conclude the initial setup of the SystemView. This tool is very powerful and useful especially when the system gets more complex. Having a visual representation of the systems behaviour can be at times very helpful.
 
-        Next step was to enable the ARM Cortex Mx Cycle Counter which is done by enabling the Current PC Sampler Cycle Count Register {\bfseries DWT\_CYCCNT} as it is disabled by default. This register holds the number of core cycles and this can be used to measure elapsed execution time. In SystemView, it provides the time of execution of every instruction since the start.
-		
-		With the SystemView properly setup, I could begin to develop the functional code for my application. I started by creating a 
-		
 		\subsection{K64F Slave code development}
 		\href{https://github.com/zedd-1983/project_dev2/tree/Bluetooth}{K64F Slave (Bracelet) Device code repository}\\
 		The secondary device, the bracelet, also uses FreeRTOS for task management. Setting this one up was not as difficult as the first one as it has less responsibilities and I already had some experience setting up the first bluetooth module. However, it made sense to take advantage of the FlexTimer peripheral of the K64F to generate a square wave needed for the buzzer and thus eleviate this responsibility from the processor.\\
