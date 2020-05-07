@@ -182,17 +182,28 @@
          \caption{Final Circuit}
         \end{figure}
 		
+		\newpage
 		\subsection{Relay}
-		The relay is used in the second stage of the wake-up process. It is connected to a desklamp and is triggered when the first stage fails and more disruptive method is needed.
+        \begin{wrapfigure}{L}{0.3\textwidth}
+         \centering
+         \includegraphics[width=0.25\textwidth]{relay1.jpg}
+         \caption{Relay}
+        \end{wrapfigure}
+        
+		The relay is used in the second stage of the wake-up process. It is connected to a lamp and is triggered when the first stage fails and more disruptive method is needed to wake the sleeping person up. To control this relay, a simple GPIO pin is used.\\\\\\\\\\\\
 
 		\subsection{Buzzer}
+        \begin{wrapfigure}[13]{R}{0.3\textwidth}
+         \centering
+         \includegraphics[width=0.25\textwidth]{buzzer1.jpg}
+         \caption{Buzzer}
+        \end{wrapfigure}
 		The buzzer is used for the third stage of the wake-up process if the vibration motor or 
-		relay fail to wake the sleeping person. This is a passive device and for the sound to be produced the Flex Timer Module of K64F is used to generate a PWM signal on the connected GPIO pin.
-        \newpage
+		relay fails to wake the sleeping person. This is a passive device and for the sound to be produced the Flex Timer Module of K64F is used to generate a PWM signal on the connected GPIO pin. This buzzer came as part of a multi-sensor kit I ordered for Arduino projects previously so I had it readily available for use in this project.\\\\
 		
 		\subsection{HC-05 Bluetooth module}
 		
-		\begin{wrapfigure}{l}{0.25\textwidth}
+		\begin{wrapfigure}{L}{0.25\textwidth}
 			\centering
 			\includegraphics[scale=0.06]{hc-05_1.jpg}
 			\caption[HC-05 Bluetooth module]{HC-05}
@@ -201,10 +212,9 @@
 		HC-05 is a commonly used Bluetooth module often used with Arduino projects. The K64F development board supports  
 		this module also. I have installed a small section of header pins to house this module. For my  
 		project I am using two of these. One to communicate with the secondary device (bracelet) and the
-		second one to communicate with the mobile phone.\\
+		second one to communicate with the mobile phone.
 		
-		This module can operate as a master or as a slave. A second module needed to be added as it only supports one-to-one  
-		communication.\\\\\\
+		This module can operate as a master or as a slave. In case of the master device of Easysleep project, this Bluetooth module was configured as MASTER and module on the secondary device as the SLAVE. Second module had to be added to the Easysleep master to allow for communication with the mobile phone as these modules only support one-to-one communication.
 		
 		\subsubsection{Bluetooth module configuration}
 		In order for the Bluetooth modules to communicate, both the master and the slave have to be configured in the same way. Additionally they also have to share the same password and have to be made aware of each other by whitelisting each others address through AT commands.\\ 
@@ -332,44 +342,107 @@
 		All these files had to be included for the SystemView to work correctly, but additional adjustments had to be made to the code. First, a patch provided by SEGGER had to be applied to the FreeRTOS files in order to link the FreeRTOS with SEGGER target sources. The patching capability can be found in right-click menu under Team option. This will provide a list of files that would be patched and view of the actual changes for the developer to review.
 		To continue with the integration of the SystemView I had to make changes to a number of files manually. First changes were added to {\bfseries FreeRTOSConfig.h} file.
 		\begin{lstlisting}
-            // FreeRTOSConfig.h
-            #define INCLUDE_xTaskGetIdleTaskHandle 1
-            #define INCLUDE_pxTaskGetStackStart 1
-                .
-                .
-                .
-            #include SEGGER_SYSVIEW_FreeRTOS.h
+        // FreeRTOSConfig.h
+        #define INCLUDE_xTaskGetIdleTaskHandle 1
+        #define INCLUDE_pxTaskGetStackStart 1
+            .
+            .
+            .
+        #include SEGGER_SYSVIEW_FreeRTOS.h
 		\end{lstlisting}
 		The {\bfseries SEGGER\_SYSVIEW\_FreeRTOS.h} has to be included at the end of the FreeRTOSConfig.h or above every include of FreeRTOS.h as it defines the trace macros to create SystemView events.\\
 		The processor used has to be specified in {\bfseries SEGGER\_SYSVIEW\_Conf.h}. There are four macros to choose from defined in this file and as I used the ARM Cortex-M4 I had to redefine the SEGGER\_SYSVIEW\_CORE macro to SEGGER\_SYSVIEW\_CORE\_CM3.\\ 	
         I also had to define the size of the SystemView buffer in this file. By default this is set o 1024 Bytes but because the size of the RAM on K64F is 256kB I could afford to assign more to it so I have allocated 8kB of RAM. This would actually affect the amount of time that the data can be recorded by SystemView in Single-Shot mode (that is without the use of J-Link).
 		\begin{lstlisting}
-            // SEGGER_SYSVIEW_Conf.h
-            #define SEGGER_SYSVIEW_CORE_OTHER   0 
-            #define SEGGER_SYSVIEW_CORE_CM0     1 // Cortex-M0/M0+/M1
-            #define SEGGER_SYSVIEW_CORE_CM3     2 // Cortex-M3/M4/M7
-            #define SEGGER_SYSVIEW_CORE_RX      4 // Renesas RX
-        
-            #define SEGGER_SYSVIEW_RTT_BUFFER_SIZE (1024 * 8)
+        // SEGGER_SYSVIEW_Conf.h
+        #define SEGGER_SYSVIEW_CORE_OTHER   0 
+        #define SEGGER_SYSVIEW_CORE_CM0     1 // Cortex-M0/M0+/M1
+        #define SEGGER_SYSVIEW_CORE_CM3     2 // Cortex-M3/M4/M7
+        #define SEGGER_SYSVIEW_CORE_RX      4 // Renesas RX
+    
+        #define SEGGER_SYSVIEW_RTT_BUFFER_SIZE (1024 * 8)
 		\end{lstlisting}
 		I also defined SystemView application name and SystemView device name in {\bfseries SEGGER\_SYSVIEW\_Config\_FreeRTOS.c} as well as SystemView RAM base address which on this microcontroller is at address 0x20000000.
 		\begin{lstlisting}
-            // SEGGER_SYSVIEW_Config_FreeRTOS.c
-            #define SYSVIEW_APP_NAME         "Easysleep - Dev1_moisture_detection"
-            #define SYSVIEW_DEVICE_NAME      "MK64FN1M0XXX12"
-            #define SYSVIEW_RAM_BASE         (0x20000000)
+        // SEGGER_SYSVIEW_Config_FreeRTOS.c
+        #define SYSVIEW_APP_NAME         "Easysleep - Dev1_moisture_detection"
+        #define SYSVIEW_DEVICE_NAME      "MK64FN1M0XXX12"
+        #define SYSVIEW_RAM_BASE         (0x20000000)
 		\end{lstlisting}
         Next step was to enable the ARM Cortex Mx Cycle Counter which is done by enabling the Current PC Sampler Cycle Count Register of Data Watchpoint and Trace unit {\bfseries DWT\_CYCCNT} as it is disabled by default. This register holds the number of core cycles and this can be used to measure elapsed execution time. In SystemView, it provides the timestamp of application events since the start of the program.
         To enable this register the following code has to be written to the top of the main.c function. It sets the zeroth bit to 1, in DWT\_CTRL register enabling the DWT\_CYCCNT register.
         \begin{lstlisting}
-            DWT->CTRL |= (1 << 0);
+        DWT->CTRL |= (1 << 0);
         \end{lstlisting}
         Final step to enable recording of the application events is to include two SEGGER functions in the main.c file before the creation of any tasks or of the FreeRTOS scheduler. If either of these two functions isn't included, the recording won't start.
         \begin{lstlisting}
-            SEGGER_SYSVIEW_Conf();
-            SEGGER_SYSVIEW_Start();
+        SEGGER_SYSVIEW_Conf();
+        SEGGER_SYSVIEW_Start();
         \end{lstlisting}
         This would conclude the initial setup of the SystemView. This tool is very powerful and useful especially when the system gets more complex. Having a visual representation of the systems behaviour can be at times very helpful.
+        
+        At the start of the program, three tasks are created and a FreeRTOS scheduler is started. These are the moisture detection task, btTask and phoneBTTask. 
+        \begin{lstlisting}
+        xTaskCreate(mainTask, "Main Task", configMINIMAL_STACK_SIZE + 1000, NULL, 2, &mainTaskHandle);
+        xTaskCreate(btTask, "BT Task", configMINIMAL_STACK_SIZE + 50, NULL, 2, &btTaskHandle);
+        xTaskCreate(phoneBTTask, "Phone Bluetooth Task", configMINIMAL_STACK_SIZE + 300, NULL, 2, &phoneBTTaskHandle);
+        \end{lstlisting}
+        {\bfseries mainTask} is responsible for recording the moisture detection events as well as creating some of the other tasks as needed. When the mainTask receives a notification from the external interrupt, it requests current date and time from the RTC module and records this. It also sets up an alarm interrupt to be triggered on the subsequent night just few minutes prior to the recorded time of the event.  
+        
+        Each of these tasks is assigned a memory stack size that it can use for storage of it's local variables. As the mainTask is used later for creation of other tasks, it was  necessary to assign a larger area of memory to it. Additionally, each of the tasks is assigned a priority value. In a  pre-emptive realtime operating system, the task with the highest priority runs. Other tasks can only run if the task with higher priority has been suspended or deleted.
+        
+        I have also used a number of external interrupts in this system. An external interrupt is triggered currently by pressing a Button2 on the K64F device to simulate the moisture detection event. By nature, system interrupts have higher priorities to the FreeRTOS ones, therefore, they can interrupt running tasks and in this case, this interrupt causes the mainTask to record the events time and date and store it in an array as a string using a {\bfseries convertRecordToString()} function. This array can hold up to 10 events.\\
+        
+        It also configures the RTC modules TAR register (alarm) of the K64F for the following night for the time 15 minutes before the recorded event time using the {\bfseries configureAlarm()} function. The delay in this project is however, for the purpose of demonstration and development, set to 20 seconds only. 
+        \begin{lstlisting}[label={lst:semaphore}, caption=Semaphore]
+        if(xSemaphoreTake(moistureDetectionSemphr, 0))
+        {
+            PRINTF("\n\r\033[34mMoisture detected\033[0m\n\r");
+            // flash an LED to indicate moisture detection
+            for(int i = 0; i < 6; i++) {
+                GPIO_PortToggle(BOARD_MD_LED_GPIO, 1 << BOARD_MD_LED_PIN);
+                vTaskDelay(pdMS_TO_TICKS(150));
+            }
+
+            // store the event time in a struct array
+            events[eventCount].eventTime = getSystemTime(RTC_1_PERIPHERAL, &RTC_1_dateTimeStruct);
+            events[eventCount].eventDate = getSystemDate(RTC_1_PERIPHERAL, &RTC_1_dateTimeStruct);
+            events[eventCount].wasAcknowledged = "no";
+
+            // convert given structure to a single string and add it to a string array
+            recordsAsStrings[eventCount] = convertRecordToString(events[eventCount]);
+
+            eventCount++;
+
+            // struct array set to 10 events only, this is a precaution
+            if(eventCount > 9)
+                eventCount = 9;
+
+            configureAlarm(20);
+            displayAlarmTime(RTC_1_PERIPHERAL, &RTC_1_dateTimeStruct);
+		}	 
+        \end{lstlisting}
+        The code below, shows the aforementioned {\bfseries recordsAsStrings()} function that converts the structure holding the time, date and acknowledgement status into a string and the {\bfseries configureAlarm()} function that configures the TAR register of the K64F. 
+        \begin{lstlisting}
+        char* convertRecordToString(struct eventData_t event)
+        {
+            // alocate memory for a string
+            char* recordAsStrings = (char*) malloc(sizeof(char) * 21);
+
+            strcpy(recordAsStrings, event.eventDate);
+            strcat(recordAsStrings, SPACER);
+            strcat(recordAsStrings, event.eventTime);
+            strcat(recordAsStrings, SPACER);
+            strcat(recordAsStrings, event.wasAcknowledged);
+
+            return recordAsStrings;
+        }
+        \end{lstlisting}
+        
+
+        
+
+        
 
 		\subsection{K64F Slave code development}
 		\href{https://github.com/zedd-1983/project_dev2/tree/Bluetooth}{K64F Slave (Bracelet) Device code repository}\\
