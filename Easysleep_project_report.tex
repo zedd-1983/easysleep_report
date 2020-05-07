@@ -40,6 +40,7 @@
 }
 
 \renewcommand*\contentsname{Table of Content}
+\renewcommand{\lstlistlistingname}{Code listings}
 
 \begin{document}
 	\begin{titlepage}
@@ -381,12 +382,13 @@
         \end{lstlisting}
         This would conclude the initial setup of the SystemView. This tool is very powerful and useful especially when the system gets more complex. Having a visual representation of the systems behaviour can be at times very helpful.
         
-        At the start of the program, three tasks are created and a FreeRTOS scheduler is started. These are the moisture detection task, btTask and phoneBTTask. 
-        \begin{lstlisting}
+        At the start of the program, three tasks are created and a FreeRTOS scheduler is started. These are the moisture detection task, btTask and phoneBTTask.
+        \begin{lstlisting}[label={lst:itCreation}, caption=Initial Task Creation]
         xTaskCreate(mainTask, "Main Task", configMINIMAL_STACK_SIZE + 1000, NULL, 2, &mainTaskHandle);
         xTaskCreate(btTask, "BT Task", configMINIMAL_STACK_SIZE + 50, NULL, 2, &btTaskHandle);
         xTaskCreate(phoneBTTask, "Phone Bluetooth Task", configMINIMAL_STACK_SIZE + 300, NULL, 2, &phoneBTTaskHandle);
         \end{lstlisting}
+        
         {\bfseries mainTask} is responsible for recording the moisture detection events as well as creating some of the other tasks as needed. When the mainTask receives a notification from the external interrupt, it requests current date and time from the RTC module and records this. It also sets up an alarm interrupt to be triggered on the subsequent night just few minutes prior to the recorded time of the event.  
         
         Each of these tasks is assigned a memory stack size that it can use for storage of it's local variables. As the mainTask is used later for creation of other tasks, it was  necessary to assign a larger area of memory to it. Additionally, each of the tasks is assigned a priority value. In a  pre-emptive realtime operating system, the task with the highest priority runs. Other tasks can only run if the task with higher priority has been suspended or deleted.
@@ -394,7 +396,7 @@
         I have also used a number of external interrupts in this system. An external interrupt is triggered currently by pressing a Button2 on the K64F device to simulate the moisture detection event. By nature, system interrupts have higher priorities to the FreeRTOS ones, therefore, they can interrupt running tasks and in this case, this interrupt causes the mainTask to record the events time and date and store it in an array as a string using a {\bfseries convertRecordToString()} function. This array can hold up to 10 events.\\
         
         It also configures the RTC modules TAR register (alarm) of the K64F for the following night for the time 15 minutes before the recorded event time using the {\bfseries configureAlarm()} function. The delay in this project is however, for the purpose of demonstration and development, set to 20 seconds only. 
-        \begin{lstlisting}[label={lst:semaphore}, caption=Semaphore]
+        \begin{lstlisting}[label={lst:mdSemaphore}, caption=Moisture Detection Semaphore]
         if(xSemaphoreTake(moistureDetectionSemphr, 0))
         {
             PRINTF("\n\r\033[34mMoisture detected\033[0m\n\r");
@@ -423,7 +425,7 @@
 		}	 
         \end{lstlisting}
         The code below, shows the aforementioned {\bfseries recordsAsStrings()} function that converts the structure holding the time, date and acknowledgement status into a string and the {\bfseries configureAlarm()} function that configures the TAR register of the K64F. 
-        \begin{lstlisting}
+        \begin{lstlisting}[label={lst:crtString}, caption=convertRecordToString()]
         char* convertRecordToString(struct eventData_t event)
         {
             // alocate memory for a string
@@ -439,7 +441,16 @@
         }
         \end{lstlisting}
         
-
+        \begin{lstlisting}[label={lst:confAlarm}, caption=configureAlarm()]
+        void configureAlarm(uint32_t secIncrement)
+        {
+			// configure alarm
+			uint32_t currSec = 0;
+			currSec = RTC->TSR;
+			currSec += secIncrement;
+			RTC->TAR = currSec;
+        }
+        \end{lstlisting}
         
 
         
@@ -480,6 +491,16 @@
 	\section{Bibliography}
 	\newpage
 	
+	\section{Figures}
 	\listoffigures
+	\newpage
+	
+	\section{Code listings}
+	\lstlistoflistings
+	\newpage
+	
+	
+	
+	
 	
 \end{document}
