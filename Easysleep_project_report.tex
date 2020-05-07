@@ -471,7 +471,7 @@
         }
         \end{lstlisting}
         
-        \subsubsection*{Time configuration}
+        \subsubsection*{Time configuration}\label{section:timeConfig}
         \begin{figure}
          \centering
          \includegraphics[width=\textwidth]{extInt_and_phone.jpg}
@@ -602,12 +602,14 @@
         As mentioned earlier, this task is one of the first once created in the main(). It is mainly responsible for receiving communication from the phone's Bluetooth and in few instances also returns data back to it. This task continously checks the status of {\bfseries Receive Data Register Full Flag}. If this flag is set, it proceeds to read data from the UART3 data register and evaluates them. A switch is used to specify the course of action the taks should take (listing ~\ref{lst:phoneBTTaskSwitch}). The received values have been defined in the {\bfseries bluetooth2.h} file for better readability of the code.\\
         
 		\begin{itemize}[topsep=4pt,itemsep=1pt]
-            \item DEV\_ALARM\_STOP - stops the ongoing alarm on the Slave device
-            \item SYSTEM\_TIME\_REQUEST - requests system time from the RTC module   
-            \item SYSTEM\_DATE\_REQUEST - requests system date from the RTC module  
-            \item SYSTEM\_TIME\_CHANGE - system time and date configuration via mobile phone  
+            \item DEV\_ALARM\_STOP - stops the ongoing alarm on the Slave device. It uses a FreeRTOS queue that transfers the received character through btTask to Dev2 (bracelet). This is because the phoneBTTask cannot directly communicate with the secondary device. This is responsibility of the {\bfseries btTask}. The queue forms a sort of bridge between these two.
+            \item SYSTEM\_TIME\_REQUEST - requests system time from the RTC module and sends the value back to the phone  
+            \item SYSTEM\_DATE\_REQUEST - requests system date from the RTC module and sends the value back to the phone 
+            \item SYSTEM\_TIME\_CHANGE - system time and date configuration via mobile phone as discussed in section ~\ref{section:timeConfig} on the page \pageref{section:timeConfig}.   
             \item REQUEST\_RECORDS - requests recorded times and dates of incidents  
 		\end{itemize}
+		
+		All the functions above are fairly self-explanatory however I would like to elaborate a bit on the REQUEST\_RECORDS item. As mentioned previously, every time an event occurs, current time and date is stored in a structure that then gets converted into a string and stored in a string array. To receive data from this array I had to use a FreeRTOS queue to transfer this data from the mainTask where it was stored to the phoneBTTask first. When the mainTask receives the semaphore from the phoneBTTask, it puts the string array into this queue where it can be retrieved by the phoneBTTask for further processing. In this case this means sending the data to the phone via Bluetooth (UART3).
         
         \begin{lstlisting}[label={lst:phoneBTTaskSwitch}, caption=Phone request resolution]
         if(kUART_RxDataRegFullFlag & UART_GetStatusFlags(UART3)) {
@@ -654,12 +656,10 @@
             UART_ClearStatusFlags(UART3,  kUART_RxDataRegFullFlag);
         } 
         \end{lstlisting}
-
-    To further elaborate on each of the options in the switch statement. The DEV2\_ALARM\_STOP uses a FreeRTOS queue that transfers the received character through btTask to Dev2 (bracelet). This is because the phoneBTTask cannot directly communicate with the secondary device. The queue forms a sort of bridge between these two.
-    The next two options, SYSTEM\_TIME\_REQUEST and SYSTEM\_DATE\_REQUEST request these from the RTC module and send the values back to the phone.
-    The SYSTEM\_TIME\_CHANGE allows the time and date to be configured via phone and has been already discussed in the {\bfseries Time configuration} section.
-    And finally, the DATA\_REQUEST option which allows the user to request the recorded events time and date on their phone.
-
+        
+    This would conclude the main functionality of the Master device. There is a lot more code in the project that can be viewed in the repository by following the link provided just below this section title. I would like to mention the {\bfseries helper\_functions.c} file where I've put some of the helping functions in an attempt to keep things tidy. I have tried to divide the code logically into separate .c and .h files as well. I have also used Doxygen to generate documentation for the various elements and this can be viewed by navigating into <repository\_path>/Docs/api\_docs/html/index.html Trying to view this on GitHub directly isn't possible. Navigating to this file results in the source code for this Doxygen documentation. 
+    \newpage
+    
    \subsection{K64F Slave code development}
    \href{https://github.com/zedd-1983/project_dev2/tree/Bluetooth}{K64F Slave (Bracelet) Device code repository}\\
    The secondary device, the bracelet, also uses FreeRTOS for task management. Setting this one up was not as difficult as the first one as it has less responsibilities and I already had some experience setting up the first bluetooth module. However, it made sense to take advantage of the FlexTimer peripheral of the K64F to generate a square wave needed for the buzzer and thus eleviate this responsibility from the processor.\\
