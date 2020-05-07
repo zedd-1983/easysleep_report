@@ -597,58 +597,105 @@
         UART_WriteBlocking(UART3, (uint8_t*)"System date set to: ", strlen("System date set to: ") + 1);
         UART_WriteBlocking(UART3, (uint8_t*)systemDate, strlen(systemDate) + 1);
         \end{lstlisting}
-
         
+        \subsubsection*{Phone BT task}
+        As mentioned earlier, this task is one of the first once created in the main(). It is mainly responsible for receiving communication from the phone's Bluetooth and in few instances also returns data back to it. This task continously checks the status of {\bfseries Receive Data Register Full Flag}. If this flag is set, it proceeds to read data from the UART3 data register and evaluates them. A switch is used to specify the course of action the taks should take (listing ~\ref{lst:phoneBTTaskSwitch}). The received values have been defined in the {\bfseries bluetooth2.h} file for better readability of the code.\\
         
-
-        
-
-		\subsection{K64F Slave code development}
-		\href{https://github.com/zedd-1983/project_dev2/tree/Bluetooth}{K64F Slave (Bracelet) Device code repository}\\
-		The secondary device, the bracelet, also uses FreeRTOS for task management. Setting this one up was not as difficult as the first one as it has less responsibilities and I already had some experience setting up the first bluetooth module. However, it made sense to take advantage of the FlexTimer peripheral of the K64F to generate a square wave needed for the buzzer and thus eleviate this responsibility from the processor.\\
-		
-		To setup this peripheral I have used the MCUXpresso Configuration tool again. This allowed me to specify the output frequency of the square wave thus changing the pitch of the produced sound. This is also possible to do programmatically but if there is 
-		
-		\subsection{Android application code development}
-		\href{https://github.com/zedd-1983/Easysleep_app/tree/bt_connection_3}{Android code repository}\\
-		
-		\subsubsection{User Interface Development}
-		GUI\\
-		\subsubsection{Bluetooth Communication}
-		BT\\
-		\subsubsection{Database Development}
-		???\\
-		
-		The development of this application was challenging and I had to follow a number of tutorials online in order to establish the Bluetooth communication. I have decided that for the purpose of this document I will divide the development process described into three subsections:  
-		
-		\begin{itemize}
-			\item User Interface Development
-			\item Bluetooth Communication
-			\item Database Development
+		\begin{itemize}[topsep=4pt,itemsep=1pt]
+            \item DEV\_ALARM\_STOP - stops the ongoing alarm on the Slave device
+            \item SYSTEM\_TIME\_REQUEST - requests system time from the RTC module   
+            \item SYSTEM\_DATE\_REQUEST - requests system date from the RTC module  
+            \item SYSTEM\_TIME\_CHANGE - system time and date configuration via mobile phone  
+            \item REQUEST\_RECORDS - requests recorded times and dates of incidents  
 		\end{itemize}
-		\newpage
-		
-	
-	\section{Conclusion}
-	what was the development of the project like
-	\newpage
-	
-	\section{References}
-	\newpage
-	
-	\section{Bibliography}
-	\newpage
-	
-	\section{Figures}
-	\listoffigures
-	\newpage
-	
-	\section{Code listings}
-	\lstlistoflistings
-	\newpage
-	
-	
-	
-	
-	
+        
+        \begin{lstlisting}[label={lst:phoneBTTaskSwitch}, caption=Phone request resolution]
+        if(kUART_RxDataRegFullFlag & UART_GetStatusFlags(UART3)) {
+            charReceived = UART_ReadByte(UART3);
+            switch(charReceived) {
+                case DEV2_ALARM_STOP: 		
+                    xQueueSend(phoneBTReceiveQ, (void*)&charReceived,
+                    pdMS_TO_TICKS(0)); 
+                    break;
+                case SYSTEM_TIME_REQUEST: 	
+                    sendDataToPhone(getSystemTime(RTC_1_PERIPHERAL, &RTC_1_dateTimeStruct));
+                    break;
+                case SYSTEM_DATE_REQUEST: 	
+                    sendDataToPhone(getSystemDate(RTC_1_PERIPHERAL, &RTC_1_dateTimeStruct));
+                    break;
+                case SYSTEM_TIME_CHANGE:	
+                    PRINTF("System time change\n\r");
+                    charReceived = '\0';
+                    xSemaphoreGive(configureTimeViaPhoneSemphr);
+                    break;
+                case REQUEST_RECORDS:		
+                    PRINTF("\n\r\033[33mRequesting records...\033[0m\n\r");
+                    xSemaphoreGive(recordsRequestSemphr);
+
+                    if(xQueueReceive(recordsForThePhoneQ, &recordsForPhoneBuffer, pdMS_TO_TICKS(200)))
+                    {
+                        PRINTF("\033[32mData received!!!\033[0m\n\r");
+                        PRINTF("\n\r\033[32mSending data to Phone!!!\033[0m\n\r");
+
+                        int i = 0;
+                        while(recordsForPhoneBuffer[i] != 0x0)
+                        {
+                            sendDataToPhone(recordsForPhoneBuffer[i]);
+                            busyDelay(20000);
+                            i++;
+                        }
+                        PRINTF("\n\r\033[32mData send!!!\033[0m\n\r");
+                    }
+                    break;
+                default:					
+                    PRINTF("Invalid request\n\r"); charReceived = '\0'; break;
+            } 
+            charReceived = '\0';
+            UART_ClearStatusFlags(UART3,  kUART_RxDataRegFullFlag);
+        } 
+        \end{lstlisting}
+
+    To further elaborate on each of the options in the switch statement. The DEV2\_ALARM\_STOP uses a FreeRTOS queue that transfers the received character through btTask to Dev2 (bracelet). This is because the phoneBTTask cannot directly communicate with the secondary device. The queue forms a sort of bridge between these two.
+    The next two options, SYSTEM\_TIME\_REQUEST and SYSTEM\_DATE\_REQUEST request these from the RTC module and send the values back to the phone.
+    The SYSTEM\_TIME\_CHANGE allows the time and date to be configured via phone and has been already discussed in the {\bfseries Time configuration} section.
+    And finally, the DATA\_REQUEST option which allows the user to request the recorded events time and date on their phone.
+
+   \subsection{K64F Slave code development}
+   \href{https://github.com/zedd-1983/project_dev2/tree/Bluetooth}{K64F Slave (Bracelet) Device code repository}\\
+   The secondary device, the bracelet, also uses FreeRTOS for task management. Setting this one up was not as difficult as the first one as it has less responsibilities and I already had some experience setting up the first bluetooth module. However, it made sense to take advantage of the FlexTimer peripheral of the K64F to generate a square wave needed for the buzzer and thus eleviate this responsibility from the processor.\\
+               
+   To setup this peripheral I have used the MCUXpresso Configuration tool again. This allowed me to specify the output frequency of the square wave thus changing the pitch of the produced sound. This is also possible to do programmatically but if there is 
+               
+   \subsection{Android application code development}
+   \href{https://github.com/zedd-1983/Easysleep_app/tree/bt_connection_3}{Android code repository}\\
+               
+   \subsubsection{User Interface Development}
+   GUI\\
+   \subsubsection{Bluetooth Communication}
+   BT\\
+   \subsubsection{Database Development}
+   ???\\
+               
+   The development of this application was challenging and I had to follow a number of tutorials online in order to establish the Bluetooth communication. I have decided that for the purpose of this document I will divide the development process described into three subsections:  
+               
+   \begin{itemize}
+    \item User Interface Development
+    \item Bluetooth Communication
+    \item Database Development
+   \end{itemize}
+    
+    \section{References}
+    \newpage
+
+    \section{Bibliography}
+    \newpage
+
+    \section{Figures}
+    \listoffigures
+    \newpage
+
+    \section{Code listings}
+    \lstlistoflistings
+    \newpage
+
 \end{document}

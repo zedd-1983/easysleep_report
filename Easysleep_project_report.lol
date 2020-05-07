@@ -6,3 +6,4 @@
 \contentsline {lstlisting}{\numberline {6}userTimeConfig() task}{22}{lstlisting.6}
 \contentsline {lstlisting}{\numberline {7}configureTimeViaPhone() task}{24}{lstlisting.7}
 \contentsline {lstlisting}{\numberline {8}Time and date BT communication}{25}{lstlisting.8}
+\contentsline {lstlisting}{\numberline {9}Phone request resolution}{26}{lstlisting.9}

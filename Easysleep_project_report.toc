@@ -19,13 +19,12 @@
 \contentsline {subsubsection}{\numberline {4.3.6}Project management software}{14}{subsubsection.4.3.6}
 \contentsline {section}{\numberline {5}Code Development}{15}{section.5}
 \contentsline {subsection}{\numberline {5.1}K64F Master code development}{15}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}K64F Slave code development}{25}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}Android application code development}{26}{subsection.5.3}
-\contentsline {subsubsection}{\numberline {5.3.1}User Interface Development}{26}{subsubsection.5.3.1}
-\contentsline {subsubsection}{\numberline {5.3.2}Bluetooth Communication}{26}{subsubsection.5.3.2}
-\contentsline {subsubsection}{\numberline {5.3.3}Database Development}{26}{subsubsection.5.3.3}
-\contentsline {section}{\numberline {6}Conclusion}{27}{section.6}
-\contentsline {section}{\numberline {7}References}{28}{section.7}
-\contentsline {section}{\numberline {8}Bibliography}{29}{section.8}
-\contentsline {section}{\numberline {9}Figures}{30}{section.9}
-\contentsline {section}{\numberline {10}Code listings}{31}{section.10}
+\contentsline {subsection}{\numberline {5.2}K64F Slave code development}{27}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Android application code development}{28}{subsection.5.3}
+\contentsline {subsubsection}{\numberline {5.3.1}User Interface Development}{28}{subsubsection.5.3.1}
+\contentsline {subsubsection}{\numberline {5.3.2}Bluetooth Communication}{28}{subsubsection.5.3.2}
+\contentsline {subsubsection}{\numberline {5.3.3}Database Development}{28}{subsubsection.5.3.3}
+\contentsline {section}{\numberline {6}References}{28}{section.6}
+\contentsline {section}{\numberline {7}Bibliography}{29}{section.7}
+\contentsline {section}{\numberline {8}Figures}{30}{section.8}
+\contentsline {section}{\numberline {9}Code listings}{31}{section.9}
