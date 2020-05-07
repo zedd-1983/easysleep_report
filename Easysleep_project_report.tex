@@ -382,20 +382,37 @@
         \end{lstlisting}
         This would conclude the initial setup of the SystemView. This tool is very powerful and useful especially when the system gets more complex. Having a visual representation of the systems behaviour can be at times very helpful.
         
-        At the start of the program, three tasks are created and a FreeRTOS scheduler is started. These are the moisture detection task, btTask and phoneBTTask.
+        \subsubsection*{main()}
+        Three tasks are created at the beginning of the program and a FreeRTOS scheduler is started. These are the moisture detection task, btTask and phoneBTTask.
         \begin{lstlisting}[label={lst:itCreation}, caption=Initial Task Creation]
         xTaskCreate(mainTask, "Main Task", configMINIMAL_STACK_SIZE + 1000, NULL, 2, &mainTaskHandle);
         xTaskCreate(btTask, "BT Task", configMINIMAL_STACK_SIZE + 50, NULL, 2, &btTaskHandle);
         xTaskCreate(phoneBTTask, "Phone Bluetooth Task", configMINIMAL_STACK_SIZE + 300, NULL, 2, &phoneBTTaskHandle);
         \end{lstlisting}
+        In order to allow for some data transfer between tasks I had to create a number of FreeRTOS queues and initialize FreeRTOS semaphores (listing ~\ref{lst:semQue}) in following manner. 
+        \begin{lstlisting}[label={lst:semQue}, caption=Semaphores and Queues]
+        recordsForThePhoneQ = xQueueCreate(1, (sizeof(char[23]) * 3));
+            .
+            .
+            .
+        moistureDetectionSemphr = xSemaphoreCreateBinary();
+        \end{lstlisting}
         
+        \subsubsection*{mainTask()}
         {\bfseries mainTask} is responsible for recording the moisture detection events as well as creating some of the other tasks as needed. When the mainTask receives a notification from the external interrupt, it requests current date and time from the RTC module and records this. It also sets up an alarm interrupt to be triggered on the subsequent night just few minutes prior to the recorded time of the event.  
         
-        Each of these tasks is assigned a memory stack size that it can use for storage of it's local variables. As the mainTask is used later for creation of other tasks, it was  necessary to assign a larger area of memory to it. Additionally, each of the tasks is assigned a priority value. In a  pre-emptive realtime operating system, the task with the highest priority runs. Other tasks can only run if the task with higher priority has been suspended or deleted.
+        Each of these tasks is assigned a memory stack size that it can use for storage of it's local variables. As the mainTask is used later for creation of other tasks, it was  necessary to assign a larger area of memory to it. Additionally, each of the tasks is assigned a priority value. In a  pre-emptive realtime operating system, the task with the highest priority runs. Other tasks can only run if the task with higher priority has been suspended or deleted.\\
         
-        I have also used a number of external interrupts in this system. An external interrupt is triggered currently by pressing a Button2 on the K64F device to simulate the moisture detection event. By nature, system interrupts have higher priorities to the FreeRTOS ones, therefore, they can interrupt running tasks and in this case, this interrupt causes the mainTask to record the events time and date and store it in an array as a string using a {\bfseries convertRecordToString()} function. This array can hold up to 10 events.\\
+        \subsubsection*{Moisture detection}
+        I have also used a number of external interrupts in this system. An external interrupt is triggered currently by pressing a Button2 on the K64F device to simulate the moisture detection event. By nature, system interrupts have higher priorities to the FreeRTOS ones, therefore, they can interrupt running tasks. In this case, a FreeRTOS semaphore is given to the mainTask which upon taking it (listing ~\ref{lst:mdSemaphore}) records the events time and date and store it in an array as a string using a {\bfseries convertRecordToString()} function (listing ~\ref{lst:crtString}). This array can hold up to 10 events.\\
         
-        It also configures the RTC modules TAR register (alarm) of the K64F for the following night for the time 15 minutes before the recorded event time using the {\bfseries configureAlarm()} function. The delay in this project is however, for the purpose of demonstration and development, set to 20 seconds only. 
+        \begin{figure}[h]
+         \centering
+         \includegraphics[width=\textwidth]{extInt.jpg}
+         \caption{Moisture detection}
+        \end{figure}
+        
+        It also configures the RTC module's TAR register (alarm) of the K64F for the following night for the time 15 minutes before the recorded event time using the {\bfseries configureAlarm()} function (listing ~\ref{lst:confAlarm}). The delay in this project is however, for the purpose of demonstration and development, set to 20 seconds only. 
         \begin{lstlisting}[label={lst:mdSemaphore}, caption=Moisture Detection Semaphore]
         if(xSemaphoreTake(moistureDetectionSemphr, 0))
         {
@@ -424,7 +441,9 @@
             displayAlarmTime(RTC_1_PERIPHERAL, &RTC_1_dateTimeStruct);
 		}	 
         \end{lstlisting}
-        The code below, shows the aforementioned {\bfseries recordsAsStrings()} function that converts the structure holding the time, date and acknowledgement status into a string and the {\bfseries configureAlarm()} function that configures the TAR register of the K64F. 
+        This interrupt also notifies the {\bfseries btTask} that an event occured and the btTask then transmits a notification to the Slave device to trigger a buzzer.
+        
+        The code below, shows the aforementioned {\bfseries recordsAsStrings()} function that converts the structure holding the time, date and acknowledgement status into a string and the {\bfseries configureAlarm()} function that configures the TAR register of the K64F. When the values of the RTC\_TSR register (time seconds register) and the RTC\_TAR register (time alarm register) match, the RTC module triggers an {\bfseries alarm interrupt} that notifies the {\bfseries btTask} to notify the {\bfseries Slave module} that in turn switches on the vibration motor.
         \begin{lstlisting}[label={lst:crtString}, caption=convertRecordToString()]
         char* convertRecordToString(struct eventData_t event)
         {
@@ -444,13 +463,142 @@
         \begin{lstlisting}[label={lst:confAlarm}, caption=configureAlarm()]
         void configureAlarm(uint32_t secIncrement)
         {
-			// configure alarm
-			uint32_t currSec = 0;
-			currSec = RTC->TSR;
-			currSec += secIncrement;
-			RTC->TAR = currSec;
+            // configure alarm
+            uint32_t currSec = 0;
+            currSec = RTC->TSR;
+            currSec += secIncrement;
+            RTC->TAR = currSec;
         }
         \end{lstlisting}
+        
+        \subsubsection*{Time configuration}
+        \begin{figure}
+         \centering
+         \includegraphics[width=\textwidth]{extInt_and_phone.jpg}
+         \caption{Time configuration}
+        \end{figure}
+
+        In order to allow the user to configure time and date on the system I have enabled an external interrupt on Button3 of the K64F Master device. The configuration was initially performed using the terminal but the functionality got extended and can now be also performed using a mobile phone. When the external interrupt occurs a semaphore is given to the mainTask which creates a {\bfseries userTimeConfig} task (listing ~\ref{lst:userTimeConfig}). This task has higher priority than the main task so it takes over and displays appropriate information in the terminal window. The user can input time and date in specified format and if successful the new time and date is saved. The functionality is similar when the time and date change is requested via the phone, with the intermediary step of bluetooth communication. Instead of {\bfseries userTimeConfig} task a {\bfseries configureTimeViaPhone} task is created (listing ~\ref{lst:configureTimeViaPhone}).
+        
+        \begin{lstlisting}[label={lst:userTimeConfig}, caption=userTimeConfig() task]
+        void userTimeConfig(void* pvParameters)
+        {
+            char stringDate[11] = "";
+            char stringTime[6] = "";
+            char stringTimeDate[17] = "";
+
+            uint16_t newYear = 1970;
+            uint8_t newMonth = 1, newDay = 1, newHour = 1, newMinute =1;
+
+            for(;;)
+            {
+                RTC_StopTimer(RTC);
+
+                PRINTF("\n\rEnter new date [min val 1970-01-01] in format YYYY-MM-DD: ");
+                SCANF("%s", stringDate);
+
+                // get date from the user input
+                struct userDate_t newDate = getDate(stringDate);
+
+                PRINTF("\n\rNew date: %s", stringDate);
+                newYear = newDate.year;
+                newMonth = newDate.month;
+                newDay = newDate.day;
+
+                while((newYear < 1970 || newYear > 2099) ||
+                        (newMonth < 1 || newMonth > 12) ||
+                        (newDay   < 1 || newDay > 31))
+                {
+                    PRINTF("\n\r*****  Invalid date [min val 1970-01-01] *****\n\r"
+                            "Enter new date in format YYYY-MM-DD: ");
+                    SCANF("%s", stringDate);
+
+                    newDate = getDate(stringDate);
+
+                    newYear = newDate.year;
+                    newMonth = newDate.month;
+                    newDay = newDate.day;
+                }
+
+                PRINTF("\n\rEnter new time in format HH-MM: ");
+                SCANF("%s", stringTime);
+
+                struct userTime_t newTime = getTime(stringTime);
+
+                newHour = newTime.hour;
+                newMinute = newTime.minute;
+
+                while((newHour < 0 || newHour > 23) || (newMinute < 0 || newMinute > 59))
+                {
+                    PRINTF("\n\rInvalid time value, try again: ");
+                    SCANF("%s", stringTime);
+
+                    newTime = getTime(stringTime);
+
+                    newHour = newTime.hour;
+                    newMinute = newTime.minute;
+                }
+
+                RTC_1_dateTimeStruct.year = newYear;
+                RTC_1_dateTimeStruct.month = newMonth;
+                RTC_1_dateTimeStruct.day = newDay;
+                RTC_1_dateTimeStruct.hour = newHour;
+                RTC_1_dateTimeStruct.minute = newMinute;
+
+                RTC_SetDatetime(RTC, &RTC_1_dateTimeStruct);
+                memset(stringTimeDate, 0, sizeof(stringTimeDate));
+                #ifdef SHOW_MESSAGES
+                PRINTF("\n\rYear: %d", RTC_1_dateTimeStruct.year);
+                PRINTF("\n\rMonth: %d", RTC_1_dateTimeStruct.month);
+                PRINTF("\n\rDay: %d", RTC_1_dateTimeStruct.day);
+                PRINTF("\n\rHour: %d", RTC_1_dateTimeStruct.hour);
+                PRINTF("\n\rMinute: %d\n\n\r", RTC_1_dateTimeStruct.minute);
+                #endif
+                RTC_StartTimer(RTC);
+                vTaskDelete(NULL);
+            } // end of for(;;)
+        } // end of userTimeConfig task
+        \end{lstlisting}
+        
+        \begin{lstlisting}[label={lst:configureTimeViaPhone}, caption=configureTimeViaPhone() task]
+         void configureTimeViaPhone(void* pvParameters)
+        {
+
+            uint8_t receivedDateTime[17];
+            char* enterValDateTime = "Please enter valid dateTime in [YYYYMMDD-HHMM] format";
+
+            PRINTF("\n\r\033[33mIn configure time via phone\033[0m");
+
+            for(;;) {
+                UART_WriteBlocking(UART3, (uint8_t*)enterValDateTime, strlen(enterValDateTime) + 1 );
+
+                switch(UART_ReadBlocking(UART3, receivedDateTime, 17)) {
+                    case kStatus_Success : 	PRINTF("\n\rReceived: %s", receivedDateTime);
+                        configureAndDisplayNewTime(receivedDateTime);
+                        break;
+                    case kStatus_UART_RxHardwareOverrun : 	PRINTF("\n\rHardware Overrun"); 
+                        break;
+                    case kStatus_UART_NoiseError 		: 	PRINTF("\n\rNoise Error"); 
+                        break;
+                    case kStatus_UART_FramingError 		: 	PRINTF("\n\rFraming Error"); 
+                        break;
+                    case kStatus_UART_ParityError 		: 	PRINTF("\n\rParity Error"); 
+                        break;
+                    default								: 	PRINTF("\n\rUnknown Error"); 
+                        break;
+                }
+                vTaskDelete(NULL);
+            }
+        }
+        \end{lstlisting}
+        The configureTimeViaPhone task uses {\bfseries configureAndDisplayNewTime() function} that in it's functionality resembles the terminal version. The main difference is that the information from this function is sent via Bluetooth through the UART3 peripheral to the phone (listing ~\ref{lst:btTimeConfig}). Please, see the relevant snippets below. 
+        \begin{lstlisting}[label={lst:btTimeConfig}, caption=Time and date BT communication]
+        char* systemDate = getSystemDate(RTC_1_PERIPHERAL, &RTC_1_dateTimeStruct);
+        UART_WriteBlocking(UART3, (uint8_t*)"System date set to: ", strlen("System date set to: ") + 1);
+        UART_WriteBlocking(UART3, (uint8_t*)systemDate, strlen(systemDate) + 1);
+        \end{lstlisting}
+
+        
         
 
         

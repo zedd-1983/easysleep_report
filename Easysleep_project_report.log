@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.3.10)  14 APR 2020 14:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.3.10)  7 MAY 2020 15:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -331,20 +331,20 @@ File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 (./Easysleep_project_report.aux)
 \openout1 = `Easysleep_project_report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -377,7 +377,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box33
-Package hyperref Info: Link coloring ON on input line 44.
+Package hyperref Info: Link coloring ON on input line 45.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -387,19 +387,19 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count144
 )
-LaTeX Info: Redefining \ref on input line 44.
-LaTeX Info: Redefining \pageref on input line 44.
-LaTeX Info: Redefining \nameref on input line 44.
+LaTeX Info: Redefining \ref on input line 45.
+LaTeX Info: Redefining \pageref on input line 45.
+LaTeX Info: Redefining \nameref on input line 45.
 
 (./Easysleep_project_report.out) (./Easysleep_project_report.out)
 \@outlinefile=\write3
 \openout3 = `Easysleep_project_report.out'.
 
 \c@lstlisting=\count145
-<./images/gmit_full1.png, id=120, 1003.75pt x 1003.75pt>
+<./images/gmit_full1.png, id=128, 1003.75pt x 1003.75pt>
 File: ./images/gmit_full1.png Graphic file (type png)
 <use ./images/gmit_full1.png>
-Package pdftex.def Info: ./images/gmit_full1.png  used on input line 47.
+Package pdftex.def Info: ./images/gmit_full1.png  used on input line 48.
 (pdftex.def)             Requested size: 195.0pt x 194.98764pt.
  [1
 
@@ -408,7 +408,7 @@ dfTeX warning (ext4): destination with the same identifier (name{page.1}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.72 	\newpage
+l.73 	\newpage
                [1] [2] (./Easysleep_project_report.toc
 LaTeX Font Info:    Try loading font information for U+msa on input line 4.
 
@@ -424,301 +424,407 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \openout4 = `Easysleep_project_report.toc'.
 
  [3]
-Underfull \hbox (badness 10000) in paragraph at lines 81--83
+Underfull \hbox (badness 10000) in paragraph at lines 82--84
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 84--85
+Underfull \hbox (badness 10000) in paragraph at lines 85--86
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 86--87
+Underfull \hbox (badness 10000) in paragraph at lines 87--88
 
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 94--95
+Underfull \hbox (badness 10000) in paragraph at lines 95--96
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--102
+Underfull \hbox (badness 10000) in paragraph at lines 97--103
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 103--105
+Underfull \hbox (badness 10000) in paragraph at lines 104--106
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 106--109
+Underfull \hbox (badness 10000) in paragraph at lines 107--110
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 112--113
+Underfull \hbox (badness 10000) in paragraph at lines 113--114
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 117.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 118.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 117.
-<./images/k64f1.jpg, id=184, 3230.0675pt x 2124.93875pt>
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 118.
+<./images/k64f1.jpg, id=194, 3230.0675pt x 2124.93875pt>
 File: ./images/k64f1.jpg Graphic file (type jpg)
 <use ./images/k64f1.jpg>
-Package pdftex.def Info: ./images/k64f1.jpg  used on input line 127.
+Package pdftex.def Info: ./images/k64f1.jpg  used on input line 128.
 (pdftex.def)             Requested size: 272.99881pt x 179.59605pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 130--133
+Underfull \hbox (badness 10000) in paragraph at lines 131--134
 
  []
 
 [6 <./images/k64f1.jpg>]
-<./images/parallax_vib_mot1.jpg, id=192, 1672.2475pt x 1059.96pt>
+<./images/parallax_vib_mot1.jpg, id=202, 1672.2475pt x 1059.96pt>
 File: ./images/parallax_vib_mot1.jpg Graphic file (type jpg)
 <use ./images/parallax_vib_mot1.jpg>
-Package pdftex.def Info: ./images/parallax_vib_mot1.jpg  used on input line 150
+Package pdftex.def Info: ./images/parallax_vib_mot1.jpg  used on input line 151
 .
 (pdftex.def)             Requested size: 77.99881pt x 49.42671pt.
 
-Underfull \hbox (badness 1852) in paragraph at lines 154--155
+Underfull \hbox (badness 1852) in paragraph at lines 155--156
 \OT1/cmr/m/n/12 sec-ondary de-vice (bracelet) to gen-tly and qui-etly
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 154--155
+Underfull \hbox (badness 10000) in paragraph at lines 155--156
 
  []
 
-<./images/circuit_proto.jpg, id=193, 2941.99126pt x 1651.16875pt>
+<./images/circuit_proto.jpg, id=203, 2941.99126pt x 1651.16875pt>
 File: ./images/circuit_proto.jpg Graphic file (type jpg)
 <use ./images/circuit_proto.jpg>
-Package pdftex.def Info: ./images/circuit_proto.jpg  used on input line 159.
+Package pdftex.def Info: ./images/circuit_proto.jpg  used on input line 160.
 (pdftex.def)             Requested size: 136.50238pt x 76.5921pt.
 
-Underfull \hbox (badness 4013) in paragraph at lines 163--164
+Underfull \hbox (badness 4013) in paragraph at lines 164--165
 [][]\OT1/cmr/m/n/12 In or-der to be-ing able to con-trol
  []
 
 
-Underfull \hbox (badness 1990) in paragraph at lines 163--164
+Underfull \hbox (badness 1990) in paragraph at lines 164--165
 \OT1/cmr/m/n/12 this vi-bra-tion mo-tor, I had to as-sem-
  []
 
 
-Underfull \hbox (badness 1286) in paragraph at lines 163--164
+Underfull \hbox (badness 1286) in paragraph at lines 164--165
 \OT1/cmr/m/n/12 ble a sim-ple cir-cuit us-ing BC108 tran-
  []
 
 
-Underfull \hbox (badness 2384) in paragraph at lines 163--164
+Underfull \hbox (badness 2384) in paragraph at lines 164--165
 \OT1/cmr/m/n/12 sis-tor as a switch. I had to pro-to-
  []
 
 
-Underfull \hbox (badness 1997) in paragraph at lines 163--164
+Underfull \hbox (badness 1997) in paragraph at lines 164--165
 \OT1/cmr/m/n/12 type this cir-cuit first to en-sure ev-ery-
  []
 
 
-Underfull \hbox (badness 1655) in paragraph at lines 163--164
+Underfull \hbox (badness 1655) in paragraph at lines 164--165
 \OT1/cmr/m/n/12 sol-der the cir-cuit to a piece of pro-to-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 163--164
+Underfull \hbox (badness 10000) in paragraph at lines 164--165
 
  []
 
-<./images/motor_diag1.png, id=194, 903.375pt x 782.925pt>
+<./images/motor_diag1.png, id=204, 903.375pt x 782.925pt>
 File: ./images/motor_diag1.png Graphic file (type png)
 <use ./images/motor_diag1.png>
-Package pdftex.def Info: ./images/motor_diag1.png  used on input line 167.
+Package pdftex.def Info: ./images/motor_diag1.png  used on input line 168.
 (pdftex.def)             Requested size: 271.01459pt x 234.8793pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [7 <./images/parallax_vib_mot1.jpg> <./images/circuit_proto.jpg>]
-<./images/circuit1.jpg, id=201, 2566.58875pt x 1054.94125pt>
+<./images/circuit1.jpg, id=211, 2566.58875pt x 1054.94125pt>
 File: ./images/circuit1.jpg Graphic file (type jpg)
 <use ./images/circuit1.jpg>
-Package pdftex.def Info: ./images/circuit1.jpg  used on input line 181.
+Package pdftex.def Info: ./images/circuit1.jpg  used on input line 182.
 (pdftex.def)             Requested size: 195.0pt x 80.14738pt.
- [8 <./images/motor_diag1.png> <./images/circuit1.jpg>] [9]
-<./images/hc-05_1.jpg, id=213, 954.56625pt x 2130.96124pt>
+ [8 <./images/motor_diag1.png> <./images/circuit1.jpg>]
+<./images/relay1.jpg, id=219, 1573.88pt x 1606.0pt>
+File: ./images/relay1.jpg Graphic file (type jpg)
+<use ./images/relay1.jpg>
+Package pdftex.def Info: ./images/relay1.jpg  used on input line 190.
+(pdftex.def)             Requested size: 97.5pt x 99.46805pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 194--195
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 194--195
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 194--195
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 194--195
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 194--195
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 194--195
+
+ []
+
+<./images/buzzer1.jpg, id=220, 916.42375pt x 1534.73375pt>
+File: ./images/buzzer1.jpg Graphic file (type jpg)
+<use ./images/buzzer1.jpg>
+Package pdftex.def Info: ./images/buzzer1.jpg  used on input line 199.
+(pdftex.def)             Requested size: 97.5pt x 163.27113pt.
+
+Underfull \hbox (badness 1242) in paragraph at lines 202--204
+\OT1/cmr/m/n/12 wake-up pro-cess if the vi-bra-tion mo-tor or re-
+ []
+
+
+Underfull \hbox (badness 1668) in paragraph at lines 202--204
+\OT1/cmr/m/n/12 pin. This buzzer came as part of a multi-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 202--204
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 202--204
+
+ []
+
+<./images/hc-05_1.jpg, id=221, 954.56625pt x 2130.96124pt>
 File: ./images/hc-05_1.jpg Graphic file (type jpg)
 <use ./images/hc-05_1.jpg>
-Package pdftex.def Info: ./images/hc-05_1.jpg  used on input line 197.
+Package pdftex.def Info: ./images/hc-05_1.jpg  used on input line 209.
 (pdftex.def)             Requested size: 57.2715pt x 127.85216pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 201--205
+Overfull \hbox (7.29866pt too wide) in paragraph at lines 213--217
+\OT1/cmr/m/n/12 HC-05 is a com-monly used Blue-tooth mod-ule of-ten used with A
+r-duino projects.
+ []
+
+[9 <./images/relay1.jpg> <./images/buzzer1.jpg>]
+Underfull \hbox (badness 7832) in paragraph at lines 221--222
+[]\OT1/cmr/m/n/12 In or-der for the Blue-tooth mod-ules to com-
+ []
+
+
+Underfull \hbox (badness 3701) in paragraph at lines 221--222
+\OT1/cmr/m/n/12 mu-ni-cate, both the mas-ter and the slave have
+ []
+
+
+Underfull \hbox (badness 3078) in paragraph at lines 221--222
+\OT1/cmr/m/n/12 to be con-fig-ured in the same way. Ad-di-tion-
+ []
+
+
+Underfull \hbox (badness 1824) in paragraph at lines 221--222
+\OT1/cmr/m/n/12 ally they also have to share the same pass-word
+ []
+
+
+Underfull \hbox (badness 2980) in paragraph at lines 221--222
+\OT1/cmr/m/n/12 and have to be made aware of each other by
+ []
+
+
+Underfull \hbox (badness 1087) in paragraph at lines 221--222
+\OT1/cmr/m/n/12 whitelist-ing each oth-ers ad-dress through AT com-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--222
+
+ []
+
+[10 <./images/hc-05_1.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 238--241
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--208
+Underfull \hbox (badness 10000) in paragraph at lines 243--245
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--208
+Underfull \hbox (badness 10000) in paragraph at lines 246--247
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--208
+Underfull \hbox (badness 10000) in paragraph at lines 248--253
+
+ []
+
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 263--264
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 210--211
-
- []
-
-[10 <./images/hc-05_1.jpg>] [11]
-Underfull \hbox (badness 10000) in paragraph at lines 227--230
+Underfull \hbox (badness 10000) in paragraph at lines 265--266
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 232--234
+Underfull \hbox (badness 10000) in paragraph at lines 267--268
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 235--236
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 237--242
+Underfull \hbox (badness 10000) in paragraph at lines 269--270
 
  []
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 252--253
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 254--255
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 256--257
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 258--259
-
- []
-
-[13]
-<./images/systemview1.png, id=232, 1027.58907pt x 577.40718pt>
+<./images/systemview1.png, id=242, 1027.58907pt x 577.40718pt>
 File: ./images/systemview1.png Graphic file (type png)
 <use ./images/systemview1.png>
-Package pdftex.def Info: ./images/systemview1.png  used on input line 270.
+Package pdftex.def Info: ./images/systemview1.png  used on input line 281.
 (pdftex.def)             Requested size: 272.99881pt x 153.39983pt.
- [14 <./images/systemview1.png (PNG copy)>]
-<./images/pulseview.png, id=238, 1028.34187pt x 578.16pt>
+ [13 <./images/systemview1.png (PNG copy)>]
+<./images/pulseview.png, id=248, 1028.34187pt x 578.16pt>
 File: ./images/pulseview.png Graphic file (type png)
 <use ./images/pulseview.png>
-Package pdftex.def Info: ./images/pulseview.png  used on input line 292.
+Package pdftex.def Info: ./images/pulseview.png  used on input line 303.
 (pdftex.def)             Requested size: 272.99881pt x 153.48515pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 303--306
+Underfull \hbox (badness 10000) in paragraph at lines 314--317
 
  []
 
-[15 <./images/pulseview.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 315--316
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 320--322
+[14 <./images/pulseview.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 326--327
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 323--324
+Underfull \hbox (badness 10000) in paragraph at lines 331--333
 
  []
 
-<./images/SEGGER_directory_structure.png, id=245, 254.45062pt x 254.45062pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 334--335
+
+ []
+
+<./images/SEGGER_directory_structure.png, id=255, 254.45062pt x 254.45062pt>
 File: ./images/SEGGER_directory_structure.png Graphic file (type png)
 <use ./images/SEGGER_directory_structure.png>
 Package pdftex.def Info: ./images/SEGGER_directory_structure.png  used on input
- line 329.
+ line 340.
 (pdftex.def)             Requested size: 254.45pt x 254.45pt.
-[16] [17 <./images/SEGGER_directory_structure.png (PNG copy)>] [18]
-Underfull \hbox (badness 10000) in paragraph at lines 375--377
+[15] [16 <./images/SEGGER_directory_structure.png (PNG copy)>] [17]
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 387.
+ [18]
+Underfull \hbox (badness 10000) in paragraph at lines 404--405
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 381--382
+Underfull \hbox (badness 10000) in paragraph at lines 407--408
+
+ []
+
+<./images/extInt.jpg, id=317, 1025.8325pt x 296.10625pt>
+File: ./images/extInt.jpg Graphic file (type jpg)
+<use ./images/extInt.jpg>
+Package pdftex.def Info: ./images/extInt.jpg  used on input line 411.
+(pdftex.def)             Requested size: 390.0pt x 112.57123pt.
+[19 <./images/extInt.jpg>] [20]
+<./images/extInt_and_phone.jpg, id=358, 770.88pt x 265.99374pt>
+File: ./images/extInt_and_phone.jpg Graphic file (type jpg)
+<use ./images/extInt_and_phone.jpg>
+Package pdftex.def Info: ./images/extInt_and_phone.jpg  used on input line 477.
+
+(pdftex.def)             Requested size: 390.0pt x 134.56726pt.
+ [21] [22 <./images/extInt_and_phone.jpg>]
+[23] [24]
+Underfull \hbox (badness 10000) in paragraph at lines 607--609
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 384--385
+Underfull \hbox (badness 10000) in paragraph at lines 613--614
+
+ []
+
+[25]
+Underfull \hbox (badness 10000) in paragraph at lines 616--617
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 386--387
+Underfull \hbox (badness 10000) in paragraph at lines 618--619
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 388--389
+Underfull \hbox (badness 10000) in paragraph at lines 620--621
 
  []
 
-[19] [20] [21] [22] [23] (./Easysleep_project_report.lof)
+[26] [27] [28] [29] (./Easysleep_project_report.lof)
 \tf@lof=\write5
 \openout5 = `Easysleep_project_report.lof'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 412.
- [24]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 412.
+ [30]
+(./Easysleep_project_report.lol)
+\tf@lol=\write6
+\openout6 = `Easysleep_project_report.lol'.
 
-(./Easysleep_project_report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 412.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 412.
+ [31]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 654.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 654.
+ (./Easysleep_project_report.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 654.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 654.
 Package rerunfilecheck Info: File `Easysleep_project_report.out' has not change
 d.
-(rerunfilecheck)             Checksum: 0226779E869E42ADFF1F814AD5F832EA;1902.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 412.
+(rerunfilecheck)             Checksum: E8180388F29ACC6750D4F82EEEF11A14;1995.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 654.
  ) 
 Here is how much of TeX's memory you used:
- 8685 strings out of 494923
- 124399 string characters out of 6180742
- 338576 words of memory out of 5000000
- 11786 multiletter control sequences out of 15000+600000
+ 9105 strings out of 494923
+ 130755 string characters out of 6180742
+ 360576 words of memory out of 5000000
+ 12009 multiletter control sequences out of 15000+600000
  12127 words of font info for 45 fonts, out of 8000000 for 9000
  15 hyphenation exceptions out of 8191
- 33i,8n,58p,990b,1202s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 33i,8n,58p,1025b,1882s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Easysleep_project_report.pdf (25 pages, 5580194 bytes).
+Output written on Easysleep_project_report.pdf (32 pages, 7383382 bytes).
 PDF statistics:
- 369 PDF objects out of 1000 (max. 8388607)
- 320 compressed objects within 4 object streams
- 93 named destinations out of 1000 (max. 500000)
- 283 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 653 PDF objects out of 1000 (max. 8388607)
+ 591 compressed objects within 6 object streams
+ 283 named destinations out of 1000 (max. 500000)
+ 319 words of extra memory for PDF output out of 10000 (max. 10000000)
 
