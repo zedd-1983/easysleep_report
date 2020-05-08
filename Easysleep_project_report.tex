@@ -813,14 +813,58 @@
     \end{wrapfigure}
     I have gone through few versions of UI of this application during the course of the development. Initially, the UI consisted of only four buttons that would allow me to toggle the Bluetooth on the phone, display a list of known devices or make the phone visible to others. However, as the functionality grew and changed, so did the user interface.\\
     
-    In the top section of the screen are buttons that interract with the Bluetooth module of the phone, while in the bottom section are buttons that the user can use to communicate with the Easysleep Master device as well as a text field to display results of messages from it. The functionality of the buttons doesn't need further explanation as the text of the buttons is quite self-explanatory.\\
+    In the top section of the screen are buttons that interract with the Bluetooth module of the phone as well as two indicator icons to show the status of the Bluetooth connection while in the bottom section are buttons that the user can use to communicate with the Easysleep Master device and a text field to display results of messages from it. The functionality of the buttons doesn't need further explanation as the text of the buttons is quite self-explanatory.\\
     
-    I have used the Layout Designer which is part of the Android Studio, to create the layout of various elements of the UI. I've linked these elements through their {\bfseries id} with corresponding classes in the onCreate() method. This allowed me to assign action listeners to them and specify the functionality if any of the buttons are clicked.
+    I have used the Layout Designer which is part of the Android Studio, to create the layout of various elements of the UI. I've linked these elements through their {\bfseries id} with corresponding classes in the onCreate() method. This allowed me to assign action listeners to them and specify the functionality if any of the buttons are clicked.\\
 
+    All these ActionListeners have been created within onCreate() function.
     
+    \subsubsection*{toggleBT}
+    ActionListener for this button checks first if Bluetooth is available on the mobile device and then, based on the fact whether the BT is already on or off, toggles it. It uses {\bfseries implicit intent} to start the Bluetooth and a {\bfseries BroadcastReceiver} (broadcastReceiver1) is used to indicate the status of the BT in the Logcat. The BroadcastReceiver used here also enables or disables relevant buttons.
     
-   
-   \subsubsection{Bluetooth Communication}
+    \subsubsection*{btDiscoverable}
+    This button enables discoverability for 60 seconds. It uses an implicit intent and another {\bfseries BroadcastReceiver} (broadcastReceiver2) is used to monitor the status of discoverability.
+    
+    \subsubsection*{btDiscover}
+    This button allows the user to scan for nearby Bluetooth devices. Special permission is needed first. Since Android 5.0 LOLLIPOP, specifying this permission in the AndroidManifest.xml file isn't enough. I had to do a bit of research to tackle this problem and found a solution in form of the function below.
+    \begin{lstlisting}[label={lst:checkBTpermissions}, caption=checkBTpermissions()]
+    public void checkBTPermission() 
+    {
+        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+            int permissionCheck = this.checkSelfPermission(
+                "Manifest.permission.ACCESS_FINE_LOCATION");
+            permissionCheck += this.checkSelfPermission(
+                "Manifest.permission.ACCESS_COARSE_LOCATION");
+            if(permissionCheck != 0) {
+                this.requestPermissions(
+                    new String[]{
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION}, 
+                        100);
+        } else {
+            Log.d(TAG, "checkBTPermission(): Build version > Lollipop");
+        }
+    }
+    \end{lstlisting}
+    In this case, an intent filter is created for Bluetooth messages announcing that a Bluetooth device was found. This is passed to another BroadcastReceiver (broadcastReceiver3) that will, if a device is found, add it to a scrollable ListView, where the user can select it to pair with. This is done via onItemClick() method of the ListView. Selecting an item in ListView starts a Bluetooth service.
+    
+    \subsubsection*{btConnect}
+    Once the item is selected in the ListView a Bluetooth connection can be established with the Easysleep Master device through the aforementioned Bluetooth service. This is further discussed in Bluetooth Communication section on the page ~\ref{section:btCommunication}
+    
+    \subsubsection*{btDate and btTime}
+    This buttons request system date and time of the Master device and the result is displayed in the text field at the bottom of the screen.
+    
+    \subsubsection*{btRequestData}
+    Requests data of the recorded events from the Master device and displays the result int the text field at the bottom of the screen.
+    
+    \subsubsection*{btSilence}
+    This button silences an ongoing alarm by sending a character via Bluetooth to the HC-05 module connected to the Master device. This character is then re-routed to the Slave device.
+    
+    \subsubsection*{btChangeDateTime}
+    This button allows the user to change time and date of the Easysleep system remotely. When clicked a character is sent to the Master device that will cause it to return a message, indicating the format of the time and date it can accept. A Send button is enabled so the user can send this time and date back to the Master device, where it is applied to the RTC module.\\
+    This would conclude the User Interface section of the Android Code Development.\\
+    
+   \subsubsection{Bluetooth Communication}\label{section:btCommunication}
    BT\\
    \subsubsection{Database Development}
    ???\\

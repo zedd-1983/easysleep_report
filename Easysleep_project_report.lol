@@ -11,3 +11,4 @@
 \contentsline {lstlisting}{\numberline {11}dev2MainTask() task}{30}{lstlisting.11}
 \contentsline {lstlisting}{\numberline {12}motorTask() task}{31}{lstlisting.12}
 \contentsline {lstlisting}{\numberline {13}buzzerTask()}{32}{lstlisting.13}
+\contentsline {lstlisting}{\numberline {14}checkBTpermissions()}{34}{lstlisting.14}
