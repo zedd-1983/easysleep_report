@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.3.10)  7 MAY 2020 21:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.3.10)  8 MAY 2020 10:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -549,152 +549,152 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <./images/circuit1.jpg, id=206, 2566.58875pt x 1054.94125pt>
 File: ./images/circuit1.jpg Graphic file (type jpg)
 <use ./images/circuit1.jpg>
-Package pdftex.def Info: ./images/circuit1.jpg  used on input line 182.
+Package pdftex.def Info: ./images/circuit1.jpg  used on input line 183.
 (pdftex.def)             Requested size: 195.0pt x 80.14738pt.
  [8 <./images/motor_diag1.png> <./images/circuit1.jpg>]
 <./images/relay1.jpg, id=214, 1573.88pt x 1606.0pt>
 File: ./images/relay1.jpg Graphic file (type jpg)
 <use ./images/relay1.jpg>
-Package pdftex.def Info: ./images/relay1.jpg  used on input line 190.
+Package pdftex.def Info: ./images/relay1.jpg  used on input line 191.
 (pdftex.def)             Requested size: 97.5pt x 99.46805pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 194--195
+Underfull \hbox (badness 10000) in paragraph at lines 195--196
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 194--195
+Underfull \hbox (badness 10000) in paragraph at lines 195--196
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 194--195
+Underfull \hbox (badness 10000) in paragraph at lines 195--196
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 194--195
+Underfull \hbox (badness 10000) in paragraph at lines 195--196
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 194--195
+Underfull \hbox (badness 10000) in paragraph at lines 195--196
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 194--195
+Underfull \hbox (badness 10000) in paragraph at lines 195--196
 
  []
 
 <./images/buzzer1.jpg, id=215, 916.42375pt x 1534.73375pt>
 File: ./images/buzzer1.jpg Graphic file (type jpg)
 <use ./images/buzzer1.jpg>
-Package pdftex.def Info: ./images/buzzer1.jpg  used on input line 199.
+Package pdftex.def Info: ./images/buzzer1.jpg  used on input line 200.
 (pdftex.def)             Requested size: 97.5pt x 163.27113pt.
 
-Underfull \hbox (badness 1242) in paragraph at lines 202--204
+Underfull \hbox (badness 1242) in paragraph at lines 203--205
 \OT1/cmr/m/n/12 wake-up pro-cess if the vi-bra-tion mo-tor or re-
  []
 
 
-Underfull \hbox (badness 1668) in paragraph at lines 202--204
+Underfull \hbox (badness 1668) in paragraph at lines 203--205
 \OT1/cmr/m/n/12 pin. This buzzer came as part of a multi-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 202--204
+Underfull \hbox (badness 10000) in paragraph at lines 203--205
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 202--204
+Underfull \hbox (badness 10000) in paragraph at lines 203--205
 
  []
 
 <./images/hc-05_1.jpg, id=216, 954.56625pt x 2130.96124pt>
 File: ./images/hc-05_1.jpg Graphic file (type jpg)
 <use ./images/hc-05_1.jpg>
-Package pdftex.def Info: ./images/hc-05_1.jpg  used on input line 209.
+Package pdftex.def Info: ./images/hc-05_1.jpg  used on input line 210.
 (pdftex.def)             Requested size: 57.2715pt x 127.85216pt.
 
-Overfull \hbox (7.29866pt too wide) in paragraph at lines 213--217
+Overfull \hbox (7.29866pt too wide) in paragraph at lines 214--218
 \OT1/cmr/m/n/12 HC-05 is a com-monly used Blue-tooth mod-ule of-ten used with A
 r-duino projects.
  []
 
 [9 <./images/relay1.jpg> <./images/buzzer1.jpg>]
-Underfull \hbox (badness 7832) in paragraph at lines 221--222
+Underfull \hbox (badness 7832) in paragraph at lines 222--223
 []\OT1/cmr/m/n/12 In or-der for the Blue-tooth mod-ules to com-
  []
 
 
-Underfull \hbox (badness 3701) in paragraph at lines 221--222
+Underfull \hbox (badness 3701) in paragraph at lines 222--223
 \OT1/cmr/m/n/12 mu-ni-cate, both the mas-ter and the slave have
  []
 
 
-Underfull \hbox (badness 3078) in paragraph at lines 221--222
+Underfull \hbox (badness 3078) in paragraph at lines 222--223
 \OT1/cmr/m/n/12 to be con-fig-ured in the same way. Ad-di-tion-
  []
 
 
-Underfull \hbox (badness 1824) in paragraph at lines 221--222
+Underfull \hbox (badness 1824) in paragraph at lines 222--223
 \OT1/cmr/m/n/12 ally they also have to share the same pass-word
  []
 
 
-Underfull \hbox (badness 2980) in paragraph at lines 221--222
+Underfull \hbox (badness 2980) in paragraph at lines 222--223
 \OT1/cmr/m/n/12 and have to be made aware of each other by
  []
 
 
-Underfull \hbox (badness 1087) in paragraph at lines 221--222
+Underfull \hbox (badness 1087) in paragraph at lines 222--223
 \OT1/cmr/m/n/12 whitelist-ing each oth-ers ad-dress through AT com-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 221--222
+Underfull \hbox (badness 10000) in paragraph at lines 222--223
 
  []
 
 [10 <./images/hc-05_1.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 238--241
+Underfull \hbox (badness 10000) in paragraph at lines 239--242
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 243--245
+Underfull \hbox (badness 10000) in paragraph at lines 244--246
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 246--247
+Underfull \hbox (badness 10000) in paragraph at lines 247--248
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 248--253
+Underfull \hbox (badness 10000) in paragraph at lines 249--254
 
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 263--264
+Underfull \hbox (badness 10000) in paragraph at lines 264--265
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 265--266
+Underfull \hbox (badness 10000) in paragraph at lines 266--267
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 267--268
+Underfull \hbox (badness 10000) in paragraph at lines 268--269
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 269--270
+Underfull \hbox (badness 10000) in paragraph at lines 270--271
 
  []
 
@@ -702,31 +702,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 269--270
 <./images/systemview1.png, id=237, 1027.58907pt x 577.40718pt>
 File: ./images/systemview1.png Graphic file (type png)
 <use ./images/systemview1.png>
-Package pdftex.def Info: ./images/systemview1.png  used on input line 281.
+Package pdftex.def Info: ./images/systemview1.png  used on input line 282.
 (pdftex.def)             Requested size: 272.99881pt x 153.39983pt.
  [13 <./images/systemview1.png (PNG copy)>]
 <./images/pulseview.png, id=243, 1028.34187pt x 578.16pt>
 File: ./images/pulseview.png Graphic file (type png)
 <use ./images/pulseview.png>
-Package pdftex.def Info: ./images/pulseview.png  used on input line 303.
+Package pdftex.def Info: ./images/pulseview.png  used on input line 304.
 (pdftex.def)             Requested size: 272.99881pt x 153.48515pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 314--317
+Underfull \hbox (badness 10000) in paragraph at lines 315--318
 
  []
 
 [14 <./images/pulseview.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 326--327
+Underfull \hbox (badness 10000) in paragraph at lines 327--328
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 331--333
+Underfull \hbox (badness 10000) in paragraph at lines 332--334
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 334--335
+Underfull \hbox (badness 10000) in paragraph at lines 335--336
 
  []
 
@@ -734,106 +734,112 @@ Underfull \hbox (badness 10000) in paragraph at lines 334--335
 File: ./images/SEGGER_directory_structure.png Graphic file (type png)
 <use ./images/SEGGER_directory_structure.png>
 Package pdftex.def Info: ./images/SEGGER_directory_structure.png  used on input
- line 340.
+ line 341.
 (pdftex.def)             Requested size: 254.45pt x 254.45pt.
 [15] [16 <./images/SEGGER_directory_structure.png (PNG copy)>] [17]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 387.
+nput line 388.
  [18]
-Underfull \hbox (badness 10000) in paragraph at lines 404--405
+Underfull \hbox (badness 10000) in paragraph at lines 405--406
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 407--408
+Underfull \hbox (badness 10000) in paragraph at lines 408--409
 
  []
 
 <./images/extInt.jpg, id=312, 1025.8325pt x 296.10625pt>
 File: ./images/extInt.jpg Graphic file (type jpg)
 <use ./images/extInt.jpg>
-Package pdftex.def Info: ./images/extInt.jpg  used on input line 411.
+Package pdftex.def Info: ./images/extInt.jpg  used on input line 412.
 (pdftex.def)             Requested size: 390.0pt x 112.57123pt.
 [19 <./images/extInt.jpg>] [20]
 <./images/extInt_and_phone.jpg, id=353, 770.88pt x 265.99374pt>
 File: ./images/extInt_and_phone.jpg Graphic file (type jpg)
 <use ./images/extInt_and_phone.jpg>
-Package pdftex.def Info: ./images/extInt_and_phone.jpg  used on input line 477.
+Package pdftex.def Info: ./images/extInt_and_phone.jpg  used on input line 478.
 
 (pdftex.def)             Requested size: 390.0pt x 134.56726pt.
  [21] [22 <./images/extInt_and_phone.jpg>]
 [23] [24]
-Underfull \hbox (badness 10000) in paragraph at lines 602--603
+Underfull \hbox (badness 10000) in paragraph at lines 603--604
 
  []
 
-
-Overfull \hbox (1.53532pt too wide) in paragraph at lines 606--607
+[25]
+Overfull \hbox (1.53532pt too wide) in paragraph at lines 607--608
 []\OT1/cmr/m/n/12 SYSTEM[]TIME[]REQUEST - re-quests sys-tem time from the RTC m
 od-
  []
 
 
-Overfull \hbox (2.35338pt too wide) in paragraph at lines 607--608
+Overfull \hbox (2.35338pt too wide) in paragraph at lines 608--609
 []\OT1/cmr/m/n/12 SYSTEM[]DATE[]REQUEST - re-quests sys-tem date from the RTC m
 od-
  []
 
-[25] [26]
-Overfull \hbox (11.7022pt too wide) in paragraph at lines 658--662
-\OT1/cmr/m/n/12 TEM[]TIME[]REQUEST and SYS-TEM[]DATE[]REQUEST sim-ply re-quest 
-these
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 665--667
+[26] [27]
+Underfull \hbox (badness 10000) in paragraph at lines 665--666
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 671--672
+<./images/FlexTimer_config.jpeg, id=573, 1028.34187pt x 578.16pt>
+File: ./images/FlexTimer_config.jpeg Graphic file (type jpg)
+<use ./images/FlexTimer_config.jpeg>
+Package pdftex.def Info: ./images/FlexTimer_config.jpeg  used on input line 672
+.
+(pdftex.def)             Requested size: 390.0pt x 219.2708pt.
+[28 <./images/FlexTimer_config.jpeg>]
+Underfull \hbox (badness 10000) in paragraph at lines 702--703
 
  []
 
-[27]
-Underfull \hbox (badness 10000) in paragraph at lines 674--675
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 676--677
+[29] [30] [31]
+Underfull \hbox (badness 10000) in paragraph at lines 796--797
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 678--679
+Underfull \hbox (badness 10000) in paragraph at lines 799--800
 
  []
 
-[28] [29] (./Easysleep_project_report.lof)
+
+Underfull \hbox (badness 10000) in paragraph at lines 801--802
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 803--804
+
+ []
+
+[32] [33] [34] (./Easysleep_project_report.lof)
 \tf@lof=\write5
 \openout5 = `Easysleep_project_report.lof'.
 
- [30] (./Easysleep_project_report.lol)
+ [35]
+(./Easysleep_project_report.lol)
 \tf@lol=\write6
 \openout6 = `Easysleep_project_report.lol'.
 
- [31]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 702.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 702.
+ [36]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 827.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 827.
  (./Easysleep_project_report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 702.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 702.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 827.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 827.
 Package rerunfilecheck Info: File `Easysleep_project_report.out' has not change
 d.
 (rerunfilecheck)             Checksum: FE254E02932EE6F519D9F11B740E66A3;1948.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 702.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 827.
  ) 
 Here is how much of TeX's memory you used:
- 9189 strings out of 494923
- 132212 string characters out of 6180742
+ 9353 strings out of 494923
+ 134863 string characters out of 6180742
  360576 words of memory out of 5000000
- 12049 multiletter control sequences out of 15000+600000
+ 12112 multiletter control sequences out of 15000+600000
  12127 words of font info for 45 fonts, out of 8000000 for 9000
  15 hyphenation exceptions out of 8191
  33i,8n,58p,1025b,1882s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -843,10 +849,10 @@ re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Easysleep_project_report.pdf (32 pages, 7389976 bytes).
+Output written on Easysleep_project_report.pdf (37 pages, 7589676 bytes).
 PDF statistics:
- 705 PDF objects out of 1000 (max. 8388607)
- 642 compressed objects within 7 object streams
- 327 named destinations out of 1000 (max. 500000)
- 311 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 852 PDF objects out of 1000 (max. 8388607)
+ 782 compressed objects within 8 object streams
+ 426 named destinations out of 1000 (max. 500000)
+ 316 words of extra memory for PDF output out of 10000 (max. 10000000)
 
