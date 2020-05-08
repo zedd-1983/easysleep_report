@@ -166,7 +166,7 @@
 		\begin{figure}[h]
 			\centering
 			\includegraphics[scale=0.3]{motor_diag1.png}
-			\caption{Vibration motor connection diagram}
+			\caption{Vibration Motor Connection Diagram}
 			\label{fig:vibMotorConnDiag}
 		\end{figure}
         
@@ -181,7 +181,8 @@
         \begin{figure}[h]
          \centering
          \includegraphics[width=0.5\textwidth]{circuit1.jpg}
-         \caption{Final Circuit}
+         \caption{Vibration Motor Interfacing Circuit}
+         \label{fig:vibMotIC}
         \end{figure}
 		
 		\newpage
@@ -659,11 +660,16 @@
         \end{lstlisting}
         
     This would conclude the main functionality of the Master device. There is a lot more code in the project that can be viewed in the repository by following the link provided just below this section's title. I would like to mention the {\bfseries helper\_functions.c} file where I've put some of the helping functions in an attempt to keep things tidy. I have tried to divide the code logically into separate .c and .h files as well. I have also used Doxygen to generate documentation for the various elements and this can be viewed by navigating into <repository\_path>/Docs/api\_docs/html/index.html Trying to view this on GitHub directly isn't possible. Navigating to this file results in the source code for this Doxygen documentation. 
-    \newpage
     
    \subsection{K64F Slave code development}
    \href{https://github.com/zedd-1983/project_dev2/tree/Bluetooth}{K64F Slave (Bracelet) Device code repository}\\
    
+   \begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{dev2_functionality.jpg}
+    \caption{Slave functionality}
+    \label{fig:dev2Func}
+   \end{figure}
    The functionality of the Slave device is not as complicated as the functionality of the Master. It's responsibility lies in waking up the sleeping person. It does so by activating either a buzzer or a vibration motor, based on the notification it receives from the Master device via Bluetooth. 
    Setting up this device wasn't as complex and as I already had some experience from setting up the Master and it's Bluetooth module, this proved quite simple. I have used the MCUXpresso Config Tool (fig. ~\ref{fig:flexTimerConfig}) to configure the {\bfseries Flex Timer Module} of the K64F so I could generate a square wave on the pin where the buzzer is connected. This allowed me to specify the output frequency of this square wave thus changing the pitch of the emitted sound. It is possible to do this configuration programmatically, however using the Configuration tool is less error prone and easier.
    
@@ -692,7 +698,6 @@
             else
                 GPIO_PortToggle(BOARD_BLUE_LED_GPIO, 
                     1 << BOARD_BLUE_LED_PIN);
-
             vTaskDelay(pdMS_TO_TICKS(500));
         }
     }
@@ -792,13 +797,29 @@
     }
     \end{lstlisting}
 
-   \subsection{Android application code development}
-   \href{https://github.com/zedd-1983/Easysleep_app/tree/bt_connection_3}{Android code repository}\\
+    \subsection{Android application code development}
+    \href{https://github.com/zedd-1983/Easysleep_app/tree/bt_connection_3}{Android code repository}\\
+    
+    The aim of developing the phone application for the Easysleep project, was to allow the user to control the two embedded devices remotely. Before deciding to develop this application, I was using a third-party software downloaded from Google Play Store to my phone to send and receive data via Bluetooth. This allowed me to test the Bluetooth communication functionality of the embedded devices before attempting to wrap it into a nicer user friendly interface.
+    
+                
+    \subsubsection{User Interface Development}
+    Graphical User Interface\\
+    
+    \begin{wrapfigure}{R}{0.4\textwidth}
+        \centering
+        \includegraphics[scale=0.1]{easysleep_app.png}
+        \caption[Easysleep Application]{Easysleep}
+    \end{wrapfigure}
+    I have gone through few versions of UI of this application during the course of the development. Initially, the UI consisted of only four buttons that would allow me to toggle the Bluetooth on the phone, display a list of known devices or make the phone visible to others. However, as the functionality grew and changed, so did the user interface.\\
+    
+    In the top section of the screen are buttons that interract with the Bluetooth module of the phone, while in the bottom section are buttons that the user can use to communicate with the Easysleep Master device as well as a text field to display results of messages from it. The functionality of the buttons doesn't need further explanation as the text of the buttons is quite self-explanatory.\\
+    
+    I have used the Layout Designer which is part of the Android Studio, to create the layout of various elements of the UI. I've linked these elements through their {\bfseries id} with corresponding classes in the onCreate() method. This allowed me to assign action listeners to them and specify the functionality if any of the buttons are clicked.
+
+    
+    
    
-   The aim of developing the phone application for the Easysleep project, was to allow the user to control the two embedded devices remotely. Before deciding to develop this application, I was using a third-party software downloaded from Google Play Store to my phone to send and receive data via Bluetooth. This allowed me to test the Bluetooth communication functionality of the embedded devices before attempting to wrap it into a nicer user friendly interface.
-               
-   \subsubsection{User Interface Development}
-   GUI\\
    \subsubsection{Bluetooth Communication}
    BT\\
    \subsubsection{Database Development}
