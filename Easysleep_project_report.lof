@@ -3,14 +3,13 @@
 \contentsline {figure}{\numberline {3}{\ignorespaces Prototyping}}{7}{figure.3}
 \contentsline {figure}{\numberline {4}{\ignorespaces Vibration Motor Connection Diagram}}{8}{figure.4}
 \contentsline {figure}{\numberline {5}{\ignorespaces Vibration Motor Interfacing Circuit}}{8}{figure.5}
-\contentsline {figure}{\numberline {6}{\ignorespaces Relay}}{9}{figure.6}
-\contentsline {figure}{\numberline {7}{\ignorespaces Buzzer}}{9}{figure.7}
-\contentsline {figure}{\numberline {8}{\ignorespaces HC-05 Bluetooth module}}{10}{figure.8}
-\contentsline {figure}{\numberline {9}{\ignorespaces SystemView}}{13}{figure.9}
-\contentsline {figure}{\numberline {10}{\ignorespaces Pulseview}}{14}{figure.10}
-\contentsline {figure}{\numberline {11}{\ignorespaces SEGGER directory structure}}{16}{figure.11}
-\contentsline {figure}{\numberline {12}{\ignorespaces Moisture detection}}{19}{figure.12}
-\contentsline {figure}{\numberline {13}{\ignorespaces Time configuration}}{22}{figure.13}
-\contentsline {figure}{\numberline {14}{\ignorespaces Slave functionality}}{28}{figure.14}
-\contentsline {figure}{\numberline {15}{\ignorespaces MCUXpresson Configuration Tool}}{29}{figure.15}
-\contentsline {figure}{\numberline {16}{\ignorespaces Easysleep Application}}{33}{figure.16}
+\contentsline {figure}{\numberline {6}{\ignorespaces Buzzer}}{9}{figure.6}
+\contentsline {figure}{\numberline {7}{\ignorespaces HC-05 Bluetooth module}}{9}{figure.7}
+\contentsline {figure}{\numberline {8}{\ignorespaces SystemView}}{13}{figure.8}
+\contentsline {figure}{\numberline {9}{\ignorespaces Pulseview}}{14}{figure.9}
+\contentsline {figure}{\numberline {10}{\ignorespaces SEGGER directory structure}}{16}{figure.10}
+\contentsline {figure}{\numberline {11}{\ignorespaces Moisture detection}}{19}{figure.11}
+\contentsline {figure}{\numberline {12}{\ignorespaces Time configuration}}{22}{figure.12}
+\contentsline {figure}{\numberline {13}{\ignorespaces Slave functionality}}{28}{figure.13}
+\contentsline {figure}{\numberline {14}{\ignorespaces MCUXpresson Configuration Tool}}{29}{figure.14}
+\contentsline {figure}{\numberline {15}{\ignorespaces Easysleep Application}}{33}{figure.15}

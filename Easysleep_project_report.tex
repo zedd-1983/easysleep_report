@@ -184,17 +184,8 @@
          \caption{Vibration Motor Interfacing Circuit}
          \label{fig:vibMotIC}
         \end{figure}
+        \newpage
 		
-		\newpage
-		\subsection{Relay}
-        \begin{wrapfigure}{L}{0.3\textwidth}
-         \centering
-         \includegraphics[width=0.25\textwidth]{relay1.jpg}
-         \caption{Relay}
-        \end{wrapfigure}
-        
-		The relay is used in the second stage of the wake-up process. It is connected to a lamp and is triggered when the first stage fails and more disruptive method is needed to wake the sleeping person up. To control this relay, a simple GPIO pin is used.\\\\\\\\\\\\
-
 		\subsection{Buzzer}
         \begin{wrapfigure}[13]{R}{0.3\textwidth}
          \centering
@@ -664,12 +655,14 @@
    \subsection{K64F Slave code development}
    \href{https://github.com/zedd-1983/project_dev2/tree/Bluetooth}{K64F Slave (Bracelet) Device code repository}\\
    
+   
    \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{dev2_functionality.jpg}
     \caption{Slave functionality}
     \label{fig:dev2Func}
    \end{figure}
+   
    The functionality of the Slave device is not as complicated as the functionality of the Master. It's responsibility lies in waking up the sleeping person. It does so by activating either a buzzer or a vibration motor, based on the notification it receives from the Master device via Bluetooth. 
    Setting up this device wasn't as complex and as I already had some experience from setting up the Master and it's Bluetooth module, this proved quite simple. I have used the MCUXpresso Config Tool (fig. ~\ref{fig:flexTimerConfig}) to configure the {\bfseries Flex Timer Module} of the K64F so I could generate a square wave on the pin where the buzzer is connected. This allowed me to specify the output frequency of this square wave thus changing the pitch of the emitted sound. It is possible to do this configuration programmatically, however using the Configuration tool is less error prone and easier.
    
@@ -861,11 +854,14 @@
     This button silences an ongoing alarm by sending a character via Bluetooth to the HC-05 module connected to the Master device. This character is then re-routed to the Slave device.
     
     \subsubsection*{btChangeDateTime}
-    This button allows the user to change time and date of the Easysleep system remotely. When clicked a character is sent to the Master device that will cause it to return a message, indicating the format of the time and date it can accept. A Send button is enabled so the user can send this time and date back to the Master device, where it is applied to the RTC module.\\
-    This would conclude the User Interface section of the Android Code Development.\\
+    This button allows the user to change time and date of the Easysleep system remotely. When clicked a character is sent to the Master device that will cause it to return a message, indicating the format of the time and date it can accept. A Send button is enabled so the user can send this time and date back to the Master device, where it is applied to the RTC module. \\
+    
+    This would conclude the User Interface section of the Android Code Development. Admittedly, there is room for improvement in terms of design such as dividing the top and bottom section of the screen into two separate activities, however due to current situatio (Covid-19) I didn't have enough time to develop this further. \\
     
    \subsubsection{Bluetooth Communication}\label{section:btCommunication}
-   BT\\
+   This section mainly focuses on the BTService class that is responsible for enabling, establishing and maintaining Bluetooth connection between the mobile application and the Easysleep master.
+   
+   
    \subsubsection{Database Development}
    ???\\
                
@@ -892,3 +888,22 @@
     \newpage
 
 \end{document}
+
+
+		\newpage
+		\subsection{Relay}
+        \begin{wrapfigure}{L}{0.3\textwidth}
+         \centering
+         \includegraphics[width=0.25\textwidth]{relay1.jpg}
+         \caption{Relay}
+        \end{wrapfigure}
+        
+		The relay is used in the second stage of the wake-up process. It is connected to a lamp and is triggered when the first stage fails and more disruptive method is needed to wake the sleeping person up. To control this relay, a simple GPIO pin is used.\\\\\\\\\\\\
+
+		
+   \begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{slave_connections.jpg}
+    \caption{Slave connections}
+    \label{fig:slaveConn}
+   \end{figure}

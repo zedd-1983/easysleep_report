@@ -3,10 +3,9 @@
 \contentsline {section}{\numberline {3}Hardware}{6}{section.3}
 \contentsline {subsection}{\numberline {3.1}FRDM-K64F}{6}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Parallax 28821 Vibration motor}{7}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Relay}{9}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}Buzzer}{9}{subsection.3.4}
-\contentsline {subsection}{\numberline {3.5}HC-05 Bluetooth module}{9}{subsection.3.5}
-\contentsline {subsubsection}{\numberline {3.5.1}Bluetooth module configuration}{10}{subsubsection.3.5.1}
+\contentsline {subsection}{\numberline {3.3}Buzzer}{9}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}HC-05 Bluetooth module}{9}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}Bluetooth module configuration}{9}{subsubsection.3.4.1}
 \contentsline {section}{\numberline {4}Software}{11}{section.4}
 \contentsline {subsection}{\numberline {4.1}MCUXpresso}{11}{subsection.4.1}
 \contentsline {subsection}{\numberline {4.2}Android Studio}{12}{subsection.4.2}
