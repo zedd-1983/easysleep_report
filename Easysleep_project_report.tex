@@ -795,6 +795,7 @@
     
     The aim of developing the phone application for the Easysleep project, was to allow the user to control the two embedded devices remotely. Before deciding to develop this application, I was using a third-party software downloaded from Google Play Store to my phone to send and receive data via Bluetooth. This allowed me to test the Bluetooth communication functionality of the embedded devices before attempting to wrap it into a nicer user friendly interface.
     
+    To request data from the Easysleep master device a character is sent via Bluetooth using write() method of inner class (ConnectedThread) of the BTService class. The ConnectedThread keeps listening for incoming messages and responses of the master device within its run() method. 
                 
     \subsubsection{User Interface Development}
     Graphical User Interface\\
@@ -819,7 +820,11 @@
     This button enables discoverability for 60 seconds. It uses an implicit intent and another {\bfseries BroadcastReceiver} (broadcastReceiver2) is used to monitor the status of discoverability.
     
     \subsubsection*{btDiscover}
-    This button allows the user to scan for nearby Bluetooth devices. Special permission is needed first. Since Android 5.0 LOLLIPOP, specifying this permission in the AndroidManifest.xml file isn't enough. I had to do a bit of research to tackle this problem and found a solution in form of the function below.
+    This button allows the user to scan for nearby Bluetooth devices. When clicked, a ListView is populated with their names and MAC addresses. To fill this ListView, a {\bfseries DeviceListAdapter}, subclass ofArrayAdapter, had to be created, as it is required by {\bfseries setAdapter()} method that is used within {\bfseries broadcastReceiver3}. 
+    
+    When the user selects a device from the ListView a BTService is started and AcceptThread, that listens for incoming connections, is created. This is done via onItemClick() method of the ListView.
+    
+    In order to use phone's bluetooth module to scan for nearby devices a special permission is needed first. Since Android 5.0 LOLLIPOP, specifying this permission in the AndroidManifest.xml file isn't enough. I had to do a bit of research to tackle this problem and found a solution in form of the function below.
     \begin{lstlisting}[label={lst:checkBTpermissions}, caption=checkBTpermissions()]
     public void checkBTPermission() 
     {
@@ -839,13 +844,12 @@
         }
     }
     \end{lstlisting}
-    In this case, an intent filter is created for Bluetooth messages announcing that a Bluetooth device was found. This is passed to another BroadcastReceiver (broadcastReceiver3) that will, if a device is found, add it to a scrollable ListView, where the user can select it to pair with. This is done via onItemClick() method of the ListView. Selecting an item in ListView starts a Bluetooth service.
     
     \subsubsection*{btConnect}
     Once the item is selected in the ListView a Bluetooth connection can be established with the Easysleep Master device through the aforementioned Bluetooth service. This is further discussed in Bluetooth Communication section on the page ~\ref{section:btCommunication}
     
     \subsubsection*{btDate and btTime}
-    This buttons request system date and time of the Master device and the result is displayed in the text field at the bottom of the screen.
+    These buttons request system date and time of the Master device and the result is displayed in the text field at the bottom of the screen.
     
     \subsubsection*{btRequestData}
     Requests data of the recorded events from the Master device and displays the result int the text field at the bottom of the screen.
@@ -856,22 +860,233 @@
     \subsubsection*{btChangeDateTime}
     This button allows the user to change time and date of the Easysleep system remotely. When clicked a character is sent to the Master device that will cause it to return a message, indicating the format of the time and date it can accept. A Send button is enabled so the user can send this time and date back to the Master device, where it is applied to the RTC module. \\
     
-    This would conclude the User Interface section of the Android Code Development. Admittedly, there is room for improvement in terms of design such as dividing the top and bottom section of the screen into two separate activities, however due to current situatio (Covid-19) I didn't have enough time to develop this further. \\
+    This would conclude the User Interface section of the Android Code Development. Admittedly, there is room for improvement in terms of design such as dividing the top and bottom section of the screen into two separate activities, however due to current situation (Covid-19) I didn't have enough time to develop this further. \\
     
    \subsubsection{Bluetooth Communication}\label{section:btCommunication}
-   This section mainly focuses on the BTService class that is responsible for enabling, establishing and maintaining Bluetooth connection between the mobile application and the Easysleep master.
+   This section mainly focuses on the BTService class that is responsible for enabling, establishing and maintaining Bluetooth connection between the mobile application and the Easysleep master. The creation of the BTService class, has been quite complicated and I had to use a number of resources to get it going. [][][]
    
+   As mentioned earlier, a Bluetooth service is started when user selects the Easysleep app from the list view in the application. It includes a number of inner classes. This service checks first (listing ~\ref{lst:btServiceStart}) if a {\bfseries ConnectThread} isn't already running and cancels it if it is so. Then it starts the {\bfseries AcceptThread}.
    
-   \subsubsection{Database Development}
-   ???\\
-               
-   The development of this application was challenging and I had to follow a number of tutorials online in order to establish the Bluetooth communication. I have decided that for the purpose of this document I will divide the development process described into three subsections:  
-               
-   \begin{itemize}
-    \item User Interface Development
-    \item Bluetooth Communication
-    \item Database Development
-   \end{itemize}
+   \begin{lstlisting}[label={lst:btServiceStart}, caption=BTService start()]
+   public class BTService {
+        .
+        .
+        .   
+        public synchronized void start() {
+            Log.d(TAG, "START");
+
+            if(connectThread != null) {
+                connectThread.cancel();
+                connectThread = null;
+            }
+            if(insecureAcceptThread == null) {
+                insecureAcceptThread = new AcceptThread();
+                insecureAcceptThread.start();
+            }
+        }
+        .
+        .
+        .
+    } // end of BTService
+    \end{lstlisting}
+    
+    \subsubsection*{AcceptThread}
+    This thread is responsible for listening for incoming connections by creating a server socket. It is started when the BTService commences. If the incoming connection request matches the paramaters of the {\bfseries listenUsingInsecureRFcommWithServiceRecord()} function a socket is crated and the connection is accepted. The UUID parameter of the above function is common to all HC-05 devices and the appName is the preconfigured Bluetooth module name (done in HC-05 AT mode).
+    
+   \begin{lstlisting}[label={lst:acceptThread}, caption=AcceptThread class]
+    private class AcceptThread extends Thread {
+
+        private final BluetoothServerSocket btServerSocket;
+
+        public AcceptThread() {
+            BluetoothServerSocket tmp = null;
+
+            try {
+                tmp = 
+                    btAdapter
+                        .listenUsingInsecureRfcommWithServiceRecord(
+                            appName, UUID_INSECURE);
+                Log.d(TAG, "AcceptThread(): setting up the server socket using " + UUID_INSECURE);
+            } catch(IOException ioe) {
+                Log.d(TAG, "AcceptThread().IOException: " + ioe.getMessage());
+            }
+            btServerSocket = tmp;
+        }
+
+        public void run() {
+            Log.d(TAG, "run(): AcceptThread running");
+            BluetoothSocket btSocket = null;
+
+            try {
+                Log.d(TAG, "run(): RFCOM Server socket start ...");
+                btSocket = btServerSocket.accept();
+                Log.d(TAG, "run(): RFCOM Server socket accepted connection");
+            } catch (IOException ioe) {
+                Log.d(TAG, "run().IOException: " + ioe.getMessage());
+            }
+
+            if(btSocket != null) {
+                connected(btSocket, btDevice);
+            }
+
+            Log.i(TAG, "AcceptThread Ended");
+        }
+
+        public void cancel() {
+            Log.d(TAG, "Cancelling AcceptThread");
+            try {
+                btServerSocket.close();
+            } catch (IOException ioe) {
+                Log.d(TAG, "cancel(): Canceling AcceptThread failed" + ioe.getMessage());
+            }
+        }
+    }
+    \end{lstlisting}
+    
+    \subsubsection*{ConnectThread}
+    This thread (listing ~\ref{lst:connectThread}) is initiated by calling the startClient() method (listing ~\ref{lst:startClient}). Before attempting for a connection to another Bluetooth device using the connect() method of the BluetoothSocket class, this thread cancels the discovery mode of the phone's bluetooth module as this is a very memory intensive task. If the connection fails or ends in an exception, the bluetooth socket is closed. If it succeeds, it calls the connected() method.
+    
+    \begin{lstlisting}[label={lst:startClient}, caption=startClient() method]
+    public void startClient(BluetoothDevice device, UUID uuid) {
+        Log.d(TAG, "startClient(): started");
+
+        connectThread = new ConnectThread(device, uuid);
+        connectThread.start();
+    }
+    \end{lstlisting}
+    
+    \begin{lstlisting}[label={lst:connectThread}, caption=ConnectThread class]
+     private class ConnectThread extends Thread {
+        private BluetoothSocket btSocket;
+        private String easysleepAddress = "98:D3:32:70:B9:20";
+
+        public ConnectThread(BluetoothDevice device, UUID uuid) {
+            Log.d(TAG, "ConnectThread(): started");
+            //btDevice = btAdapter.getRemoteDevice(easysleepAddress);
+            btDevice = device;
+            deviceUUID = uuid;
+        }
+
+        public void run() {
+            BluetoothSocket tmp = null;
+            Log.i(TAG, "ConnectThread.run()");
+
+            try {
+                Log.d(TAG, "run(): trying to create insecure RFCOMM socket using UUID: " + UUID_INSECURE);
+                tmp = btDevice
+                        .createRfcommSocketToServiceRecord(deviceUUID);
+            } catch (IOException ioe) {
+                Log.e(TAG, "run(): Couldn't create RFCOMM socket" + ioe.getMessage());
+            }
+
+            btSocket = tmp;
+            btAdapter.cancelDiscovery();
+
+            try {
+                btSocket.connect();
+                Log.d(TAG, "run(): ConnectThread connected");
+            } catch (IOException e) {
+                try {
+                    btSocket.close();
+                    Log.d(TAG, "Socket closed");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    Log.d(TAG, "Failed to close socket" + ex.getMessage());
+                }
+                Log.e(TAG, "run(): Failed to connect ConnectThread" + e.getMessage());
+            }
+            connected(btSocket, btDevice);
+        }
+
+        public void cancel() {
+            Log.d(TAG, "Cancelling ConnectThread");
+            try {
+                btSocket.close();
+            } catch (IOException ioe) {
+                Log.d(TAG, "cancel(): Canceling ConnectThread failed" + ioe.getMessage());
+            }
+        }
+    }
+    \end{lstlisting}
+
+    \subsubsection*{ConnectedThread}
+    This thread is started by calling the connected() method (listing). It is the final thread of the bluetooth service class. It manages the connection to another bluetooth device and it's input stream and output stream. It allows me to send data to the Easysleep master device and receive data back to be displayed within the user interface.
+    
+    Initially, it declares and initializes the Bluetooth socket and the aforementioned input and output streams. Once running, it listens for the data from within the run() method. There is also a write() method, that is used to send data to the other bluetooth device. However it cannot be called directly because it is member function of ConnectedThread which has been declared with a private accessor rights, therefore there is another write() method that is a member method of the BTService class, that allows me to call the write() method of the inner ConnectedThread class.
+    
+    In order to display incoming messages in the Main Activity, an intent is created within the run() method and broadcasted via LocalBroadcastManager to it, where it is retrieved by yet another broadcastReceiver (mReceiver) and the text field updated to display the incoming message.
+    
+    \begin{lstlisting}[label={lst:connectedThread}, caption=ConnectedThread class]
+     private class ConnectedThread extends Thread {
+        private final BluetoothSocket btSocket;
+        private final InputStream is;
+        private final OutputStream os;
+
+        public ConnectedThread(BluetoothSocket socket) {
+            Log.d(TAG, "ConnectedThread Starting");
+            btSocket = socket;
+            InputStream tmpIn = null;
+            OutputStream tmpOut = null;
+
+             try {
+                tmpIn = socket.getInputStream();
+                tmpOut = socket.getOutputStream();
+            } catch (IOException ioe) {
+                Log.d(TAG, "ConnectedThread(): failed to get input/output stream" + ioe.getMessage());
+            }
+
+            is = tmpIn;
+            os = tmpOut;
+        }
+
+        public void run() {
+            byte[] buffer = new byte[1024];
+            int bytes;
+            String str = "";
+            String finalMessage = "";
+
+            while(true) {
+                try {
+                    bytes = is.read(buffer);
+                    String incomingMessage = new String(buffer, 0, bytes); // convert bytes to string
+                    Intent incomingMessageIntent = new Intent("incomingMessage");
+                    incomingMessageIntent.putExtra("theMessage", incomingMessage);
+                    LocalBroadcastManager.getInstance(btContext)
+                        .sendBroadcast(incomingMessageIntent);
+                    }
+                } catch (IOException e) {
+                    Log.d(TAG, "Failed to read from InputStream" + e.getMessage());
+                    break;
+                }
+            }
+        }
+
+        public void write(byte[] bytes) {
+            String text = new String(bytes, Charset.defaultCharset());
+            try {
+                Log.d(TAG, "Writing to output stream" + text);
+                os.write(bytes);
+            } catch (IOException e) {
+                Log.d(TAG, "Failed to write to OuputStream" + e.getMessage());
+            }
+        }
+
+        public void cancel() {
+            Log.d(TAG, "Cancelling ConnectedThread");
+            try {
+                btSocket.close();
+            } catch (IOException ioe) {
+                Log.d(TAG, "cancel(): Canceling ConnectedThread failed" + ioe.getMessage());
+            }
+        }
+    }
+    \end{lstlisting}
+    
+    This would conclude the explanation of the Easysleep Android application. I hope, that I have covered all the important aspects of it. There is a link to the repository right below the section's title for further reference.
+    \newpage
+
+    \section{Conclusion}
+    \newpage
     
     \section{References}
     \newpage
@@ -888,18 +1103,6 @@
     \newpage
 
 \end{document}
-
-
-		\newpage
-		\subsection{Relay}
-        \begin{wrapfigure}{L}{0.3\textwidth}
-         \centering
-         \includegraphics[width=0.25\textwidth]{relay1.jpg}
-         \caption{Relay}
-        \end{wrapfigure}
-        
-		The relay is used in the second stage of the wake-up process. It is connected to a lamp and is triggered when the first stage fails and more disruptive method is needed to wake the sleeping person up. To control this relay, a simple GPIO pin is used.\\\\\\\\\\\\
-
 		
    \begin{figure}[h]
     \centering

@@ -12,3 +12,8 @@
 \contentsline {lstlisting}{\numberline {12}motorTask() task}{31}{lstlisting.12}
 \contentsline {lstlisting}{\numberline {13}buzzerTask()}{32}{lstlisting.13}
 \contentsline {lstlisting}{\numberline {14}checkBTpermissions()}{34}{lstlisting.14}
+\contentsline {lstlisting}{\numberline {15}BTService start()}{36}{lstlisting.15}
+\contentsline {lstlisting}{\numberline {16}AcceptThread class}{37}{lstlisting.16}
+\contentsline {lstlisting}{\numberline {17}startClient() method}{38}{lstlisting.17}
+\contentsline {lstlisting}{\numberline {18}ConnectThread class}{38}{lstlisting.18}
+\contentsline {lstlisting}{\numberline {19}ConnectedThread class}{40}{lstlisting.19}
