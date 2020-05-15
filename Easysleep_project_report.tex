@@ -553,6 +553,7 @@
         } // end of userTimeConfig task
         \end{lstlisting}
         
+        
         \begin{lstlisting}[label={lst:configureTimeViaPhone}, caption=configureTimeViaPhone() task]
          void configureTimeViaPhone(void* pvParameters)
         {
@@ -846,7 +847,7 @@
     \end{lstlisting}
     
     \subsubsection*{btConnect}
-    Once the item is selected in the ListView a Bluetooth connection can be established with the Easysleep Master device through the aforementioned Bluetooth service. This is further discussed in Bluetooth Communication section on the page ~\ref{section:btCommunication}
+    Once the item is selected in the ListView a Bluetooth connection can be established with the Easysleep Master device through the aforementioned Bluetooth service. This is further discussed in Bluetooth Communication section on the page ~\pageref{section:btCommunication}
     
     \subsubsection*{btDate and btTime}
     These buttons request system date and time of the Master device and the result is displayed in the text field at the bottom of the screen.
@@ -863,7 +864,8 @@
     This would conclude the User Interface section of the Android Code Development. Admittedly, there is room for improvement in terms of design such as dividing the top and bottom section of the screen into two separate activities, however due to current situation (Covid-19) I didn't have enough time to develop this further. \\
     
    \subsubsection{Bluetooth Communication}\label{section:btCommunication}
-   This section mainly focuses on the BTService class that is responsible for enabling, establishing and maintaining Bluetooth connection between the mobile application and the Easysleep master. The creation of the BTService class, has been quite complicated and I had to use a number of resources to get it going. [][][]
+   ~\cite{bib:acceptThread, bib:connectThread, bib:connectedThread, bib:tyingUp, bib:uiLink, bib:androidDev}
+   This section mainly focuses on the BTService class that is responsible for enabling, establishing and maintaining Bluetooth connection between the mobile application and the Easysleep master. The creation of the BTService class, has been quite complicated and I had to use a number of resources to get it going. These are referenced as needed throughout the following text.
    
    As mentioned earlier, a Bluetooth service is started when user selects the Easysleep app from the list view in the application. It includes a number of inner classes. This service checks first (listing ~\ref{lst:btServiceStart}) if a {\bfseries ConnectThread} isn't already running and cancels it if it is so. Then it starts the {\bfseries AcceptThread}.
    
@@ -890,7 +892,7 @@
     } // end of BTService
     \end{lstlisting}
     
-    \subsubsection*{AcceptThread}
+    \subsubsection*{AcceptThread}~\cite{bib:acceptThread}
     This thread is responsible for listening for incoming connections by creating a server socket. It is started when the BTService commences. If the incoming connection request matches the paramaters of the {\bfseries listenUsingInsecureRFcommWithServiceRecord()} function a socket is crated and the connection is accepted. The UUID parameter of the above function is common to all HC-05 devices and the appName is the preconfigured Bluetooth module name (done in HC-05 AT mode).
     
    \begin{lstlisting}[label={lst:acceptThread}, caption=AcceptThread class]
@@ -943,7 +945,7 @@
     }
     \end{lstlisting}
     
-    \subsubsection*{ConnectThread}
+    \subsubsection*{ConnectThread}~\cite{bib:connectThread}
     This thread (listing ~\ref{lst:connectThread}) is initiated by calling the startClient() method (listing ~\ref{lst:startClient}). Before attempting for a connection to another Bluetooth device using the connect() method of the BluetoothSocket class, this thread cancels the discovery mode of the phone's bluetooth module as this is a very memory intensive task. If the connection fails or ends in an exception, the bluetooth socket is closed. If it succeeds, it calls the connected() method.
     
     \begin{lstlisting}[label={lst:startClient}, caption=startClient() method]
@@ -1009,12 +1011,12 @@
     }
     \end{lstlisting}
 
-    \subsubsection*{ConnectedThread}
+    \subsubsection*{ConnectedThread}~\cite{bib:connectedThread}
     This thread is started by calling the connected() method (listing). It is the final thread of the bluetooth service class. It manages the connection to another bluetooth device and it's input stream and output stream. It allows me to send data to the Easysleep master device and receive data back to be displayed within the user interface.
     
     Initially, it declares and initializes the Bluetooth socket and the aforementioned input and output streams. Once running, it listens for the data from within the run() method. There is also a write() method, that is used to send data to the other bluetooth device. However it cannot be called directly because it is member function of ConnectedThread which has been declared with a private accessor rights, therefore there is another write() method that is a member method of the BTService class, that allows me to call the write() method of the inner ConnectedThread class.
     
-    In order to display incoming messages in the Main Activity, an intent is created within the run() method and broadcasted via LocalBroadcastManager to it, where it is retrieved by yet another broadcastReceiver (mReceiver) and the text field updated to display the incoming message.
+    In order to display incoming messages in the Main Activity, an intent is created within the run() method and broadcasted via LocalBroadcastManager to it, where it is retrieved by yet another broadcastReceiver (mReceiver) and the text field updated to display the incoming message.~\cite{bib:uiLink}
     
     \begin{lstlisting}[label={lst:connectedThread}, caption=ConnectedThread class]
      private class ConnectedThread extends Thread {
@@ -1089,17 +1091,53 @@
     Development of this project was quite challenging. I have really enjoyed the embedded part of it as it is an area I wish to pursue in the future. The development of the Android application, was difficult and unfortunately, due to technical issues and the ongoing pandemic wasn't fully finished and as such is rather rough. I would have liked to include additional functionality, such as a database for storage of the retrieved data from the Easysleep master device. I would have also liked to extend the functionality of the embedded devices such as power management and internal Flash memory usage for data storage. However as I am a parent of two young children, I was needed to look after them throughout the days as my wife works full-time and was thus short on time and energy. I would hope this would be considered when a mark for this asessment is being discussed.
     \newpage
     
-    \section{References}
+    \addcontentsline{toc}{section}{References}
+    \begin{thebibliography}{9}
+    
+    
+    \bibitem{bib:acceptThread}
+    CodingWithMitch. (2016, December 27)
+    \textit{Bluetooth Tutorial - Sending/Receiving Data with Bluetooth (Part 1/4)}[Video].
+    Youtube.
+    \url{https://www.youtube.com/watch?v=Fz_GT7VGGaQ&list=PLgCYzUzKIBE8KHMzpp6JITZ2JxTgWqDH2&index=5}
+    
+    \bibitem{bib:connectThread}
+    CodingWithMitch. (2016, December 27)
+    \textit{Bluetooth Tutorial - Sending/Receiving Data with Bluetooth (Part 2/4)}[Video].
+    Youtube.
+    \url{https://www.youtube.com/watch?v=UGtMNk9lriw&list=PLgCYzUzKIBE8KHMzpp6JITZ2JxTgWqDH2&index=6}
+    
+    \bibitem{bib:connectedThread}
+    CodingWithMitch. (2016, December 27)
+    \textit{Bluetooth Tutorial - Sending/Receiving Data with Bluetooth (Part 3/4)}[Video].
+    Youtube.
+    \url{https://www.youtube.com/watch?v=P1_JA4vMHy0&list=PLgCYzUzKIBE8KHMzpp6JITZ2JxTgWqDH2&index=7}
+    
+    \bibitem{bib:tyingUp}
+    CodingWithMitch. (2016, December 27)
+    \textit{Bluetooth Tutorial - Sending/Receiving Data with Bluetooth (Part 4/4)}[Video].
+    Youtube.
+    \url{https://www.youtube.com/watch?v=sifzY2SA1XU&list=PLgCYzUzKIBE8KHMzpp6JITZ2JxTgWqDH2&index=8}
+    
+    \bibitem{bib:uiLink}
+    CodingWithMitch. (2017, January 10)
+    \textit{BluetoothTutorial - Sending Data From a Thread to an Activity}[Video].Youtube.
+    \url{https://www.youtube.com/watch?v=lwBhDnvKGd8&list=PLgCYzUzKIBE8KHMzpp6JITZ2JxTgWqDH2&index=9}
+    
+    \bibitem{bib:androidDev}
+    Google Developers. (2020, February 19)
+    \textit{Bluetooth Overview}.
+    Retrieved from
+    \url{https://developer.android.com/guide/topics/connectivity/bluetooth#java}
+    
+    \end{thebibliography}
     \newpage
-
-    \section{Bibliography}
-    \newpage
-
-    \section{Figures}
+    
+    \addcontentsline{toc}{section}{Figures}
     \listoffigures
     \newpage
 
-    \section{Code listings}
+    \addcontentsline{toc}{section}{Code listings}
     \lstlistoflistings
     \newpage
 
