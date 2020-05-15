@@ -12,7 +12,7 @@
 \contentsline {subsection}{\numberline {4.3}Other}{13}{subsection.4.3}
 \contentsline {subsubsection}{\numberline {4.3.1}SystemView}{13}{subsubsection.4.3.1}
 \contentsline {subsubsection}{\numberline {4.3.2}FreeRTOS}{13}{subsubsection.4.3.2}
-\contentsline {subsubsection}{\numberline {4.3.3}Pulseview}{13}{subsubsection.4.3.3}
+\contentsline {subsubsection}{\numberline {4.3.3}Pulseview}{14}{subsubsection.4.3.3}
 \contentsline {subsubsection}{\numberline {4.3.4}Git/GitHub, gitk}{14}{subsubsection.4.3.4}
 \contentsline {subsubsection}{\numberline {4.3.5}Doxygen}{14}{subsubsection.4.3.5}
 \contentsline {subsubsection}{\numberline {4.3.6}Project management software}{15}{subsubsection.4.3.6}

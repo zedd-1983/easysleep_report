@@ -263,7 +263,7 @@
                     
             \begin{figure}[h]
                 \centering
-                \includegraphics[width=0.7\textwidth]{systemview1}
+                \includegraphics[width=\textwidth]{systemview1}
                 \caption{SystemView}
             \end{figure}
         
@@ -272,8 +272,7 @@
             ThreadX, embOS or Zephyr. Using a real-time operating system allows the programmer to 
             divide the functionality of the project into individual blocks that are easier to manage, 
             can communicate amongst themselves and maintain responsiveness. Real-time operating
-            systems are often used in places where the functionality of a system is somewhat complex and a
-            certain level of responsiveness is required (time-deterministic).
+            systems are often used in places where the functionality of a system is somewhat complex and a certain level of responsiveness is required (time-deterministic).
             
             \subsubsection{Pulseview}
             Pulseview is a Qt based logic analyzer. It is licensed under GNU GPLv.3. This software  
@@ -285,7 +284,7 @@
             
             \begin{figure}[h]
                 \centering
-                \includegraphics[width=0.7\textwidth]{pulseview}
+                \includegraphics[width=\textwidth]{pulseview}
                 \caption{Pulseview}
                 \label{fig:pulseView}
             \end{figure}
@@ -350,7 +349,7 @@
 		Through my online course, I became aware of the SystemView tool which allows the developer to monitor the behaviour of FreeRTOS tasks as well as of the interrupts. To use the software to it's full potential I had to order a SEGGER J-Link debugging probe so I could use the software's continuous recording capabilities and watch how the system behaves and reacts over time and to different interactions. Later on, I discovered that similar functionality can be achieved by upgrading the on-board debugger to J-Link version (in this case, the original on-board debugger of K64F is OpenSDA). If I didn't use the J-Link, I would be limited to recording of few seconds only, until the allocated SystemView buffer filled up. This would be problematic, because I would not be able to test everything this quickly. As a result, this exposed me to yet another tool that is commonly used in embedded software development and I hope to benefit from it in the future.\\
 		
 		In order to successfully use the J-Link Edu debugging probe, adjustments to the project had to be made first.
-		First I had to download and extract SEGGER SystemView target sources and place them into the project folder. I had to setup the include paths in MCUXpresso so the header files and source files would be visible for the compiler. This is done via Projec -> Properties -> C/C++ build. Below is the directory structure of the SEGGER include files.
+		First I had to download and extract SEGGER SystemView target sources and place them into the project folder. I had to setup the include paths in MCUXpresso so the header files and source files would be visible for the compiler. This is done via Project -> Properties -> C/C++ build. Below is the directory structure of the SEGGER include files.
 		\begin{figure}[h]
             \centering
             \includegraphics[scale=1]{SEGGER_directory_structure}
@@ -1114,6 +1113,25 @@
         }
     }
     \end{lstlisting}
+    
+    This BroadcastReceiver is also responsible for triggering the alarm. When the incoming text contains capital X ('X') it gets the current alarm sound via RingtoneManager and uses MediaPlayer to loop it until it is acknowledged.
+    \begin{lstlisting}[label={lst:alarmTrig}, caption=Alarm handling]
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        .
+        .
+        if(text.contains("X")) {
+            Uri alarmSound =
+                    RingtoneManager. getDefaultUri (RingtoneManager.TYPE_ALARM );
+            alarmPlayer = MediaPlayer. create (getApplicationContext(), alarmSound);
+            alarmPlayer.start();
+            alarmPlayer.setLooping(true);
+            Toast.makeText(context, "--- ALARM ---", Toast.LENGTH_LONG).show();
+        }
+        .
+        .
+    }
+    \end{lstlisting}
+
     
     This would conclude the explanation of the Easysleep Android application. I hope, that I have covered all the important aspects of it. There is a link to the repository right below the section's title for further reference.
     \newpage
