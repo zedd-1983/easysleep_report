@@ -79,8 +79,9 @@
 	\newpage
 	
 	\section{Project background and motivation}
-	{\bfseries Aim of the project, Why?}\\
-	The aim of this project was to create a device that would help to resolve nocturnal enurism, also known as bedwetting, which is common in children above the age of 5. I am the parent of a child with this issue and can relate to the stress this can cause to the child and the parents/guardians. My wife and I have tried various methods of resolving this - such as encouriging our daughter to go the toilet prior to going to the bed, restricting fluid intake before bed-time and waking her up during the night, yet none of these worked for us.\\
+	{\bfseries Aim of the project, Research, Why?}\\
+	
+	The aim of this project was to create a device that would help to resolve nocturnal enurism, also known as bedwetting, which is common in children above the age of 5. I am the parent of a child with this issue and can relate to the stress this can cause to the child and the parents/guardians. My wife and I have tried various methods of resolving this - such as encouraging our daughter to go the toilet prior to going to the bed, restricting fluids intake before bed-time and waking her up during the night, yet none of these worked for us.\\
 	
 	According to my research there are a number of different causes for bedwetting and medical reasons account only for 3\% of these. 15\% of children above the age of 5 still wet the bed at night and up to 5\% above the age of 10 continue to do so. The selection of ``night-time training pants'' available in supermarkets go up to the age of 14, indicating that this issue can persist into the early teenage years in some cases.\\
 	
@@ -92,11 +93,18 @@
 	\newpage
 	
 	\section{Overview}
-	{\bfseries What is Easysleep?, Research, Architecture diagram}\\
+	{\bfseries What is Easysleep? Architecture diagram}\\
 	
-	The project consists of two devices that are able to communicate via Bluetooth and a mobile phone application. These are 2 FRDM-K64F microcontrollers. One assumes the role of a master and 
-	monitors the moisture detection sensor, records the time and date of the event, sends a
-	notification to the secondary device to wake the sleeping person up and if requested, 
+	\begin{figure}[h]
+	 \centering
+	 \includegraphics[width=\textwidth]{moistureDetectionArch.png}
+	 \caption{Easysleep Architecture Diagram}
+	 \label{fig:easysleepArchitectureDiagram}
+	\end{figure}
+
+	
+	The project consists of two devices that are able to communicate via Bluetooth and a mobile phone application. These are 2 FRDM-K64F micro-controllers. One assumes the role of a master and 
+	monitors the moisture detection sensor (simulated), records the time and date of the event, sends a notification to the secondary device to wake the sleeping person up and if requested, 
 	transfers time and date of last 10 events to the mobile phone application. It also notifies the 
 	parent/guardian's phone if an event happens and activates the buzzer on the sleeping 
 	person's bracelet.\\
@@ -105,8 +113,7 @@
 	If this is not acknowledged by pushing a button (indicating that he/she is awake) a second stage is entered and a buzzer is sounded.\\
 	
 	The mobile phone application allows the user to silence an ongoing alarm remotely, request 
-	event data from the master device and save those into an SQLite database and check/change the 
-	system time and date.\\
+	event data from the master device and check or change the system time and date.\\
 	\newpage
 	
 	\section{Hardware}
@@ -119,7 +126,6 @@
 	 \item 3x HC-05 Bluetooth module used for communication between master and slave devices as well as between the master and the mobile phone
 	 \item Parallax vibration motor with interfacing circuit used in first stage to wake the sleeping person up by vibrations
 	 \item Buzzer used in third stage as the final, most disruptive method of waking the sleeping  person up
-	 \item Relay used in second stage, to bring a light up in the room of the sleeping person
 	\end{itemize}
 
 		\subsection{FRDM-K64F}
@@ -129,7 +135,7 @@
 			\caption{FRDM-K64F development board}
 		\end{figure}
 		FRDM-K64F is a very capable development board manufactured by NXP Semiconductors with
-		headquarters in Europe in Eindhoven, Netherlands and in North America in Austin, Texas. I chose this board due of my familiarity with it and of its abilities. This board and its cousin KL25Z were used throughout the course as part of the embedded systems modules.\\\\
+		European headquarters Eindhoven, Netherlands and in North America in Austin, Texas. I chose this board due to my familiarity with it and of its abilities. This board and its cousin KL25Z were used throughout the course as part of the embedded systems modules.\\\\\\
 		{\bfseries K64F development board specifications:}  	
 		\begin{itemize}[topsep=4pt,itemsep=1pt]
 			\item 120MHz ARM Cortex-M4 microcontroller
@@ -152,8 +158,7 @@
 			\caption{Parallax vibration motor}
 		\end{wrapfigure}
 		
-		The vibration motor is used as a peripheral of the secondary device (bracelet) to gently and quietly wake the sleeping person up in the first stage of the overall wake-up process. The Parallax vibration motor seemed appropriate device for this task as it requires only 3V of power. However, the current it requires is quite high and cannot be supplied by the K64F thus an external supply has to be used.\\
-		
+		The vibration motor is used as a peripheral of the secondary device (bracelet) to gently and quietly wake the sleeping person up in the first stage of the overall wake-up process. The Parallax vibration motor seemed appropriate device for this task as it requires only 3V of power. However, the current it requires is quite high and cannot be supplied by the K64F GPIO pin therefore an external supply has to be used. A battery pack with two 1.5V batteries is sufficient enough to provide those. 
 		
         \begin{wrapfigure}{l}{0.4\textwidth}
          \centering
@@ -161,7 +166,7 @@
          \caption{Prototyping}
         \end{wrapfigure}
         
-        In order to being able to control this vibration motor, I had to assemble a simple circuit using BC108 transistor as a switch. I had to prototype this circuit first to ensure everything works as should and to prevent any damage to the microcontroller and then solder the circuit to a piece of protoboard.\\
+        In order to safely control this vibration motor, I had to assemble a simple circuit using BC108 transistor as a switch. I had to prototype this circuit first to ensure everything works as should and to prevent any damage to the microcontroller and then solder the circuit to a piece of copperboard. This circuit also uses a IN4001 diode used as a flyback diode to prevent back EMF damaging the K64F board.\\
         
 		\begin{figure}[h]
 			\centering
@@ -192,8 +197,7 @@
          \includegraphics[width=0.25\textwidth]{buzzer1.jpg}
          \caption{Buzzer}
         \end{wrapfigure}
-		The buzzer is used for the third stage of the wake-up process if the vibration motor or 
-		relay fails to wake the sleeping person. This is a passive device and for the sound to be produced the Flex Timer Module of K64F is used to generate a PWM signal on the connected GPIO pin. This buzzer came as part of a multi-sensor kit I ordered for Arduino projects previously so I had it readily available for use in this project.\\\\
+		The buzzer is used for the second stage of the scheduled wake-up process if the vibration motor fails to wake the sleeping person. This is a passive device and for the sound to be produced the Flex Timer Module of K64F is used to generate a PWM signal on the connected GPIO pin. This buzzer came as part of a multi-sensor kit I ordered for Arduino projects previously so I had it readily available for use in this project.\\\\
 		
 		\subsection{HC-05 Bluetooth module}
 		
@@ -203,17 +207,15 @@
 			\caption[HC-05 Bluetooth module]{HC-05}
 		\end{wrapfigure}
 
-		HC-05 is a commonly used Bluetooth module often used with Arduino projects. The K64F development board supports  
-		this module also. I have installed a small section of header pins to house this module. For my  
-		project I am using two of these. One to communicate with the secondary device (bracelet) and the
-		second one to communicate with the mobile phone.
+		HC-05 is a commonly used Bluetooth module often used with Arduino projects. The K64F development board supports this module also. I have installed a small section of header pins to house this module. For my  
+		project I am using two of these. One to communicate with the secondary device (bracelet) and the second one to communicate with the mobile phone.
 		
 		This module can operate as a master or as a slave. In case of the master device of Easysleep project, this Bluetooth module was configured as MASTER and module on the secondary device as the SLAVE. Second module had to be added to the Easysleep master to allow for communication with the mobile phone as these modules only support one-to-one communication.
 		
 		\subsubsection{Bluetooth module configuration}
 		In order for the Bluetooth modules to communicate, both the master and the slave have to be configured in the same way. Additionally they also have to share the same password and have to be made aware of each other by whitelisting each others address through AT commands.\\ 
 		
-		To setup this configuration I used an FTDI cable and start the individual modules in AT mode. This is done by applying power to KEY pin prior to the VCC pin. To communicate with the Bluetooth modules and configure it in the way I needed, I have used {\bfseries Minicom}  - a Linux command line utility. I started this by issuing the following command upon starting the bluetooth module in AT mode.
+		To setup this configuration I used an FTDI cable and start the individual modules in AT mode. This is done by applying power to KEY pin prior to the VCC pin. To communicate with the Bluetooth modules and configure it in the way I needed, I have used {\bfseries minicom}  - a Linux command line utility. I started this by issuing the following command upon starting the bluetooth module in AT mode.
 		\begin{center}
 		 minicom -b 38400 /dev/ttyUSB0
 		\end{center}
@@ -228,32 +230,23 @@
 		\newpage
 		
 	\section{Software}
-	{\bfseries Software used, Programming languages, IDEs, Software tools}\\\\
-	Througout my project I used various software tools to develop C and Java code, as well as
-	software to monitor the behaviour of the system. All the code for the embedded devices was developed on a Linux system, Android Studio was however too resource heavy for my laptop so I borrowed a lab computer with the permission of Michael Keaveney, the GMIT technician.
+	{\bfseries Software used, Programming languages, IDEs, Software tools}\\
+	
+	Througout my project I used various software tools to develop C and Java code, as well as software to monitor the behaviour of the system. All the code for the embedded devices was developed on a Linux system, Android Studio was however too resource heavy for my laptop so I borrowed a lab computer with the permission of Michael Keaveney, the GMIT technician.
 	
 		\subsection{MCUXpresso}
-		I used MCUXpresso 11.1 to develop code for K64F. This is an Eclipse based IDE tailored to suit NXP devices. There are lots of alternatives from other manufacturers such as Atollic Studio for STM32. I became familiar with this IDE during my time in GMIT as it 
-		was used for code development in embedded systems classes. I also used this IDE during my work placement in Jaguar LandRover in 2019.\\
+		
+		I used MCUXpresso 11.1 to develop code for K64F. This is an Eclipse based IDE tailored to suit NXP devices. There are lots of alternatives from other manufacturers such as Atollic Studio for STM32. I became familiar with this IDE during my time in GMIT as it was used for code development in embedded systems classes. I also used this IDE during my work placement in Jaguar LandRover in 2019.\\
 		
 		The project uses Amazon FreeRTOS to efficiently manage various tasks of the system. This is an open-source real-time operating system and its usage greatly reduces the complexity of C code used for functionality of the system. A programmer can divide the code into smaller, easier to manage blocks known as tasks. A communication between those is facilitated through the usage of semaphores, notifications and queues.\\
 		
-		Prior to the commencement of work on the project I had to obtain the appropriate Software
-		Development Kit. I did so, through the SDK Builder present on NXP website. This site allowed 
-		me to select specific processor and middleware and generated an SDK package that I then 
-		imported into the MCUXpresso. This package included all necessary drivers for various 
-		peripherals present on the development board such as GPIO or FlexTimer driver.\\
+		Prior to the commencement of work on the project I had to obtain the appropriate Software Development Kit. I did so, through the SDK Builder present on NXP website. This site allowed me to select specific processor and middleware and generated an SDK package that I then imported into the MCUXpresso. This package included all necessary drivers for various peripherals present on the development board such as GPIO or FlexTimer driver.\\
 		
-		I also created a repository on Github to have a proven record of my work as required 
-		by my supervisor and other lecturers (and also to have a safety net in case things went 
-		wrong). This is an extremely useful tool to know and use. I was grateful to have the ability to 
-		revert to previous revisions of my code throughout the development as on a small number of occassions, the  
-		path I chose to steer the development proved unsuitable, and it would have been  
-		impossible to revert the changes from memory.
+		I also created a repository on Github to have a proven record of my work as required by my supervisor and other lecturers (and also to have a safety net in case things went wrong). This is an extremely useful tool to know and use. I was grateful to have the ability to revert to previous revisions of my code throughout the development as on a small number of occassions, the path I chose to steer the development proved unsuitable, and it would have been impossible to revert the changes from memory.
 		\newpage
 	
 		\subsection{Android Studio} 
-		This integrated development environment was the best choice for the development of my mobile application. There are other options out there such as Eclipse IDE but the Android Studio is the most supported one and was actually used during my last semester in Mobile application development module - so I was already familiar with it.\\ 
+		This integrated development environment was the best choice for the development of my mobile application. There are other options out there such as Eclipse IDE or Netbeans but the Android Studio is the most supported one and was actually used during my last semester in Mobile application development module - so I was already familiar with it.\\ 
 		
 		This IDE is developed by BrainJet, the studio behind the well known IntelliJ and one can really see the similarities of both environments. This is an advanced IDE with plenty of features fully supported by Google Inc.\\ 
 		
@@ -266,8 +259,7 @@
 		{\bfseries Additional software tools used}
 		
             \subsubsection{SystemView}
-            SystemView is a great tool developed by SEGGER for monitoring the behaviour of Real-time
-            operating systems as well as interrupts. It is free to use. It requires J-Link to be either installed as a bootloader on the development board or a harware J-Link probe needs to be used. In my case I had access to the hardware version. In order for it to work fully, I had to cut two traces on the development board otherwise it would clash with the OpenSDA debugger and the code would not get uploaded to the memory.
+            SystemView is a great tool developed by SEGGER for monitoring the behaviour of Real-time operating systems as well as interrupts. It is free to use. It requires J-Link to be either installed as a bootloader on the development board or a harware J-Link probe needs to be used. In my case I had access to the hardware version. In order for it to work fully, I had to cut two traces on the development board otherwise it would clash with the OpenSDA debugger and the code would not get uploaded to the memory.
                     
             \begin{figure}[h]
                 \centering
@@ -295,6 +287,7 @@
                 \centering
                 \includegraphics[width=0.7\textwidth]{pulseview}
                 \caption{Pulseview}
+                \label{fig:pulseView}
             \end{figure}
         
             \subsubsection{Git/GitHub, gitk}
@@ -306,22 +299,52 @@
             \subsubsection{Doxygen}
             Doxygen is a documentation generator widely used in software development companies. It
             allows user to generate documents describing code functionality by adhering 
-            to certain code commenting standards.\\
+            to certain code commenting standards. The code documentation for Easysleep can be found in the root of the master repository, within Docs/api\_docs/html/index.html\\
+            
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=\textwidth]{doxygen_root.png}
+                \caption{Doxygen root documentation structure}
+                \label{fig:doxygenRoot}
+            \end{figure}
+            
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=\textwidth]{doxygen_main_dev2.png}
+                \caption{Example documentation as generated by Doxygen}
+                \label{fig:doxygenMain}
+            \end{figure}
+            
             
             Doxygen is available for various programming languages. It comes with a large configuration 
             file that the user can adjust to suit the need of the project.
             
             \subsubsection{Project management software}
-            project management software, BT configuration,
+            I have used a suggested Taiga.io website to record progress through the development of the project. This website allows the user to record issues as well as to generate graphs. Another alternative would be Jira.\newpage
+            \begin{figure}[h]
+             \centering
+             \includegraphics[width=\textwidth]{taiga.png}
+             \caption{Taiga Backlog}
+             \label{fig:taigaBacklog}
+            \end{figure}
+            
+            \begin{figure}[h]
+             \centering
+             \includegraphics[width=\textwidth]{taiga1.png}
+             \caption{Taiga Issue Board}
+             \label{fig:taigaIssuBoard}
+            \end{figure}
+
             \newpage
 		
 		\section{Code Development}
-		{\bfseries Languages used, code development and examples}\\
+		{\bfseries Languages used, Code development and Snippets}\\
 		
 		The programming languages that were used for the development for the code were C programming language and Java. C was used to program the two K64F embedded devices while Java was used for the Android application development.
 		
 		\subsection{K64F Master code development}
 		\href{https://github.com/zedd-1983/project_journal/tree/bt2}{K64F Master Device code repository}\\
+		
 		I started developing the code for this device in early October 2019 and in parallell ordered few items via the technician in GMIT, i was able to proceed without having the ordered items to hand.  It was my intention to use FreeRTOS from the very beginning. This component was on the curriculum in the first semester of the final year at GMIT, however, I had already completed an online course in FreeRTOS the previous summer, so I was already familiar with it's concepts and inner workings. The Real-time Operating Systems module covered at GMIT in the final year, helped me to strengthen my understanding of the subject further.\\
 		
 		Through my online course, I became aware of the SystemView tool which allows the developer to monitor the behaviour of FreeRTOS tasks as well as of the interrupts. To use the software to it's full potential I had to order a SEGGER J-Link debugging probe so I could use the software's continuous recording capabilities and watch how the system behaves and reacts over time and to different interactions. Later on, I discovered that similar functionality can be achieved by upgrading the on-board debugger to J-Link version (in this case, the original on-board debugger of K64F is OpenSDA). If I didn't use the J-Link, I would be limited to recording of few seconds only, until the allocated SystemView buffer filled up. This would be problematic, because I would not be able to test everything this quickly. As a result, this exposed me to yet another tool that is commonly used in embedded software development and I hope to benefit from it in the future.\\
@@ -865,6 +888,14 @@
     
    \subsubsection{Bluetooth Communication}\label{section:btCommunication}
    ~\cite{bib:acceptThread, bib:connectThread, bib:connectedThread, bib:tyingUp, bib:uiLink, bib:androidDev}
+   
+   \begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{btService_reference}
+    \caption{BTService reference}
+    \label{fig:btServiceReference}
+   \end{figure}
+
    This section mainly focuses on the BTService class that is responsible for enabling, establishing and maintaining Bluetooth connection between the mobile application and the Easysleep master. The creation of the BTService class, has been quite complicated and I had to use a number of resources to get it going. These are referenced as needed throughout the following text.
    
    As mentioned earlier, a Bluetooth service is started when user selects the Easysleep app from the list view in the application. It includes a number of inner classes. This service checks first (listing ~\ref{lst:btServiceStart}) if a {\bfseries ConnectThread} isn't already running and cancels it if it is so. Then it starts the {\bfseries AcceptThread}.
