@@ -1114,7 +1114,7 @@
     }
     \end{lstlisting}
     
-    This BroadcastReceiver is also responsible for triggering the alarm. When the incoming text contains capital X ('X') it gets the current alarm sound via RingtoneManager and uses MediaPlayer to loop it until it is acknowledged.
+    This BroadcastReceiver is also responsible for triggering the alarm. When the incoming text contains capital X it gets the current alarm sound via RingtoneManager and uses MediaPlayer to loop it until it is acknowledged by pushing the Silence button in the application.
     \begin{lstlisting}[label={lst:alarmTrig}, caption=Alarm handling]
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         .
