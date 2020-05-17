@@ -53,6 +53,7 @@
 		{\Huge\bfseries Easysleep\par}
 		\vspace{2cm}
 		{\Large\itshape Zdenek Krousky\par}
+		{\Large G00267758\par}
 		\vfill
 		supervised by\par
 		Paul \textsc{Lennon}
@@ -273,10 +274,19 @@
 		The idea behind this application was to allow the user to wirelessly control the Easysleep module. This communication allows the user to check Easysleep's time and date or configure those as well as request data of recent incidents and silence an ongoing alarm.\\
 		
 		During my project development I used a third party application that allowed me to send characters via Bluetooth to Easysleep and receive data back. I wanted to recreate this application in a way that would better suit the project.\\ 
+		
+		\begin{figure}[h]
+		 \centering
+		 \includegraphics[width=\textwidth]{android_studio.png}
+		 \caption{Android Studio IDE}
+		 \label{fig:androidStudio}
+		\end{figure}
+
 		\newpage
 		
+		
 		\subsection{Other}
-		{\bfseries Additional software tools used}
+		Apart from using the two main IDEs, the course of my project has exposed me to a number of different software tools that helped me with development of the code. This section is focused on those.
 		
             \subsubsection{SystemView}
             SystemView is a great tool developed by SEGGER for monitoring the behaviour of Real-time operating systems as well as interrupts. It is free to use. It requires J-Link to be either installed as a bootloader on the development board or a harware J-Link probe needs to be used. In my case I had access to the hardware version. In order for it to work fully, I had to cut two traces on the development board otherwise it would clash with the OpenSDA debugger and the code would not get uploaded to the memory.
@@ -313,7 +323,7 @@
             Throughout the development of the C code for the embedded platform, as well as of the 
             Android application and this report, I used a Version Control System known as Git and 
             it's online counterpart GitHub. This allowed me to safely store my code, revert to 
-            previous code revisions and work from different computers at school or at home.
+            previous code revisions and work from different computers at school or at home. {\bfseries gitk} is a Linux tool that can provide a visual representation of history of a repository.
             
             \subsubsection{Doxygen}
             Doxygen is a documentation generator widely used in software development companies. It
@@ -339,7 +349,7 @@
             file that the user can adjust to suit the need of the project.
             
             \subsubsection{Project management software}
-            I have used a suggested Taiga.io website to record progress through the development of the project. This website allows the user to record issues as well as to generate graphs. Another alternative would be Jira.\newpage
+            I have used a suggested Taiga.io website to record progress through the development of the project. This website allows the user to record issues as well as to generate graphs. Another alternative would be Jira.
             \begin{figure}[h]
              \centering
              \includegraphics[width=\textwidth]{taiga.png}
@@ -369,7 +379,7 @@
 		Through my online course, I became aware of the SystemView tool which allows the developer to monitor the behaviour of FreeRTOS tasks as well as of the interrupts. To use the software to it's full potential I had to order a SEGGER J-Link debugging probe so I could use the software's continuous recording capabilities and watch how the system behaves and reacts over time and to different interactions. Later on, I discovered that similar functionality can be achieved by upgrading the on-board debugger to J-Link version (in this case, the original on-board debugger of K64F is OpenSDA). If I didn't use the J-Link, I would be limited to recording of few seconds only, until the allocated SystemView buffer filled up. This would be problematic, because I would not be able to test everything this quickly. As a result, this exposed me to yet another tool that is commonly used in embedded software development and I hope to benefit from it in the future.\\
 		
 		In order to successfully use the J-Link Edu debugging probe, adjustments to the project had to be made first.
-		First I had to download and extract SEGGER SystemView target sources and place them into the project folder. I had to setup the include paths in MCUXpresso so the header files and source files would be visible for the compiler. This is done via Project -> Properties -> C/C++ build. Below is the directory structure of the SEGGER include files.
+		First I had to download and extract SEGGER SystemView target sources and place them into the project folder. I had to setup the include paths in MCUXpresso so the header files and source files would be visible for the compiler. This is done via Project $\rightarrow$ Properties $\rightarrow$ C/C++ build. Below is the directory structure of the SEGGER include files.
 		\begin{figure}[h]
             \centering
             \includegraphics[scale=1]{SEGGER_directory_structure}
@@ -387,7 +397,9 @@
         #include SEGGER_SYSVIEW_FreeRTOS.h
 		\end{lstlisting}
 		The {\bfseries SEGGER\_SYSVIEW\_FreeRTOS.h} has to be included at the end of the FreeRTOSConfig.h or above every include of FreeRTOS.h as it defines the trace macros to create SystemView events.\\
+		
 		The processor used has to be specified in {\bfseries SEGGER\_SYSVIEW\_Conf.h}. There are four macros to choose from defined in this file and as I used the ARM Cortex-M4 I had to redefine the SEGGER\_SYSVIEW\_CORE macro to SEGGER\_SYSVIEW\_CORE\_CM3.\\ 	
+		
         I also had to define the size of the SystemView buffer in this file. By default this is set o 1024 Bytes but because the size of the RAM on K64F is 256kB I could afford to assign more to it so I have allocated 8kB of RAM. This would actually affect the amount of time that the data can be recorded by SystemView in Single-Shot mode (that is without the use of J-Link).
 		\begin{lstlisting}
         // SEGGER_SYSVIEW_Conf.h
@@ -841,7 +853,6 @@
     To request data from the Easysleep master device a character is sent via Bluetooth using write() method of inner class (ConnectedThread) of the BTService class. The ConnectedThread keeps listening for incoming messages and responses of the master device within its run() method. 
                 
     \subsubsection{User Interface Development}
-    Graphical User Interface\\
     
     \begin{wrapfigure}{R}{0.4\textwidth}
         \centering
@@ -904,10 +915,10 @@
     This button allows the user to change time and date of the Easysleep system remotely. When clicked a character is sent to the Master device that will cause it to return a message, indicating the format of the time and date it can accept. A Send button is enabled so the user can send this time and date back to the Master device, where it is applied to the RTC module. \\
     
     This would conclude the User Interface section of the Android Code Development. Admittedly, there is room for improvement in terms of design such as dividing the top and bottom section of the screen into two separate activities, however due to current situation (Covid-19) I didn't have enough time to develop this further. \\
+    \newpage
     
    \subsubsection{Bluetooth Communication}\label{section:btCommunication}
    ~\cite{bib:acceptThread, bib:connectThread, bib:connectedThread, bib:tyingUp, bib:uiLink, bib:androidDev}
-   
    
    \begin{figure}[h]
     \centering
@@ -944,7 +955,7 @@
     \end{lstlisting}
     
     \subsubsection*{AcceptThread}~\cite{bib:acceptThread}
-    This thread is responsible for listening for incoming connections by creating a server socket. It is started when the BTService commences. If the incoming connection request matches the paramaters of the {\bfseries listenUsingInsecureRFcommWithServiceRecord()} function a socket is crated and the connection is accepted. The UUID parameter of the above function is common to all HC-05 devices and the appName is the preconfigured Bluetooth module name (done in HC-05 AT mode).
+    This thread is responsible for listening for incoming connections by creating a server socket. It is started when the BTService commences. If the incoming connection request matches the paramaters of the {\bfseries listenUsingInsecureRFcommWithServiceRecord()} function a socket is created and the connection is accepted. The UUID parameter of the above function is common to all HC-05 devices and the appName is the preconfigured Bluetooth module name (configured in HC-05 AT mode).
     
    \begin{lstlisting}[label={lst:acceptThread}, caption=AcceptThread class]
     private class AcceptThread extends Thread {
@@ -1063,9 +1074,9 @@
     \end{lstlisting}
 
     \subsubsection*{ConnectedThread}~\cite{bib:connectedThread}
-    This thread is started by calling the connected() method (listing). It is the final thread of the bluetooth service class. It manages the connection to another bluetooth device and it's input stream and output stream. It allows me to send data to the Easysleep master device and receive data back to be displayed within the user interface.
+    This thread is started by calling the {\bfseries connected()} method. It is the final thread of the bluetooth service class. It manages the connection to another bluetooth device and it's input stream and output stream. It allows me to send data to the Easysleep master device and receive data back to be displayed within the user interface.\\
     
-    Initially, it declares and initializes the Bluetooth socket and the aforementioned input and output streams. Once running, it listens for the data from within the run() method. There is also a write() method, that is used to send data to the other bluetooth device. However it cannot be called directly because it is member function of ConnectedThread which has been declared with a private accessor rights, therefore there is another write() method that is a member method of the BTService class, that allows me to call the write() method of the inner ConnectedThread class.
+    Initially, it declares and initializes the Bluetooth socket and the aforementioned input and output streams. Once running, it listens for the data from within the run() method. There is also a write() method, that is used to send data to the other bluetooth device. However it cannot be called directly because it is member function of ConnectedThread which has been declared with a private accessor rights, therefore there is another write() method that is a member method of the BTService class, that allows me to call the write() method of the inner ConnectedThread class.\\
     
     In order to display incoming messages in the Main Activity, an intent is created within the run() method and broadcasted via LocalBroadcastManager to it, where it is retrieved by yet another broadcastReceiver (mReceiver) and the text field updated to display the incoming message.~\cite{bib:uiLink}
     
@@ -1154,17 +1165,18 @@
     \end{lstlisting}
 
     
-    This would conclude the explanation of the Easysleep Android application. I hope, that I have covered all the important aspects of it. There is a link to the repository right below the section's title for further reference.
+    This would conclude the explanation of the Easysleep Android application. I hope, that I have covered all the important aspects of it. There is a link to the repository right below the section's title and at the end of this document for further reference.
     \newpage
 
     \section{Conclusion}
     {\bfseries Lesson learned}\\
     
-    Development of this project was quite challenging. I have really enjoyed the embedded part of it as it is an area I wish to pursue in the future. Throughout the development of the code to the embedded devices I got exposed to multiple software and hardware tools that might benefit me in the future. \\
+    Bringing this project to life was both challenging and rewarding. The subject matter was personal to me, which motivated me to push forward and to explore various options and ideas and make them a reality. I especially enjoyed the embedded aspects and this confirmed to me that it is an area I would like to pursue in the future.\\
     
-    The development of the Android application, was difficult and unfortunately, due to technical issues and the ongoing pandemic wasn't fully finished and as such is rather rough. I would have liked to include additional functionality, such as a database for storage of the retrieved data from the Easysleep master device. I would have also liked to extend the functionality of the embedded devices such as power management and internal Flash memory usage for data storage. However as I am a parent of two young children, I was needed to look after them throughout the days as my wife works full-time and was thus short on time and energy. \\
+    Throughout the development of the code to the embedded devices I was exposed to multiple software and hardware tools that increased my knowledge and broadened my skills. \\
     
-    I would hope this would be considered when a mark for this asessment is being discussed.
+    The development of the Android application was the most challenging part of the project for me and  would be an area for future development and opportunity for Easysleep had time and situation allowed. Further areas of future development include additional functionality, such as a database for storage of the retrieved data from the Easysleep master device, extended functionality of the embedded devices such as power management and internal Flash memory usage for data storage.
+   
     \newpage
     
     \addcontentsline{toc}{section}{References}

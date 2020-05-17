@@ -12,9 +12,9 @@
 \contentsline {lstlisting}{\numberline {12}motorTask() task}{35}{lstlisting.12}
 \contentsline {lstlisting}{\numberline {13}buzzerTask()}{36}{lstlisting.13}
 \contentsline {lstlisting}{\numberline {14}checkBTpermissions()}{38}{lstlisting.14}
-\contentsline {lstlisting}{\numberline {15}BTService start()}{41}{lstlisting.15}
-\contentsline {lstlisting}{\numberline {16}AcceptThread class}{41}{lstlisting.16}
-\contentsline {lstlisting}{\numberline {17}startClient() method}{43}{lstlisting.17}
-\contentsline {lstlisting}{\numberline {18}ConnectThread class}{43}{lstlisting.18}
-\contentsline {lstlisting}{\numberline {19}ConnectedThread class}{45}{lstlisting.19}
-\contentsline {lstlisting}{\numberline {20}Alarm handling}{47}{lstlisting.20}
+\contentsline {lstlisting}{\numberline {15}BTService start()}{42}{lstlisting.15}
+\contentsline {lstlisting}{\numberline {16}AcceptThread class}{42}{lstlisting.16}
+\contentsline {lstlisting}{\numberline {17}startClient() method}{44}{lstlisting.17}
+\contentsline {lstlisting}{\numberline {18}ConnectThread class}{44}{lstlisting.18}
+\contentsline {lstlisting}{\numberline {19}ConnectedThread class}{46}{lstlisting.19}
+\contentsline {lstlisting}{\numberline {20}Alarm handling}{48}{lstlisting.20}
